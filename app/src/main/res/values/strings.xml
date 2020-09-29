@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">GetPet</string>
-</resources>
+    <string name="email"> Email </string>
+    <string name="password"> Password </string>
+    <string name="loginasguest"> Login as Guest </string>
+    <string name="or"> or </string>
+    <string name="firstname"> First Name </string>
+    <string name="lastname"> Last Name </string>
+    <string name="createPassword"> Create Password </string>
+    <string name="adoptFoster"> Adopt/Foster</string>
+    <string name="findaHome"> Find a Home </string>
+    <string name="helpandSupport"> Help and Support </string>
+    <string name ="interactwithyourvirtuallyadopteddog"> Interact with your virtually adopted dog </string>
+></resources>
+
