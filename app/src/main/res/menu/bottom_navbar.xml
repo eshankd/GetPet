@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/storyboard"
+        android:title="Storyboard"
+        android:icon=""
+        />
+
+    <item
+        android:id="@+id/explore"
+        android:title="Explore"
+        android:icon=""
+        />
+
+    <item
+        android:id="@+id/adopt"
+        android:title=""
+        android:icon=""
+        />
+
+    <item
+        android:id="@+id/notifications"
+        android:title="Notifications"
+        android:icon=""
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon=""
+        />
+</menu>
