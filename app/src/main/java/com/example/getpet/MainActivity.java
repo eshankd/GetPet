@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         loginAsGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,FilterBy.class));
+                startActivity(new Intent(MainActivity.this,AdoptFoster.class));
             }
         });
     }
