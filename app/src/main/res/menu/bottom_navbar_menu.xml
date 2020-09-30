@@ -3,30 +3,30 @@
     <item
         android:id="@+id/storyboard"
         android:title="Storyboard"
-        android:icon=""
+        android:icon="@drawable/storyboard"
         />
 
     <item
         android:id="@+id/explore"
         android:title="Explore"
-        android:icon=""
+        android:icon="@drawable/explore"
         />
 
     <item
         android:id="@+id/adopt"
         android:title=""
-        android:icon=""
+        android:icon="@drawable/petpaw"
         />
 
     <item
         android:id="@+id/notifications"
         android:title="Notifications"
-        android:icon=""
+        android:icon="@drawable/notifications"
         />
 
     <item
         android:id="@+id/profile"
         android:title="Profile"
-        android:icon=""
+        android:icon="@drawable/profile"
         />
 </menu>

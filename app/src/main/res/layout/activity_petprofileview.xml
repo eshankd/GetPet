@@ -106,4 +106,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.621" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="#FFFFFF"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:flow_horizontalBias="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navbar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
