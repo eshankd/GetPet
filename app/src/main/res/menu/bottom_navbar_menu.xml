@@ -15,7 +15,7 @@
     <item
         android:id="@+id/adopt"
         android:title=""
-        android:icon="@drawable/petpaw"
+        android:icon="@drawable/adopt"
         />
 
     <item
