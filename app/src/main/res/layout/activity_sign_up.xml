@@ -51,10 +51,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpPassword" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/signUpEmail"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -63,10 +63,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpLname" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/signUpPassword"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -75,10 +75,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/signUpFname"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
@@ -90,7 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/logo4" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/signUpLname"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -99,7 +99,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/signUpFname" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

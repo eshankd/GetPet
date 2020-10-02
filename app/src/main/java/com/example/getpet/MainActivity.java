@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText emailIN;
     private EditText passwordIN;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
     public String status; //if guest user
 
     private String TAG = "EmailPassword";
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         loginAsGuest();
         signUp();
@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser(); //checks if user is already signed in
-
-        //updateUI(currentUser);  change the UI accordingly
     }
 
     private void login() {
@@ -64,21 +61,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "login: " + emailIN);
 
                 if(validateForm(email, password)){
-                    Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-
                             startActivity(new Intent(MainActivity.this, AdoptFoster.class));
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Account doesn't exit, please signup", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -89,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean validateForm(String email, String password) {
         return !(email.equals("") || password.equals(""));
     }
+
+
 
     private void loginAsGuest(){
         TextView loginAsGuest = findViewById(R.id.loginasguest);
