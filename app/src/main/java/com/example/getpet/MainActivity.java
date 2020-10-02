@@ -51,24 +51,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void login() {
 
-        Button loginBTN = (Button) findViewById(R.id.login);
+        Button loginBTN = findViewById(R.id.login);
         loginBTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                emailIN = (EditText) findViewById(R.id.userEmail);
-                passwordIN = (EditText) findViewById(R.id.userPassword);
+                emailIN = findViewById(R.id.userEmail);
+                passwordIN = findViewById(R.id.userPassword);
+
+                String email = emailIN.getText().toString();
+                String password = passwordIN.getText().toString();
 
                 Log.d(TAG, "login: " + emailIN);
 
-//                if(!validateForm()){
-//                    return;
-//                }
-                mAuth.signInWithEmailAndPassword(emailIN.getText().toString(), passwordIN.getText().toString()).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
+                if(validateForm(email, password)){
+                    Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            startActivity(new Intent(MainActivity.this, AdoptFoster.class));
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
@@ -79,23 +86,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private boolean validateForm(String email, String password) {
+        return !(email.equals("") || password.equals(""));
+    }
 
     private void loginAsGuest(){
-        TextView loginAsGuest = (TextView) findViewById(R.id.loginasguest);
+        TextView loginAsGuest = findViewById(R.id.loginasguest);
         loginAsGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AdoptFoster.class));
+                startActivity(new Intent(MainActivity.this, AdoptFoster.class));
             }
         });
     }
 
     private void signUp(){
-        Button signUp = (Button) findViewById(R.id.signup);
+        Button signUp = findViewById(R.id.signup);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,SignUp.class));
+                startActivity(new Intent(MainActivity.this, SignUp.class));
             }
         });
     }
