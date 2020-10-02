@@ -119,4 +119,28 @@
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
+
+    <Button
+        android:id="@+id/virtuallyadopt"
+        android:layout_width="152dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="116dp"
+        android:background="@drawable/greenbuttondesign"
+        android:text="Virutally Adopt"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="152dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="116dp"
+        android:background="@drawable/greenbuttondesign"
+        android:text="Adopt"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
