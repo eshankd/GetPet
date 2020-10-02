@@ -12,6 +12,7 @@
     <string name="helpandSupport"> Help and Support </string>
     <string name ="interactwithyourvirtuallyadopteddog"> Interact with your virtually adopted dog </string>
     <string name="storyboard"> Storyboard </string>
+    <string name="search"> Search </string>
     <string name= "notifications"> Notifications </string>
     <string name = "explore"> Explore </string>
     <string name = "profile"> Profile </string>
@@ -21,7 +22,7 @@
     <string name = "age"> Age: </string>
     <string name = "adopt"> Adopt </string>
 
-    <string-array name = "types">
+    <string-array name = "type">
         <item> Any </item>
         <item> Dog </item>
         <item> Cat </item>
@@ -67,5 +68,5 @@
         <item> Foster </item>
     </string-array>
 
-></resources>
+</resources>
 
