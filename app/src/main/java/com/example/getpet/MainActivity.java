@@ -61,25 +61,26 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailIN.getText().toString();
                 String password = passwordIN.getText().toString();
 
-                Log.d(TAG, "login: " + emailIN);
+                Log.d("email", email);
+                Log.d("pass", password);
 
-                if(validateForm(email, password)){
-                    Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                if(!validateForm(email, password)){
+                    Toast.makeText(MainActivity.this, "Authentication Failed1", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInWithEmail:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
 
-                            startActivity(new Intent(MainActivity.this, AdoptFoster.class));
-                        } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
-                        }
+                        startActivity(new Intent(MainActivity.this, AdoptFoster.class));
+                    } else {
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(MainActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                    }
                     }
                 });
             }
@@ -87,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean validateForm(String email, String password) {
-        return !(email.equals("") || password.equals(""));
+        if(email == null || email.trim().isEmpty())
+            return false;
+        if(password == null || password.trim().isEmpty())
+            return false;
+        return true;
     }
 
     private void loginAsGuest(){
