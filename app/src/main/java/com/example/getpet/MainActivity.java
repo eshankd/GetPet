@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         loginAsGuest();
         signUp();
@@ -85,9 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean validateForm(String email, String password) {
         if(email == null || email.trim().isEmpty())
             return false;
-        if(password == null || password.trim().isEmpty())
-            return false;
-        return true;
+        return password != null && !password.trim().isEmpty();
     }
 
 

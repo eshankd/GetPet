@@ -13,12 +13,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private FirebaseUser user;
     private String TAG = "Signup";
     private EditText Fname;
     private EditText Lname;
@@ -47,6 +45,8 @@ public class SignUp extends AppCompatActivity {
 
                 String emailIn = email.getText().toString();
                 String passwordIn = password.getText().toString();
+                String FnameIn = Fname.getText().toString();
+                String LnameIn = Lname.getText().toString();
 
                 auth.createUserWithEmailAndPassword(emailIn,passwordIn).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -55,11 +55,11 @@ public class SignUp extends AppCompatActivity {
                             Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            user = FirebaseAuth.getInstance().getCurrentUser();
-                           // Toast.makeText(SignUp.this, "")
+                            Toast.makeText(SignUp.this, "Account creating unsuccessful", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
             }
         });
     }
