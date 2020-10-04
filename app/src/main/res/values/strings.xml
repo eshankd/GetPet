@@ -10,63 +10,23 @@
     <string name="adoptFoster"> Adopt/Foster</string>
     <string name="findaHome"> Find a Home </string>
     <string name="helpandSupport"> Help and Support </string>
-    <string name ="interactwithyourvirtuallyadopteddog"> Interact with your virtually adopted dog </string>
+    <string name="interactwithyourvirtuallyadopteddog"> Interact with your virtually adopted dog </string>
     <string name="storyboard"> Storyboard </string>
     <string name="search"> Search </string>
-    <string name= "notifications"> Notifications </string>
-    <string name = "explore"> Explore </string>
-    <string name = "profile"> Profile </string>
-    <string name = "filterBy"> Filter By </string>
-    <string name = "type"> Type: </string>
-    <string name = "breed"> Breed: </string>
-    <string name = "age"> Age: </string>
-    <string name = "adopt"> Adopt </string>
+    <string name="notifications"> Notifications </string>
+    <string name="explore"> Explore </string>
+    <string name="profile"> Profile </string>
+    <string name="filterBy"> Filter By </string>
+    <string name="type"> Type: </string>
+    <string name="breed"> Breed: </string>
+    <string name="age"> Age: </string>
+    <string name="adopt"> Adopt </string>
+    <string name="walk"> Walk </string>
+    <string name="feed">Feed</string>
+    <string name="play">Play</string>
+    <string name="gobacktorofile">Go back to Profile</string>
 
-    <string-array name = "type">
-        <item> Any </item>
-        <item> Dog </item>
-        <item> Cat </item>
-        <item> Rabbit </item>
-        <item> Bird </item>
-    </string-array>
 
-    <string-array name = "breed">
-        <item> Any </item>
-        <item> Labrador </item>
-        <item> Bichon Frise </item>
-        <item> Maltese </item>
-        <item> Great Dane </item>
-        <item> Husky </item>
-        <item> Beagle </item>
-        <item> Shih Tzu </item>
-        <item> Rottweiler </item>
-        <item> German Shepherd </item>
-        <item> Bulldog </item>
-        <item> Poodle </item>
-        <item> Chihuahua </item>
-        <item> Doberman </item>
-        <item> Corgi </item>
-        <item> Greyhound </item>
-        <item> Saluki </item>
-        <item> Pomeranian </item>
-    </string-array>
-
-    <string-array name = "age">
-        <item> Any </item>
-        <item> 1 </item>
-        <item> 2 </item>
-        <item> 3 </item>
-        <item> 4 </item>
-        <item> 5 </item>
-        <item> 6 </item>
-        <item> 6 + </item>
-    </string-array>
-
-    <string-array name = "adoptfoster">
-        <item> Any </item>
-        <item> Adopt </item>
-        <item> Foster </item>
-    </string-array>
 
 </resources>
 

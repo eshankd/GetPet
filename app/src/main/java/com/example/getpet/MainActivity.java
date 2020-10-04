@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        auth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         loginAsGuest();
         signUp();
@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailIN.getText().toString();
                 String password = passwordIN.getText().toString();
 
-                Log.d(TAG, "login: " + emailIN);
+                Log.d("email", email);
+                Log.d("pass", password);
 
                 if(validateForm(email, password)){
                     Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
@@ -82,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean validateForm(String email, String password) {
-        return !(email.equals("") || password.equals(""));
+        if(email == null || email.trim().isEmpty())
+            return false;
+        if(password == null || password.trim().isEmpty())
+            return false;
+        return true;
     }
 
 
