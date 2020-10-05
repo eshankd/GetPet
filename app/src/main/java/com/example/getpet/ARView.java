@@ -36,15 +36,15 @@ public class ARView extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child("android.glt");
+        StorageReference modelRef = storage.getReference().child("beagle.glb");
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
 
-        findViewById(R.id.downloadButton).setOnClickListener(v -> {
+        findViewById(R.id.GetPet).setOnClickListener(v -> {
 
             try {
-                File file = File.createTempFile("out", "glb");
+                File file = File.createTempFile("beagle", "glb");
                 modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -65,7 +65,7 @@ public class ARView extends AppCompatActivity {
             anchorNode.setParent(arFragment.getArSceneView().getScene());
             // Create the transformable andy and add it to the anchor.
             TransformableNode beagle = new TransformableNode(arFragment.getTransformationSystem());
-            beagle.setLocalScale(new Vector3(2, 4, 2));
+            beagle.setLocalScale(new Vector3((float)0.5, (float)0.5, (float)0.5));
             beagle.setParent(anchorNode);
             beagle.setRenderable(renderable);
             beagle.select();
@@ -101,11 +101,9 @@ public class ARView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ARView.this, petprofileview.class));
-
             }
         });
-
-}
+    }
 
 
 }

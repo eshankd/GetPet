@@ -54,6 +54,7 @@ public class SignUp extends AppCompatActivity {
 
     private void signup() {
         Button signupBTN = findViewById(R.id.signup);
+
         signupBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +83,7 @@ public class SignUp extends AppCompatActivity {
                             docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG,"onSuccess: user Profile is created for "+userid);
+                                    Log.d(TAG,"onSuccess: user Profile is created for " + userid);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override

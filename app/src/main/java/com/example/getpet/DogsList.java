@@ -44,47 +44,28 @@ BottomNavigationView navBar;
                         startActivity(new Intent(DogsList.this, AdoptFoster.class));
                         break;
                     case "Notifications":
-                        //Do something
+                        startActivity(new Intent(DogsList.this, Notification.class));
                         break;
                     case "Profile":
                         startActivity(new Intent(DogsList.this, Profile.class));
                         break;
                 }
                 return true;
+
+
             }
         });
 
+        Next();
+    }
 
-//        name=findViewById(R.id.name);
-//        age=findViewById(R.id.age);
-//        gender=findViewById(R.id.gender);
-//        breed=findViewById(R.id.breed);
-//        btn=findViewById(R.id.btnload);
-//
-//       btn.setOnClickListener(new View.OnClickListener(){
-//
-//           public void onClick(View view){
-//               reff= FirebaseDatabase.getInstance()
-//                       .getReference()
-//                       .child("Member")
-//                       .child("1");
-//               reff.addValueEventListener(new ValueEventListener() {
-//                   @Override
-//                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                       String name = dataSnapshot.child("name").getValue().toString();
-//                   }
-//
-//                   @Override
-//                   public void onCancelled(@NonNull DatabaseError error) {
-//
-//                   }
-//               });
-//
-//
-//                                  }
-//       });
-
-
+    private void Next(){
+        Button next = findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DogsList.this, ARView.class));
+            }
+        });
     }
 }
