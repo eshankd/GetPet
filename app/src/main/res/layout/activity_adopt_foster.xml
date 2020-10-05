@@ -22,10 +22,10 @@
 
     <Button
         android:id="@+id/adoptfoster"
-        android:layout_width="136dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/button_design"
         android:fontFamily="@font/alike_angular"
         android:text="@string/adoptFoster"
@@ -35,17 +35,17 @@
 
     <Button
         android:id="@+id/findahome"
-        android:layout_width="136dp"
-        android:layout_height="125dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/button_design"
         android:fontFamily="@font/alike_angular"
         android:text="@string/findaHome"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintStart_toEndOf="@+id/adoptfoster"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
@@ -59,7 +59,7 @@
         android:fontFamily="@font/alike_angular"
         android:text="@string/helpandSupport"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
@@ -134,4 +134,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="#3498DB"
+        app:flow_horizontalBias="0.5"
+        app:itemIconTint= "@drawable/bottom_navigation_selector"
+        app:itemTextColor= "@drawable/bottom_navigation_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemIconSize="40dp"
+        app:menu="@menu/bottom_navbar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
