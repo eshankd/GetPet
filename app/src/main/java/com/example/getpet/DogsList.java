@@ -29,6 +29,7 @@ BottomNavigationView navBar;
         setContentView(R.layout.activity_dogs_list);
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId(R.id.adopt);
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

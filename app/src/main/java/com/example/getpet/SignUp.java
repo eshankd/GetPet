@@ -67,6 +67,7 @@ public class SignUp extends AppCompatActivity {
                 final String password = passwordIn.getText().toString();
                 final String fName = fNameIn.getText().toString();
                 final String lName = lNameIn.getText().toString();
+                final String[] adopted = {};
 
                 auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -80,6 +81,7 @@ public class SignUp extends AppCompatActivity {
                             user.put("lName",lName);
                             user.put("email",email);
                             user.put("pwd",password);
+                            user.put("adopted", adopted);
                             docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
