@@ -8,16 +8,21 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdoptFoster extends AppCompatActivity {
 
     BottomNavigationView navBar;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        auth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_adopt_foster);
 
         navBar = findViewById(R.id.bottom_navbar);
@@ -68,6 +73,14 @@ public class AdoptFoster extends AppCompatActivity {
                 startActivity(new Intent(AdoptFoster.this,FilterBy.class));
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        auth.signOut();
+        startActivity(new Intent(AdoptFoster.this,MainActivity.class));
+        Toast.makeText(AdoptFoster.this, "Successfully signed out", Toast.LENGTH_SHORT).show();
     }
 
 
