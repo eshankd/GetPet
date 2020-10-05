@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("email", email);
                 Log.d("pass", password);
 
-                if(validateForm(email, password)){
+                if(!validateForm(email, password)){
                     Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
                     return;
                 }
