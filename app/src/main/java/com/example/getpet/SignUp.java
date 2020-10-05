@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,11 +28,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private FirebaseFirestore fstore;
+    private FirebaseFirestore fStore;
     private String TAG = "Signup";
     private String userid;
     private EditText fNameIn;
@@ -45,7 +47,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         auth = FirebaseAuth.getInstance();
-        fstore = FirebaseFirestore.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         signup();
     }
@@ -70,8 +72,8 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
-                            userid = auth.getCurrentUser().getUid();
-                            DocumentReference docref = fstore.collection("users").document(userid);
+                            userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                            DocumentReference docref = fStore.collection("users").document(userid);
                             Map<String,Object> user = new HashMap<>();
                             user.put("fName",fName);
                             user.put("lName",lName);
@@ -82,11 +84,16 @@ public class SignUp extends AppCompatActivity {
                                 public void onSuccess(Void aVoid) {
                                     Log.d(TAG,"onSuccess: user Profile is created for "+userid);
                                 }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Profile not created");
+                                }
                             });
                             startActivity(new Intent(SignUp.this, AdoptFoster.class));
                         }
                         else{
-                            Query emailQuery = fstore.collection("users").whereEqualTo("email",email);
+                            Query emailQuery = fStore.collection("users").whereEqualTo("email",email);
                             emailQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
