@@ -11,12 +11,11 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.google.gson.internal.$Gson$Types;
-
 import java.lang.reflect.Array;
 
 public class FilterBy extends AppCompatActivity {
+
+
 
 
     @Override
@@ -25,6 +24,7 @@ public class FilterBy extends AppCompatActivity {
         setContentView(R.layout.activity_filter_by);
 
         searchByFilter();
+
 
         final Spinner typeSpinner = findViewById(R.id.spinner1);
         final Spinner breedSpinner = findViewById(R.id.spinner2);
@@ -38,6 +38,7 @@ public class FilterBy extends AppCompatActivity {
         final String birds[] = {"Any","African Parrot","Eagle","Falcon"};
         final String age[] = {"Less Than 1 Year","1 Year","2 Years","3 Years","4 Years","5 Years","6 Years"};
         final String af[] = {"Any","Adopt","Foster"};
+
 
         ArrayAdapter<String> adapter  = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item, type);
         typeSpinner.setAdapter(adapter);

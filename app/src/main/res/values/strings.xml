@@ -24,8 +24,12 @@
     <string name="walk"> Walk </string>
     <string name="feed">Feed</string>
     <string name="play">Play</string>
+    <string name="getpet">GetPet</string>
     <string name="gobacktorofile">Go back to Profile</string>
-
+    <string name="edit">Edit</string>
+    <string name="viewSearchHistory"> View Search History </string>
+    <string name="manageStoryboard">Manage Storyboard </string>
+    <string name="signout"> Sign Out </string>
 
 
 </resources>

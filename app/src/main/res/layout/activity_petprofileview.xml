@@ -88,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/description"
         android:layout_width="335dp"
         android:layout_height="214dp"
         android:layout_marginStart="36dp"
@@ -124,23 +124,23 @@
         android:id="@+id/virtuallyadopt"
         android:layout_width="152dp"
         android:layout_height="42dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="92dp"
         android:background="@drawable/greenbuttondesign"
         android:text="Virutally Adopt"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="152dp"
         android:layout_height="42dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="116dp"
         android:background="@drawable/greenbuttondesign"
         android:text="Adopt"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description" />
 </androidx.constraintlayout.widget.ConstraintLayout>

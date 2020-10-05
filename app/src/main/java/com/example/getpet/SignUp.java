@@ -3,6 +3,7 @@ package com.example.getpet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +54,8 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignUp.this, AdoptFoster.class));
+
                         }
                         else{
                             Toast.makeText(SignUp.this, "Account creating unsuccessful", Toast.LENGTH_SHORT).show();
