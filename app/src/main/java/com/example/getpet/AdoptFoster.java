@@ -3,6 +3,7 @@ package com.example.getpet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -28,19 +29,19 @@ public class AdoptFoster extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.toString()) {
                     case "Storyboard":
-                        //Do something
+
+                        startActivity(new Intent(AdoptFoster.this, Storyboard.class));
                         break;
                     case "Explore":
-                        //Do something
+                        startActivity(new Intent(AdoptFoster.this, Explore.class));
                         break;
                     case "Adopt":
-                        //Do something
                         break;
                     case "Notifications":
-                        //Do something
+                        startActivity(new Intent(AdoptFoster.this, Notification.class));
                         break;
                     case "Profile":
-                        //Do something
+                        startActivity(new Intent(AdoptFoster.this, Profile.class));
                         break;
                 }
                 return true;
