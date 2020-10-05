@@ -19,6 +19,7 @@ public class Notification extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId((R.id.notifications));
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

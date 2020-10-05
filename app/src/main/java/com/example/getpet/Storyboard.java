@@ -19,6 +19,7 @@ public class Storyboard extends AppCompatActivity {
         setContentView(R.layout.activity_storyboard);
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId((R.id.storyboard));
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

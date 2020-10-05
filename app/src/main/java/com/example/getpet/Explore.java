@@ -19,6 +19,7 @@ public class Explore extends AppCompatActivity {
         setContentView(R.layout.activity_explore);
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId((R.id.explore));
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

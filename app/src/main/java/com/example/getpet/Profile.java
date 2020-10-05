@@ -19,6 +19,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId((R.id.profile));
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
