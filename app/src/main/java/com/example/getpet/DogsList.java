@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -98,14 +99,19 @@ public class DogsList extends AppCompatActivity {
 
                     petAdapter = new PetObjectAdapter(DogsList.this, petList);
                     petListView.setAdapter(petAdapter);
-//                    petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                            Object o = prestListView.getItemAtPosition(position);
-//                            prestationEco str = (prestationEco)o; //As you are using Default String Adapter
-//                            Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
+                    petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            PetObject obj = petList.get(position);
+
+                            Intent toPetProfile = new Intent(DogsList.this, petprofileview.class);
+                            toPetProfile.putExtra("petName", obj.getName());
+                            toPetProfile.putExtra("petAge", obj.getAge());
+                            toPetProfile.putExtra("petGender", obj.getGender());
+                            toPetProfile.putExtra("petBreed", obj.getBreed());
+                            startActivity(toPetProfile);
+                        }
+                    });
                 }
             });
     }
