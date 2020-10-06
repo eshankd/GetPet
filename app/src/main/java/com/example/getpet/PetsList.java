@@ -1,16 +1,12 @@
 package com.example.getpet;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,10 +15,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
-public class DogsList extends AppCompatActivity {
+public class PetsList extends AppCompatActivity {
 
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
@@ -52,19 +49,19 @@ public class DogsList extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.toString()) {
                     case "Storyboard":
-                        startActivity(new Intent(DogsList.this, Storyboard.class));
+                        startActivity(new Intent(PetsList.this, Storyboard.class));
                         break;
                     case "Explore":
-                        startActivity(new Intent(DogsList.this, Explore.class));
+                        startActivity(new Intent(PetsList.this, Explore.class));
                         break;
                     case "Adopt":
-                        startActivity(new Intent(DogsList.this, AdoptFoster.class));
+                        startActivity(new Intent(PetsList.this, AdoptFoster.class));
                         break;
                     case "Notifications":
-                        startActivity(new Intent(DogsList.this, Notification.class));
+                        startActivity(new Intent(PetsList.this, Notification.class));
                         break;
                     case "Profile":
-                        startActivity(new Intent(DogsList.this, Profile.class));
+                        startActivity(new Intent(PetsList.this, Profile.class));
                         break;
                 }
                 return true;
@@ -93,19 +90,14 @@ public class DogsList extends AppCompatActivity {
                     petListView = findViewById(R.id.PetList);
 
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
-                        petList.add(new PetObject(snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue()));
-                    }
 
-                    petAdapter = new PetObjectAdapter(DogsList.this, petList);
+                        petList.add(new PetObject(snapDoc.getReference("Image").getValue, snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue()));
+
+                }
+
+                    petAdapter = new PetObjectAdapter(PetsList.this, petList);
                     petListView.setAdapter(petAdapter);
-//                    petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                            Object o = prestListView.getItemAtPosition(position);
-//                            prestationEco str = (prestationEco)o; //As you are using Default String Adapter
-//                            Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
+
                 }
             });
     }

@@ -10,14 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Filter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.lang.reflect.Array;
-import java.util.Random;
 
 public class FilterBy extends AppCompatActivity {
 
@@ -229,7 +224,7 @@ public class FilterBy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent transfer = new Intent(FilterBy.this,DogsList.class);
+                Intent transfer = new Intent(FilterBy.this, PetsList.class);
                 transfer.putExtra("type",typeChosen);
                 transfer.putExtra("breed",breedChosen);
                 transfer.putExtra("age",ageChosen);
