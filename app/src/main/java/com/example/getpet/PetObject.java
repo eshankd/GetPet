@@ -14,8 +14,8 @@ public class PetObject {
     String gender;
     int age;
 
-    public PetObject(ImageReader petPic,String name, String breed, String gender, int age)   {
-        this.petPic = petPic;
+    public PetObject(String name, String breed, String gender, int age)   {
+//        this.petPic = petPic;
         this.name = name;
         this.breed = breed;
         this.gender = gender;
