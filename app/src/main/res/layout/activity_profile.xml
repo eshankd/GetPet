@@ -38,12 +38,11 @@
         app:srcCompat="@drawable/profilepic" />
 
     <TextView
-        android:id="@+id/userFName"
+        android:id="@+id/userProfileFName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:layout_marginTop="72dp"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -60,23 +59,28 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/userProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="52dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="172dp"
         android:text="@string/email"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toStartOf="@+id/textViewzzz"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <TextView
-        android:id="@+id/userEmail"
+        android:id="@+id/textViewzzz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="52dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
+        android:layout_marginEnd="259dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userProfileEmail"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Button
@@ -89,7 +93,7 @@
         android:text="@string/manageStoryboard"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewzzz" />
 
     <Button
         android:id="@+id/button9"
@@ -104,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/signOut"
         android:layout_width="352dp"
         android:layout_height="53dp"
         android:layout_marginStart="28dp"

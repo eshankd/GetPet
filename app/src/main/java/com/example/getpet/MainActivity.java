@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         loginAsGuest();
         signUp();
         login();
+
     }
 
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         loginBTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                emailIN = findViewById(R.id.userEmail);
+                emailIN = findViewById(R.id.textViewzzz);
                 passwordIN = findViewById(R.id.userPassword);
 
                 String email = emailIN.getText().toString();
