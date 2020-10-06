@@ -22,7 +22,7 @@ import java.util.Random;
 public class FilterBy extends AppCompatActivity {
 
     BottomNavigationView navBar;
-    String typeChosen,nameChosen,breedChosen,ageChosen;
+    String typeChosen,nameChosen,breedChosen,ageChosen,genderChosen;
     boolean AdoptFosterChosen;
 
     @Override
@@ -62,6 +62,7 @@ public class FilterBy extends AppCompatActivity {
         final Spinner breedSpinner = findViewById(R.id.spinner2);
         final Spinner ageSpinner = findViewById(R.id.spinner3);
         final Spinner afSpinner = findViewById(R.id.spinner4);
+        final Spinner genderSpinner = findViewById(R.id.spinner5);
 
 
         final String type[]={"Dog","Cat","Bird"};
@@ -69,6 +70,7 @@ public class FilterBy extends AppCompatActivity {
         final String cats[] = {"Any","British Shorthair","Persian Cat","Maine Coon"};
         final String birds[] = {"Any","African Parrot","Eagle","Falcon"};
         final String age[] = {"Any","Less Than 1 Year","1 Year","2 Years","3 Years","4 Years","5 Years","6 Years and Above"};
+        final String gender[]={"Any","Male","Female"};
         final String af[] = {"Any","Adopt","Foster"};
 
 
@@ -170,6 +172,30 @@ public class FilterBy extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<String> adapter6= new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,gender);
+        genderSpinner.setAdapter(adapter6);
+
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position==0){
+                    genderChosen = "Male";
+                }
+                else{
+                    genderChosen = "Female";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
         ArrayAdapter<String> adapter5 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,af);
         afSpinner.setAdapter(adapter5);
 
@@ -205,6 +231,7 @@ public class FilterBy extends AppCompatActivity {
                 transfer.putExtra("breed",breedChosen);
                 transfer.putExtra("age",ageChosen);
                 transfer.putExtra("type",typeChosen);
+                transfer.putExtra("gender",genderChosen);
                 transfer.putExtra("adoptfoster",AdoptFosterChosen);
                 startActivity(transfer);
 

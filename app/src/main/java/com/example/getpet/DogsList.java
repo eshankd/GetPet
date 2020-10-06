@@ -36,6 +36,7 @@ public class DogsList extends AppCompatActivity {
     private TextView name;
     private TextView age;
     private TextView breed;
+    private TextView gender;
 
 
 
@@ -93,19 +94,18 @@ public class DogsList extends AppCompatActivity {
         age = findViewById(R.id.dogAge);
         breed = findViewById(R.id.dogBreed);
         name = findViewById(R.id.dogName);
+        gender = findViewById(R.id.dogGender);
 
 
         String transferedName =  getIntent().getStringExtra("name");
         String transferedBreed =  getIntent().getStringExtra("breed");
         String transferedAge =  getIntent().getStringExtra("age");
+        String transferedGender =  getIntent().getStringExtra("gender");
 
         name.setText(transferedName);
         age.setText(transferedAge);
         breed.setText(transferedBreed);
-
-
-
-
+        gender.setText(transferedGender);
 
     }
 
