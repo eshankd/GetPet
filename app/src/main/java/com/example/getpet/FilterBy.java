@@ -28,6 +28,7 @@ public class FilterBy extends AppCompatActivity {
         setContentView(R.layout.activity_filter_by);
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId(R.id.adopt);
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

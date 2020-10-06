@@ -49,6 +49,7 @@ public class DogsList extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
 
         navBar = findViewById(R.id.bottom_navbar);
+        navBar.setSelectedItemId(R.id.adopt);
 
         nameOUT = findViewById(R.id.dogName);
         ageOUT = findViewById(R.id.dogAge);
@@ -69,13 +70,15 @@ public class DogsList extends AppCompatActivity {
                         startActivity(new Intent(DogsList.this, AdoptFoster.class));
                         break;
                     case "Notifications":
-                        //Do something
+                        startActivity(new Intent(DogsList.this, Notification.class));
                         break;
                     case "Profile":
                         startActivity(new Intent(DogsList.this, Profile.class));
                         break;
                 }
                 return true;
+
+
             }
         });
 

@@ -115,6 +115,7 @@ public class SignUp extends AppCompatActivity {
 
     private void signup() {
         Button signupBTN = findViewById(R.id.signup);
+
         signupBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +128,7 @@ public class SignUp extends AppCompatActivity {
                 final String password = passwordIn.getText().toString();
                 final String fName = fNameIn.getText().toString();
                 final String lName = lNameIn.getText().toString();
+                final String[] adopted = {};
 
                 auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -140,10 +142,11 @@ public class SignUp extends AppCompatActivity {
                             user.put("lName",lName);
                             user.put("email",email);
                             user.put("pwd",password);
+                            user.put("adopted", adopted);
                             docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG,"onSuccess: user Profile is created for "+userid);
+                                    Log.d(TAG,"onSuccess: user Profile is created for " + userid);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
