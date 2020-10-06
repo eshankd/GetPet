@@ -13,9 +13,7 @@ public class PetObject {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public String getBreed() {
         return breed;

@@ -11,22 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -51,19 +41,6 @@ public class DogsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dogs_list);
-
-//        petListView = findViewById(R.id.PetList);
-//        ArrayList <PetObject> petList = new ArrayList<>();
-//
-//        //Populate Array List from query
-//
-//        petAdapter = new PetObjectAdapter(this,petList);
-//        petListView.setAdapter(petAdapter);
-
-
-
-        next();
-        loadDogs();
 
         fStore = FirebaseFirestore.getInstance();
 
@@ -91,85 +68,46 @@ public class DogsList extends AppCompatActivity {
                         break;
                 }
                 return true;
-
-
             }
         });
-
-//        age = findViewById(R.id.dogAge);
-//        breed = findViewById(R.id.dogBreed);
-//        name = findViewById(R.id.dogName);
-//        gender = findViewById(R.id.dogGender);
-
-
         transferredBreed = getIntent().getStringExtra("breed");
         transferredAge = getIntent().getIntExtra("age",0);
         transferredGender = getIntent().getStringExtra("gender");
 
-
+        LoadPets();
     }
 
-    private void next() {
-        Button next = findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DogsList.this, petprofileview.class));
-            }
-        });
-    }
+    private void LoadPets() {
+        fStore.collection("Dogs")
+            .whereEqualTo("Age",1)
+//            .whereEqualTo("Breed", transferredBreed)
+//            .whereEqualTo("Gender", transferredGender)
+            .get()
+            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    int count = queryDocumentSnapshots.size();
+                    Log.d(TAG,Integer.toString(count));
 
+                    ArrayList <PetObject> petList = new ArrayList<PetObject>();
+                    petListView = findViewById(R.id.PetList);
 
-    private void loadDogs() {
+                    for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+                        petList.add(new PetObject(snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue()));
+                    }
 
-        Button loadDogsBTN = findViewById(R.id.btnload);
-
-        loadDogsBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fStore.collection("Dogs")
-                        .whereEqualTo("Age",transferredAge)
-                        .whereEqualTo("Breed",transferredBreed)
-                        .whereEqualTo("Gender",transferredGender)
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-//                                if(transferredAge == -1)
-//                                    transferredAge=
-//                                {
+                    petAdapter = new PetObjectAdapter(DogsList.this, petList);
+                    petListView.setAdapter(petAdapter);
+//                    petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
-//                                }
-
-
-//
-//                                int count = queryDocumentSnapshots.size();
-//                                Log.d(TAG,Integer.toString(count));
-//                                gender.setText(Integer.toString(count));
-//                                for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
-//                                    name.setText(snapDoc.getString("Name"));
-//                                    age.setText(snapDoc.getString("Age"));
-//                                    gender.setText(snapDoc.getString("Gender"));
-//                                    Log.d(TAG,  snapDoc.getString("Name"));
-//                                }
-//                                String[][] dogOptions = new String[count][4];
-//                                int i =0;
-//                                for (DocumentSnapshot docSnap : queryDocumentSnapshots) {
-//                                    dogOptions[i][0] = docSnap.getString("Name");
-//                                    dogOptions[i][1] = docSnap.getString("Age");
-//                                    dogOptions[i][2] = docSnap.getString("Breed");
-//                                    dogOptions[i][3] = docSnap.getString("Gender");
-//                                    name.setText(dogOptions[i][0]);
-//                                    age.setText(dogOptions[i][1]);
-//                                    breed.setText(dogOptions[i][2]);
-//                                   // gender.setText(dogOptions[i][3]);
-//                                    i++;
-//                                }
-                            }
-                        });
-            }
-        });
+//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                            Object o = prestListView.getItemAtPosition(position);
+//                            prestationEco str = (prestationEco)o; //As you are using Default String Adapter
+//                            Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+                }
+            });
     }
 }
 
