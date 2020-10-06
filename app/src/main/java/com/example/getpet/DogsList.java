@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,23 +29,17 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Document;
+import java.util.ArrayList;
 
-import java.sql.Time;
-import java.util.concurrent.TimeUnit;
 
 public class DogsList extends AppCompatActivity {
 
     BottomNavigationView navBar;
-
-
     private FirebaseFirestore fStore;
 
 
-    private TextView name;
-    private TextView age;
-    private TextView breed;
-    private TextView gender;
+    private ListView petListView;
+    private PetObjectAdapter petAdapter;
 
     private int transferredAge;
     private String transferredBreed;
@@ -55,6 +51,16 @@ public class DogsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dogs_list);
+
+//        petListView = findViewById(R.id.PetList);
+//        ArrayList <PetObject> petList = new ArrayList<>();
+//
+//        //Populate Array List from query
+//
+//        petAdapter = new PetObjectAdapter(this,petList);
+//        petListView.setAdapter(petAdapter);
+
+
 
         next();
         loadDogs();
@@ -90,19 +96,16 @@ public class DogsList extends AppCompatActivity {
             }
         });
 
-        age = findViewById(R.id.dogAge);
-        breed = findViewById(R.id.dogBreed);
-        name = findViewById(R.id.dogName);
-        gender = findViewById(R.id.dogGender);
+//        age = findViewById(R.id.dogAge);
+//        breed = findViewById(R.id.dogBreed);
+//        name = findViewById(R.id.dogName);
+//        gender = findViewById(R.id.dogGender);
 
 
         transferredBreed = getIntent().getStringExtra("breed");
         transferredAge = getIntent().getIntExtra("age",0);
         transferredGender = getIntent().getStringExtra("gender");
 
-//        age.setText(transferredAge);
-//        breed.setText(transferredBreed);
-//        gender.setText(transferredGender);
 
     }
 
@@ -125,20 +128,31 @@ public class DogsList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fStore.collection("Dogs")
-//                        .whereEqualTo("Age",transferredAge)
+                        .whereEqualTo("Age",transferredAge)
                         .whereEqualTo("Breed",transferredBreed)
                         .whereEqualTo("Gender",transferredGender)
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                int count = queryDocumentSnapshots.size();
-                                Log.d(TAG,Integer.toString(count));
-                                gender.setText(Integer.toString(count));
-                                for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
-                                    name.setText(snapDoc.getString("Name"));
-                                    Log.d(TAG,  snapDoc.getString("Name"));
-                                }
+
+//                                if(transferredAge == -1)
+//                                    transferredAge=
+//                                {
+//
+//                                }
+
+
+//
+//                                int count = queryDocumentSnapshots.size();
+//                                Log.d(TAG,Integer.toString(count));
+//                                gender.setText(Integer.toString(count));
+//                                for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+//                                    name.setText(snapDoc.getString("Name"));
+//                                    age.setText(snapDoc.getString("Age"));
+//                                    gender.setText(snapDoc.getString("Gender"));
+//                                    Log.d(TAG,  snapDoc.getString("Name"));
+//                                }
 //                                String[][] dogOptions = new String[count][4];
 //                                int i =0;
 //                                for (DocumentSnapshot docSnap : queryDocumentSnapshots) {

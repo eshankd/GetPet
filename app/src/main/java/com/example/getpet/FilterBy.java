@@ -23,8 +23,7 @@ public class FilterBy extends AppCompatActivity {
 
     BottomNavigationView navBar;
     String typeChosen,breedChosen,genderChosen;
-    int ageChosen;
-    boolean AdoptFosterChosen;
+    int ageChosen,AdoptFosterChosen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,8 +145,8 @@ public class FilterBy extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position)
                 {
-//                    case 0: Random rand = new Random();
-//                        ageChosen= Integer.toString(rand.nextInt(6 - 1 + 1) + 1);
+                    case 0 :ageChosen =-1;
+                            break;
                     case 1: ageChosen = 0;
                         break;
                     case 2: ageChosen = 1;
@@ -163,7 +162,6 @@ public class FilterBy extends AppCompatActivity {
                     case 7: ageChosen = 6;
                         break;
                 }
-
 
             }
 
@@ -181,8 +179,10 @@ public class FilterBy extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if(position==0){
-                    genderChosen = "Male";
+                    genderChosen = "Any";
                 }
+                else if(position==1)
+                    genderChosen = "Male";
                 else{
                     genderChosen = "Female";
                 }
@@ -205,10 +205,12 @@ public class FilterBy extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if(position==0){
-                    AdoptFosterChosen = true;
+                    AdoptFosterChosen = 0;
                 }
+                else if(position==1)
+                    AdoptFosterChosen = 1;
                 else{
-                    AdoptFosterChosen = false;
+                    AdoptFosterChosen = 2;
                 }
 
             }
@@ -228,9 +230,9 @@ public class FilterBy extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent transfer = new Intent(FilterBy.this,DogsList.class);
+                transfer.putExtra("type",typeChosen);
                 transfer.putExtra("breed",breedChosen);
                 transfer.putExtra("age",ageChosen);
-                transfer.putExtra("type",typeChosen);
                 transfer.putExtra("gender",genderChosen);
                 transfer.putExtra("adoptfoster",AdoptFosterChosen);
                 startActivity(transfer);
