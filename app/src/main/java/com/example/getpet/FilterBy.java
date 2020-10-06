@@ -17,10 +17,13 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Array;
+import java.util.Random;
 
 public class FilterBy extends AppCompatActivity {
 
     BottomNavigationView navBar;
+    String typeChosen,nameChosen,breedChosen,ageChosen,genderChosen;
+    boolean AdoptFosterChosen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +62,15 @@ public class FilterBy extends AppCompatActivity {
         final Spinner breedSpinner = findViewById(R.id.spinner2);
         final Spinner ageSpinner = findViewById(R.id.spinner3);
         final Spinner afSpinner = findViewById(R.id.spinner4);
+        final Spinner genderSpinner = findViewById(R.id.spinner5);
 
 
         final String type[]={"Dog","Cat","Bird"};
         final String dogs[] = {"Any","Beagle","Labrador","Bichon Frise","Maltese","Great Dane","Husky","Shihtzu","Rottweiler","German Shepherd","Bulldog","Poodle","Chihuahua","Doberman","Corgi","Greyhound","Saluki","Pomeranion"};
         final String cats[] = {"Any","British Shorthair","Persian Cat","Maine Coon"};
         final String birds[] = {"Any","African Parrot","Eagle","Falcon"};
-        final String age[] = {"Less Than 1 Year","1 Year","2 Years","3 Years","4 Years","5 Years","6 Years"};
+        final String age[] = {"Any","Less Than 1 Year","1 Year","2 Years","3 Years","4 Years","5 Years","6 Years and Above"};
+        final String gender[]={"Any","Male","Female"};
         final String af[] = {"Any","Adopt","Foster"};
 
 
@@ -78,15 +83,49 @@ public class FilterBy extends AppCompatActivity {
 
                 if (position == 0) {
                     ArrayAdapter<String> adapter1 = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, dogs);
+                    typeChosen="dog";
+
                     breedSpinner.setAdapter(adapter1);
+                    breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            switch (position)
+                            {
+                                case 0: breedChosen=("Any");
+                                    break;
+                                case 1: breedChosen="Beagle";
+                                    break;
+                                case 2: breedChosen="Labrador";
+                                    break;
+                                case 3: breedChosen="Bichon Frise";
+                                    break;
+                                case 4: breedChosen="Maltese";
+                                    break;
+                                case 5: breedChosen="Great Dane";
+                                    break;
+                                case 6: breedChosen="Husky";
+                                    break;
+                            }
+
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+
                 }
                 if (position == 1) {
+                    typeChosen="cat";
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, cats);
                     breedSpinner.setAdapter(adapter2);
                 }
 
                 if (position == 2) {
                     ArrayAdapter<String> adapter3 = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, birds);
+                    typeChosen="bird";
                     breedSpinner.setAdapter(adapter3);
 
                 }
@@ -104,6 +143,26 @@ public class FilterBy extends AppCompatActivity {
         ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position)
+                {
+//                    case 0: Random rand = new Random();
+//                        ageChosen= Integer.toString(rand.nextInt(6 - 1 + 1) + 1);
+                    case 1: ageChosen="Less than 1 Year";
+                        break;
+                    case 2: ageChosen="1 Year";
+                        break;
+                    case 3: ageChosen="2 Years";
+                        break;
+                    case 4: ageChosen="3 Years";
+                        break;
+                    case 5: ageChosen="4 Years";
+                        break;
+                    case 6: ageChosen="5 Years";
+                        break;
+                    case 7: ageChosen="6 Years and Above";
+                        break;
+                }
+
 
             }
 
@@ -113,12 +172,43 @@ public class FilterBy extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<String> adapter6= new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,gender);
+        genderSpinner.setAdapter(adapter6);
+
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position==0){
+                    genderChosen = "Male";
+                }
+                else{
+                    genderChosen = "Female";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
         ArrayAdapter<String> adapter5 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,af);
         afSpinner.setAdapter(adapter5);
 
         afSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position==0){
+                    AdoptFosterChosen = true;
+                }
+                else{
+                    AdoptFosterChosen = false;
+                }
 
             }
 
@@ -136,7 +226,15 @@ public class FilterBy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(FilterBy.this,DogsList.class));
+                Intent transfer = new Intent(FilterBy.this,DogsList.class);
+                transfer.putExtra("name",nameChosen);
+                transfer.putExtra("breed",breedChosen);
+                transfer.putExtra("age",ageChosen);
+                transfer.putExtra("type",typeChosen);
+                transfer.putExtra("gender",genderChosen);
+                transfer.putExtra("adoptfoster",AdoptFosterChosen);
+                startActivity(transfer);
+
             }
         });
     }

@@ -29,12 +29,17 @@ public class DogsList extends AppCompatActivity {
 
     BottomNavigationView navBar;
 
+
     private FirebaseFirestore fStore;
 
-    private String name;
-    private String age;
-    private String breed;
-    private String gender;
+
+    private TextView name;
+    private TextView age;
+    private TextView breed;
+    private TextView gender;
+
+
+
 
     private TextView nameOUT;
     private TextView ageOUT;
@@ -45,6 +50,9 @@ public class DogsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dogs_list);
+
+        next();
+//        loadDogs();
 
         fStore = FirebaseFirestore.getInstance();
 
@@ -82,35 +90,67 @@ public class DogsList extends AppCompatActivity {
             }
         });
 
-        loadDogs();
+
+        age = findViewById(R.id.dogAge);
+        breed = findViewById(R.id.dogBreed);
+        name = findViewById(R.id.dogName);
+        gender = findViewById(R.id.dogGender);
+
+
+        String transferedName =  getIntent().getStringExtra("name");
+        String transferedBreed =  getIntent().getStringExtra("breed");
+        String transferedAge =  getIntent().getStringExtra("age");
+        String transferedGender =  getIntent().getStringExtra("gender");
+
+        name.setText(transferedName);
+        age.setText(transferedAge);
+        breed.setText(transferedBreed);
+        gender.setText(transferedGender);
 
     }
 
-    private void loadDogs(){
-        Button loadDogsBTN = findViewById(R.id.btnload);
-        loadDogsBTN.setOnClickListener(new View.OnClickListener() {
+    private void next(){
+        Button next = findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fStore.collection("Dogs").addSnapshotListener(new EventListener<QuerySnapshot>(){
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        for (QueryDocumentSnapshot doc : value){
-                            name = doc.getString("Name");
-                            age = doc.getString("Age");
-                            breed = doc.getString("Breed");
-                            gender = doc.getString("Gender");
-
-                            nameOUT.setText(name);
-                            ageOUT.setText(age);
-                            breedOUT.setText(breed);
-                            genderOUT.setText(gender);
-
-                            break;
-                        }
-
-                    }
-                });
+                startActivity(new Intent(DogsList.this,petprofileview.class));
             }
         });
-    }
-}
+    }}
+
+
+
+
+
+
+
+
+
+//    private void loadDogs(){
+//        Button loadDogsBTN = findViewById(R.id.btnload);
+//        loadDogsBTN.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fStore.collection("Dogs").addSnapshotListener(new EventListener<QuerySnapshot>(){
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                        for (QueryDocumentSnapshot doc : value){
+//                            name = doc.getString("Name");
+//                            age = doc.getString("Age");
+//                            breed = doc.getString("Breed");
+//                            gender = doc.getString("Gender");
+//
+//                            nameOUT.setText(name);
+//                            ageOUT.setText(age);
+//                            breedOUT.setText(breed);
+//                            genderOUT.setText(gender);
+//
+//                            break;
+//                        }
+//
+//                    }
+//                });
+//            }
+//        });
+//    }

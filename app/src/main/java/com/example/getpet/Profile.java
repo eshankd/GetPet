@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+//import com.google.android.gms.auth.api.signin.GoogleSignIn;
+//import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,14 +27,14 @@ public class Profile extends AppCompatActivity {
 
     BottomNavigationView navBar;
     private FirebaseAuth auth;
-    private GoogleSignInClient gSignInClient;
+//    private GoogleSignInClient gSignInClient;
     private FirebaseUser user;
     private TextView nameOUT;
     private TextView emailOUT;
     private ImageView profilePictureOut;
     private String name;
     private String email;
-    private Uri googlePhoto;
+//    private Uri googlePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
