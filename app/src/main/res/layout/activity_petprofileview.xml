@@ -57,11 +57,11 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Description:"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -69,26 +69,35 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="260dp"
-        android:text="Activity Level:"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="9dp"
+        android:text="@string/breed"
         android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/petProfilePetBreed"
+        android:layout_width="67dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/petProfilePetGender" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="308dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="11dp"
         android:text="Gender:"
         android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/petDescription"
         android:layout_width="335dp"
         android:layout_height="214dp"
         android:layout_marginStart="36dp"
@@ -112,12 +121,11 @@
         app:menu="@menu/bottom_navbar_menu" />
 
     <TextView
-        android:id="@+id/dogAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:id="@+id/petProfilePetAge"
+        android:layout_width="42dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="51dp"
         android:layout_marginTop="32dp"
-        android:text="@string/age"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
@@ -132,7 +140,7 @@
         android:text="Virutally Adopt"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/petDescription" />
 
     <Button
         android:id="@+id/button8"
@@ -144,5 +152,15 @@
         android:text="Adopt"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/petDescription" />
+
+    <TextView
+        android:id="@+id/petProfilePetGender"
+        android:layout_width="101dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/petProfilePetAge" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

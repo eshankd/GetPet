@@ -8,12 +8,25 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import io.grpc.okhttp.internal.Platform;
 
 public class petprofileview extends AppCompatActivity {
 
     BottomNavigationView navBar;
+
+    private String transferredName;
+    private int transferredAge;
+    private String transferredBreed;
+    private String transferredGender;
+
+    private TextView petName;
+    private TextView petAge;
+    private TextView petBreed;
+    private TextView petGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +35,23 @@ public class petprofileview extends AppCompatActivity {
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
+
+        petName = findViewById(R.id.petName);
+        petAge = findViewById(R.id.petProfilePetAge);
+        petBreed = findViewById(R.id.petProfilePetBreed);
+        petGender = findViewById(R.id.petProfilePetGender);
+//        petDesc = findViewById(R.id.petDescription);
+
+        transferredName = getIntent().getStringExtra("petName");
+        transferredAge = getIntent().getIntExtra("petAge", 0);
+        transferredBreed = getIntent().getStringExtra("petBreed");
+        transferredGender = getIntent().getStringExtra("petGender");
+
+        petName.setText(transferredName);
+        petAge.setText(Integer.toString(transferredAge));
+        petBreed.setText(transferredBreed);
+        petGender.setText(transferredGender);
+
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
