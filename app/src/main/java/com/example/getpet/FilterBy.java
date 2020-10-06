@@ -22,7 +22,8 @@ import java.util.Random;
 public class FilterBy extends AppCompatActivity {
 
     BottomNavigationView navBar;
-    String typeChosen,nameChosen,breedChosen,ageChosen,genderChosen;
+    String typeChosen,breedChosen,genderChosen;
+    int ageChosen;
     boolean AdoptFosterChosen;
 
     @Override
@@ -91,7 +92,7 @@ public class FilterBy extends AppCompatActivity {
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             switch (position)
                             {
-                                case 0: breedChosen=("Any");
+                                case 0: breedChosen="Any";
                                     break;
                                 case 1: breedChosen="Beagle";
                                     break;
@@ -147,19 +148,19 @@ public class FilterBy extends AppCompatActivity {
                 {
 //                    case 0: Random rand = new Random();
 //                        ageChosen= Integer.toString(rand.nextInt(6 - 1 + 1) + 1);
-                    case 1: ageChosen="Less than 1 Year";
+                    case 1: ageChosen = 0;
                         break;
-                    case 2: ageChosen="1 Year";
+                    case 2: ageChosen = 1;
                         break;
-                    case 3: ageChosen="2 Years";
+                    case 3: ageChosen = 2;
                         break;
-                    case 4: ageChosen="3 Years";
+                    case 4: ageChosen = 3;
                         break;
-                    case 5: ageChosen="4 Years";
+                    case 5: ageChosen = 4;
                         break;
-                    case 6: ageChosen="5 Years";
+                    case 6: ageChosen = 5;
                         break;
-                    case 7: ageChosen="6 Years and Above";
+                    case 7: ageChosen = 6;
                         break;
                 }
 
@@ -227,7 +228,6 @@ public class FilterBy extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent transfer = new Intent(FilterBy.this,DogsList.class);
-                transfer.putExtra("name",nameChosen);
                 transfer.putExtra("breed",breedChosen);
                 transfer.putExtra("age",ageChosen);
                 transfer.putExtra("type",typeChosen);
