@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         loginBTN.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                emailIN = findViewById(R.id.textViewzzz);
+                emailIN = findViewById(R.id.userEmail);
                 passwordIN = findViewById(R.id.userPassword);
 
                 String email = emailIN.getText().toString();

@@ -104,6 +104,7 @@
         android:layout_width="338dp"
         android:layout_height="49dp"
         android:layout_marginTop="12dp"
+        android:hint="Choose a type"
         android:background="@drawable/filterdropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

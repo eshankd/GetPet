@@ -59,11 +59,21 @@
         app:layout_constraintVertical_bias="0.018" />
 
     <TextView
+        android:id="@+id/dogGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogBreed" />
+
+    <TextView
         android:id="@+id/dogName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="64dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -73,37 +83,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogName" />
 
     <TextView
-        android:id="@+id/dogGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogAge" />
-
-    <TextView
         android:id="@+id/dogBreed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dogGender" />
+        app:layout_constraintTop_toBottomOf="@+id/dogAge" />
 
     <Button
         android:id="@+id/btnload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="336dp"
         android:text="load it up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dogBreed" />
@@ -130,8 +130,10 @@
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.889" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
