@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/userEmail"
+        android:id="@+id/textViewzzz"
         android:layout_width="290dp"
         android:layout_height="40dp"
         android:layout_marginStart="64dp"
@@ -29,7 +29,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewzzz" />
 
     <TextView
         android:id="@+id/textView4"
