@@ -135,7 +135,6 @@ public class FilterBy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 startActivity(new Intent(FilterBy.this,DogsList.class));
             }
         });

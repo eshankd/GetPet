@@ -30,6 +30,8 @@
     <string name="viewSearchHistory"> View Search History </string>
     <string name="manageStoryboard">Manage Storyboard </string>
     <string name="signout"> Sign Out </string>
+    <string name="recent"> Recent </string>
+    <string name="trending"> Trending </string>
 
 
 </resources>

@@ -86,7 +86,7 @@
         app:srcCompat="@drawable/logo" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/inbox"
         android:layout_width="46dp"
         android:layout_height="39dp"
         android:background="@drawable/inbox"
