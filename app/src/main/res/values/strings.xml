@@ -33,6 +33,7 @@
     <string name="recent"> Recent </string>
     <string name="trending"> Trending </string>
     <string name="gender">Gender:</string>
+    <string name="name">Name:</string>
 
 
 </resources>
