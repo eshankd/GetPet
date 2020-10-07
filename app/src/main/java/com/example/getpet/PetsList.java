@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -77,7 +79,7 @@ public class PetsList extends AppCompatActivity {
 
     private void LoadPets() {
         fStore.collection("Dogs")
-            .whereEqualTo("Age",1)
+            .whereEqualTo("Age",transferredAge)
 //            .whereEqualTo("Breed", transferredBreed)
 //            .whereEqualTo("Gender", transferredGender)
             .get()
@@ -98,6 +100,20 @@ public class PetsList extends AppCompatActivity {
 
                     petAdapter = new PetObjectAdapter(PetsList.this, petList);
                     petListView.setAdapter(petAdapter);
+
+                    petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            PetObject obj = petList.get(position);
+
+                            Intent toPetProfile = new Intent(PetsList.this, petprofileview.class);
+                            toPetProfile.putExtra("petName", obj.getName());
+                            toPetProfile.putExtra("petAge", obj.getAge());
+                            toPetProfile.putExtra("petGender", obj.getGender());
+                            toPetProfile.putExtra("petBreed", obj.getBreed());
+                            startActivity(toPetProfile);
+                        }
+                    });
 
                 }
             });
