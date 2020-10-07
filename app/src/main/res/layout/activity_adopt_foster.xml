@@ -11,13 +11,14 @@
         android:id="@+id/interact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="152dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/alike_angular"
         android:text="@string/interactwithyourvirtuallyadopteddog"
         android:textColor="#000000"
-        android:textSize="14dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adoptfoster" />
 
     <Button
@@ -132,7 +133,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+            
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/profilepic3"/>
+        </LinearLayout>
+        
+        
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -142,11 +151,11 @@
         android:layout_gravity="start"
         android:background="#3498DB"
         app:flow_horizontalBias="0.5"
-        app:itemIconTint= "@drawable/bottom_navigation_selector"
-        app:itemTextColor= "@drawable/bottom_navigation_selector"
+        app:itemIconSize="40dp"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemIconSize="40dp"
         app:menu="@menu/bottom_navbar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

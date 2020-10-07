@@ -100,7 +100,7 @@ public class ARView extends AppCompatActivity {
         gobacktoprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ARView.this, petprofileview.class));
+                finish();
             }
         });
     }
