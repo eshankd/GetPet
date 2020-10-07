@@ -29,7 +29,7 @@ public class PetObjectAdapter extends ArrayAdapter<PetObject> {
         View listItem = convertView;
 
         if(listItem == null)
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.dog_list_layout, parent, false);
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.pet_list_layout, parent, false);
 
         PetObject currentPet = petObjectList.get(position);
 
