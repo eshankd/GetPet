@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,6 @@ public class PetsList extends AppCompatActivity {
     private int transferredAge;
     private String transferredBreed;
     private String transferredGender;
-
     private String TAG = "DogsList";
 
     @Override
@@ -75,9 +75,17 @@ public class PetsList extends AppCompatActivity {
         LoadPets();
     }
 
+
+
+
+
+
+
+
+
     private void LoadPets() {
         fStore.collection("Dogs")
-            .whereEqualTo("Age",transferredAge)
+          //  .whereEqualTo("Age",transferredAge)
 //            .whereEqualTo("Breed", transferredBreed)
 //            .whereEqualTo("Gender", transferredGender)
             .get()
@@ -92,8 +100,7 @@ public class PetsList extends AppCompatActivity {
 
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                        petList.add(new PetObject(snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue()));
-
+                        petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
                 }
 
                     petAdapter = new PetObjectAdapter(PetsList.this, petList);
@@ -109,6 +116,7 @@ public class PetsList extends AppCompatActivity {
                             toPetProfile.putExtra("petAge", obj.getAge());
                             toPetProfile.putExtra("petGender", obj.getGender());
                             toPetProfile.putExtra("petBreed", obj.getBreed());
+                            toPetProfile.putExtra("petDescription" , obj.getDescription());
                             startActivity(toPetProfile);
                         }
                     });

@@ -82,19 +82,19 @@
         android:layout_width="352dp"
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/manageStoryboard"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/petsOwned" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="352dp"
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/viewSearchHistory"
         android:textColor="#FFFFFF"
@@ -127,5 +127,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navbar_menu" />
+
+    <TextView
+        android:id="@+id/petsOwned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.getpet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,28 +12,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
-//import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
 
 public class Profile extends AppCompatActivity {
 
     BottomNavigationView navBar;
     private FirebaseAuth auth;
-//    private GoogleSignInClient gSignInClient;
     private FirebaseUser user;
     private TextView nameOUT;
     private TextView emailOUT;
     private ImageView profilePictureOut;
     private String name;
     private String email;
-//    private Uri googlePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +34,6 @@ public class Profile extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
-//
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestEmail()
-//                .build();
-//
-//        gSignInClient = GoogleSignIn.getClient(this, gso);
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.profile));
@@ -109,6 +93,11 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
 }
 //    public void revokeAccess(){
 //        auth.signOut();

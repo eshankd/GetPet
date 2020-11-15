@@ -1,28 +1,28 @@
 package com.example.getpet;
-
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.media.ImageReader;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class PetObject {
 
-    ImageReader petPic;
+    String petID;
     String name;
     String breed;
     String gender;
+    String description;
     int age;
 
-    public PetObject(String name, String breed, String gender, int age)   {
-//        this.petPic = petPic;
+
+    public PetObject(String petID,String name, String breed, String gender, int age, String description)   {
+
+        this.petID = petID;
         this.name = name;
         this.breed = breed;
         this.gender = gender;
         this.age = age;
+        this.description = description;
     }
 
-    public ImageReader getPetPic() { return petPic; }
+    public String getPetID(){return petID;    }
 
     public String getName() { return name; }
 
@@ -34,9 +34,11 @@ public class PetObject {
         return gender;
     }
 
-    public int getAge() {
-        return age;
-    }
+    public int getAge() {  return age;    }
+
+    public String getDescription(){return description;}
+
+    public void setPetID(String petID){this.petID = petID;}
 
     public void setName(String name) { this.name = name; }
 
@@ -52,7 +54,5 @@ public class PetObject {
         this.age = age;
     }
 
-    public void setPetPic(ImageReader petPic) {
-        this.petPic = petPic;
-    }
+    public void setDescription(String description){this.description = description;}
 }

@@ -34,7 +34,8 @@
     <string name="trending"> Trending </string>
     <string name="gender">Gender:</string>
     <string name="name">Name:</string>
-    <string name = "confirmPassword"> Confirm Password</string>
+    <string name="confirmPassword"> Confirm Password</string>
+    <string name="editProfile">Edit Profile</string>
 
 </resources>
 
