@@ -4,7 +4,7 @@
     package="com.example.getpet">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:glEsVersion="0x00030001"
@@ -22,7 +22,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddStory"></activity>
+        <activity android:name=".CreatePetProfileSubmit"></activity>
+        <activity android:name=".CreatePetProfile" />
+        <activity android:name=".AddStory" />
         <activity android:name=".Inbox" />
         <activity android:name=".Notification" />
         <activity android:name=".Explore" />
@@ -35,6 +37,7 @@
         <activity android:name=".FilterBy" />
         <activity android:name=".SignUp" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

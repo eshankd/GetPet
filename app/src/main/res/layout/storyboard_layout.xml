@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/postImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -23,7 +23,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView17"
+        app:layout_constraintStart_toEndOf="@+id/postImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -33,28 +33,28 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView17"
+        app:layout_constraintStart_toEndOf="@+id/postImage"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <Button
         android:id="@+id/likeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/like"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
     <Button
         android:id="@+id/commenButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/comment"
         app:layout_constraintStart_toEndOf="@+id/likeButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
     <view
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
         android:layout_marginStart="16dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
     <TextView
         android:id="@+id/timeAgo"
@@ -81,7 +81,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="1dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView17"
+        app:layout_constraintStart_toEndOf="@+id/postImage"
         app:layout_constraintTop_toBottomOf="@+id/statusMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

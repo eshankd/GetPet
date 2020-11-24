@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/downloadButton"/>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/arFragment"
         android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
@@ -34,11 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button6"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="191dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/greenbuttondesign"
         android:text="@string/getpet"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/greenbuttondesign" />
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/downloadButton"

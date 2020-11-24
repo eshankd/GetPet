@@ -7,12 +7,11 @@
     tools:context=".petprofileview">
 
     <ImageView
-        android:id="@+id/petProfileImage"
+        android:id="@+id/petImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/profilepic3"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/petName" />
 
@@ -47,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Pet Name"
-        android:textSize="25dp"
+        android:textSize="34dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,34 +56,45 @@
         android:id="@+id/textView17"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
         android:text="Age:"
         android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/petProfileImage"
+        app:layout_constraintStart_toEndOf="@+id/petImage"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
 
     <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView21"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="Description:"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/gender"
         android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petProfileImage" />
+        app:layout_constraintStart_toEndOf="@+id/petImage"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
         android:text="@string/breed"
         android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/petProfileImage"
+        app:layout_constraintStart_toEndOf="@+id/petImage"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        android:text="Description:"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petImage" />
 
     <TextView
         android:id="@+id/petProfilePetBreed"
@@ -96,26 +106,14 @@
         app:layout_constraintTop_toBottomOf="@+id/petProfilePetGender" />
 
     <TextView
-        android:id="@+id/textView21"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="11dp"
-        android:text="@string/gender"
-        android:textSize="18dp"
-        app:layout_constraintStart_toEndOf="@+id/petProfileImage"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <TextView
         android:id="@+id/petDescription"
         android:layout_width="335dp"
         android:layout_height="214dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        android:layout_marginTop="8dp"
         android:padding="10dp"
-        android:text="He is a very playful dog, that loves going for long walks. He is a little shy at first but once he opens up he's very friendly"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navbar"
@@ -143,28 +141,33 @@
         app:layout_constraintTop_toBottomOf="@+id/petName" />
 
     <Button
-        android:id="@+id/virtuallyadopt"
+        android:id="@+id/viewinAR"
         android:layout_width="152dp"
         android:layout_height="42dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/greenbuttondesign"
-        android:text="Virutally Adopt"
+        android:text="@string/viewinAR"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        app:layout_constraintEnd_toStartOf="@+id/adoptButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/adoptButton"
         android:layout_width="152dp"
         android:layout_height="42dp"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/greenbuttondesign"
         android:text="Adopt"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
-        app:layout_constraintStart_toEndOf="@+id/virtuallyadopt" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/viewinAR" />
 
     <TextView
         android:id="@+id/petProfilePetGender"

@@ -76,13 +76,6 @@ public class PetsList extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
     private void LoadPets() {
         fStore.collection("Dogs")
           //  .whereEqualTo("Age",transferredAge)
@@ -117,6 +110,7 @@ public class PetsList extends AppCompatActivity {
                             toPetProfile.putExtra("petGender", obj.getGender());
                             toPetProfile.putExtra("petBreed", obj.getBreed());
                             toPetProfile.putExtra("petDescription" , obj.getDescription());
+                            toPetProfile.putExtra("petID", obj.getPetID());
                             startActivity(toPetProfile);
                         }
                     });

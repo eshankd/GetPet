@@ -3,16 +3,28 @@ package com.example.getpet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import io.grpc.okhttp.internal.Platform;
+import java.io.File;
+import java.io.IOException;
 
 public class petprofileview extends AppCompatActivity {
 
@@ -22,11 +34,16 @@ public class petprofileview extends AppCompatActivity {
     private int transferredAge;
     private String transferredBreed;
     private String transferredGender;
+    private String transferredPetID;
+    private String trasferredDescription;
 
     private TextView petName;
     private TextView petAge;
     private TextView petBreed;
     private TextView petGender;
+    private TextView petDescription;
+    private ImageView petImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +57,45 @@ public class petprofileview extends AppCompatActivity {
         petAge = findViewById(R.id.petProfilePetAge);
         petBreed = findViewById(R.id.petProfilePetBreed);
         petGender = findViewById(R.id.petProfilePetGender);
-//        petDesc = findViewById(R.id.petDescription);
+        petDescription = findViewById(R.id.petDescription);
 
         transferredName = getIntent().getStringExtra("petName");
         transferredAge = getIntent().getIntExtra("petAge", 0);
         transferredBreed = getIntent().getStringExtra("petBreed");
         transferredGender = getIntent().getStringExtra("petGender");
+        transferredPetID = getIntent().getStringExtra("petID");
+        trasferredDescription = getIntent().getStringExtra("petDescription");
 
         petName.setText(transferredName);
         petAge.setText(Integer.toString(transferredAge));
         petBreed.setText(transferredBreed);
         petGender.setText(transferredGender);
+        petDescription.setText(trasferredDescription);
+
+
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        Log.d("petID", transferredPetID);
+        StorageReference reference = storage.getReference().child("Dog Thumbnails/" + transferredPetID + ".jpg");
+
+        final File localFile;
+        try {
+            localFile = File.createTempFile(transferredPetID, "jpg");
+            reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+
+                    petImage = findViewById(R.id.petImage);
+                    petImage.setImageBitmap(bitmap);
+
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -78,10 +123,11 @@ public class petprofileview extends AppCompatActivity {
         });
 
         virtuallyAdopt();
+        adoptButton();
     }
 
     private void virtuallyAdopt(){
-        Button virtuallyadopt = findViewById(R.id.virtuallyadopt);
+        Button virtuallyadopt = findViewById(R.id.viewinAR);
         virtuallyadopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,4 +135,34 @@ public class petprofileview extends AppCompatActivity {
             }
         });
     }
+
+    private void adoptButton(){
+        Button adopt = findViewById(R.id.adoptButton);
+        Dialog mDialog;
+        mDialog = new Dialog(this);
+
+        adopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mDialog.setContentView(R.layout.adoptpopup);
+                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT ));
+                mDialog.show();
+
+//                Button okay = findViewById(R.id.okayButton);
+//                okay.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        mDialog.dismiss();
+//                    }
+//                });
+
+            }
+        });
+    }
+
+
+
+
+
 }

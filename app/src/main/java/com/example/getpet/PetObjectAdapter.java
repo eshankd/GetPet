@@ -61,7 +61,7 @@ public class PetObjectAdapter extends ArrayAdapter<PetObject> {
             reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(mContext, "Picture Retrieved", Toast.LENGTH_SHORT).show();
+
                     Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                     ((ImageView)finalListItem.findViewById(R.id.petImage)).setImageBitmap(bitmap);
                 }
@@ -82,11 +82,7 @@ public class PetObjectAdapter extends ArrayAdapter<PetObject> {
 
         TextView breed = listItem.findViewById(R.id.petBreed);
         breed.setText(currentPet.getBreed());
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         return listItem;
     }
 }

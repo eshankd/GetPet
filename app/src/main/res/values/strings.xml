@@ -36,6 +36,8 @@
     <string name="name">Name:</string>
     <string name="confirmPassword"> Confirm Password</string>
     <string name="editProfile">Edit Profile</string>
+    <string name="viewinAR">View in AR</string>
+    <string name="adoptMessage">Your request has been sent to the Pet Shelter! You will be contacted shortly.</string>
 
 </resources>
 
