@@ -26,7 +26,7 @@
         android:id="@+id/okayButton"
         android:layout_width="88dp"
         android:layout_height="40dp"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="104dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/arbuttondesign"
         android:text="OKAY"

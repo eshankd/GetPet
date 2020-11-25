@@ -62,7 +62,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CreatePetProfileSubmit.this, petprofileview.class));
+                startActivity(new Intent(CreatePetProfileSubmit.this, PetsList.class));
             }
         });
     }

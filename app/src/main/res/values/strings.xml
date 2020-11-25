@@ -10,7 +10,7 @@
     <string name="adoptFoster"> Adopt/Foster</string>
     <string name="findaHome"> Find a Home </string>
     <string name="helpandSupport"> Help and Support </string>
-    <string name="interactwithyourvirtuallyadopteddog"> Interact with your virtually adopted dog </string>
+    <string name="interactwithyourvirtuallyadoptedpet"> Interact with your virtually adopted pets </string>
     <string name="storyboard"> Storyboard </string>
     <string name="search"> Search </string>
     <string name="notifications"> Notifications </string>
@@ -38,6 +38,12 @@
     <string name="editProfile">Edit Profile</string>
     <string name="viewinAR">View in AR</string>
     <string name="adoptMessage">Your request has been sent to the Pet Shelter! You will be contacted shortly.</string>
+    <string name="createpetprofile">Create Pet Profile</string>
+    <string name="uploadpetpicture">Please upload a picture of your pet</string>
+    <string name="whatdoyoucall">What do you call him/her?</string>\
+    <string name="next">Next</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 
 </resources>
 
