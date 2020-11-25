@@ -149,13 +149,13 @@ public class petprofileview extends AppCompatActivity {
                 mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT ));
                 mDialog.show();
 
-//                Button okay = findViewById(R.id.okayButton);
-//                okay.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        mDialog.dismiss();
-//                    }
-//                });
+                Button okay = mDialog.findViewById(R.id.okayButton);
+                okay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mDialog.dismiss();
+                    }
+                });
 
             }
         });
