@@ -43,6 +43,7 @@ public class petprofileview extends AppCompatActivity {
     private TextView petGender;
     private TextView petDescription;
     private ImageView petImage;
+    private Button okay;
 
 
     @Override
@@ -146,7 +147,7 @@ public class petprofileview extends AppCompatActivity {
             public void onClick(View v) {
 
                 mDialog.setContentView(R.layout.adoptpopup);
-                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT ));
+                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 mDialog.show();
 
                 Button okay = mDialog.findViewById(R.id.okayButton);

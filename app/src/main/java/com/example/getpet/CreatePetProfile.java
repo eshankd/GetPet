@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,12 +19,16 @@ public class CreatePetProfile extends AppCompatActivity {
 
     BottomNavigationView navBar;
     private FirebaseAuth auth;
+    RadioButton radioButton;
+    RadioGroup radioGroup;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile);
+
+        radioGroup =findViewById(R.id.radioGroup2);
 
         auth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_create_pet_profile);
@@ -63,5 +69,14 @@ public class CreatePetProfile extends AppCompatActivity {
                 startActivity(new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class));
             }
         });
+    }
+
+
+    public void checkButton(View v){
+
+        int radioID = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioID);
+
+
     }
 }
