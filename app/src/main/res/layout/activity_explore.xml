@@ -19,18 +19,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/exploresrc" />
 
-    <Button
-        android:id="@+id/inbox2"
-        android:layout_width="46dp"
-        android:layout_height="39dp"
-        android:background="@drawable/inbox"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
-
     <View
         android:id="@+id/textView24"
         android:layout_width="match_parent"

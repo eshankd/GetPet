@@ -9,13 +9,11 @@ public class StoryboardObject {
     int likes;
     boolean isLiked;
 
-    public StoryboardObject(String postID,String name, String caption, int time, int likes, boolean isLiked) {
+    public StoryboardObject(String postID,String name, String caption, int likes) {
         this.postID = postID;
         this.name = name;
         this.caption = caption;
-        this.time = time;
         this.likes = likes;
-        this.isLiked = isLiked;
     }
 
     public String getPostID() { return postID;}
