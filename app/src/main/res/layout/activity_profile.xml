@@ -23,7 +23,7 @@
         android:fontFamily="@font/alike_angular"
         android:text="@string/profile"
         android:textColor="#FFFFFF"
-        android:textSize="45dp"
+        android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView13" />
 
@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
+        android:contentDescription="@string/postImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         app:srcCompat="@drawable/profilepic" />
@@ -134,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
-        android:text="TextView"
+        android:text="@string/petsowned"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 

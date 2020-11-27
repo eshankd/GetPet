@@ -24,7 +24,7 @@
             android:fontFamily="@font/alike_angular"
             android:text="@string/app_name"
             android:textColor="#000000"
-            android:textSize="40dp"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
+            android:contentDescription="@string/postImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,8 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/button_design"
+            android:contentDescription="@string/signup"
             android:fontFamily="@font/alike_angular"
-            android:text="SignUp"
+            android:text="@string/signup"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -60,7 +62,8 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="@string/email"
-            android:inputType="textPersonName"
+            android:autofillHints="email"
+            android:inputType="textPersonName|textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpLname" />
@@ -72,7 +75,8 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="@string/createPassword"
-            android:inputType="textPersonName"
+            android:autofillHints="password"
+            android:inputType="textPersonName|textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
@@ -84,7 +88,8 @@
             android:layout_marginTop="25dp"
             android:ems="10"
             android:hint="@string/confirmPassword"
-            android:inputType="textPersonName"
+            android:autofillHints="password"
+            android:inputType="textPersonName|textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpPassword" />
@@ -97,6 +102,7 @@
             android:ems="10"
             android:hint="@string/firstname"
             android:inputType="textPersonName"
+            android:autofillHints="firstname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logo4" />
@@ -109,6 +115,7 @@
             android:ems="10"
             android:hint="@string/lastname"
             android:inputType="textPersonName"
+            android:autofillHints="firstname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpFname" />
