@@ -11,11 +11,12 @@
         android:id="@+id/submitPetProfile"
         android:layout_width="110dp"
         android:layout_height="45dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/greenbuttondesign"
         android:text="Submit"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
@@ -82,13 +83,15 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="247dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="80dp"
+        android:layout_width="328dp"
+        android:layout_height="156dp"
         android:layout_marginTop="92dp"
+        android:background="@drawable/textareaborder"
         android:ems="10"
         android:hint="Tell us a little bit  more about him/her?"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 

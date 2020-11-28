@@ -41,13 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/like"
-        app:layout_constraintEnd_toStartOf="@+id/commenButton"
+        app:layout_constraintEnd_toStartOf="@+id/commentButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/likes" />
 
     <Button
-        android:id="@+id/commenButton"
+        android:id="@+id/commentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
