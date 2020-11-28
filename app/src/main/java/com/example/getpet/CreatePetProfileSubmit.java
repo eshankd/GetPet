@@ -36,6 +36,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseFirestore fStore;
     private CalendarView mCalendarView;
+    private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
     int dayIn, monthIn, yearIn;
 
@@ -98,32 +99,33 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
     private void submit() {
         Button submit = findViewById(R.id.submitPetProfile);
-        descriptionIn = findViewById(R.id.description);;
+        descriptionIn = findViewById(R.id.description);
 
         final String description = descriptionIn.getText().toString();
-        final int day = dayIn;;
-        final int month = monthIn;
-        final int year = yearIn;
+
+        String transferredName = getIntent().getStringExtra("name");
+        String transferredBreed = getIntent().getStringExtra("breed");
+        String transferredGender = getIntent().getStringExtra("gender");
 
          userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
          DocumentReference docref = fStore.collection("Dogs").document(userid);
          Map<String, Object> user = new HashMap<>();
-//         user.put("Name", petName);
-//         user.put("ID", petID);
-//         user.put("Gender", petGender);
-//         user.put("Age", petAge);
-//         user.put("Breed", petBreed);
-//         user.put("Description", petDescription);
+         user.put("Name", transferredName);
+         user.put("ID", "D006");
+         user.put("Gender", transferredGender);
+         user.put("Age", 0);
+         user.put("Breed", transferredBreed);
+         user.put("Description", description);
 
          docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
          @Override
          public void onSuccess(Void aVoid) {
-//             Log.d(TAG, "onSuccess: user Profile is created for " + userid);
+             Log.d(TAG, "Profile Created Success");
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-//                                Log.w(TAG, "Profile not created");
+                                Log.w(TAG, "Profile not created");
                             }
                         });
                         startActivity(new Intent(CreatePetProfileSubmit.this, PetsList.class));

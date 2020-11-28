@@ -10,9 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,11 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CreatePetProfile extends AppCompatActivity {
 
-
     BottomNavigationView navBar;
     private FirebaseAuth auth;
-    RadioButton radioButton;
-    RadioGroup radioGroup;
+    private String TAG = "CreatePetProfile";
+    boolean gender;
+    EditText petName;
+    EditText petBreed;
+    RadioGroup radioGender;
+    Button next;
 
 
     @Override
@@ -32,7 +33,11 @@ public class CreatePetProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile);
 
-        radioGroup =findViewById(R.id.radioGender);
+
+        petName = findViewById(R.id.petNameIn);
+        petBreed = findViewById(R.id.petBreedIn);
+        radioGender = findViewById(R.id.radioGender);
+        next = findViewById(R.id.nextButton);
 
         auth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_create_pet_profile);
@@ -67,20 +72,17 @@ public class CreatePetProfile extends AppCompatActivity {
 
     private void next() {
 
-        EditText petName = findViewById(R.id.namePet);
-        RadioGroup radioGender = findViewById(R.id.radioGender);
-        Button next = findViewById(R.id.nextButton);
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 String petNameInput = petName.getText().toString();
-                 boolean petGenderInput;
+                 String name = petName.getText().toString();
+                 String breed = petBreed.getText().toString();
+
                  Toast.makeText(CreatePetProfile.this, Integer.toString(radioGender.getCheckedRadioButtonId()), Toast.LENGTH_SHORT).show();
                  if (radioGender.getCheckedRadioButtonId() == R.id.Male)
-                    petGenderInput = true;
+                    gender = true;
                  else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
-                     petGenderInput = false;
+                     gender = false;
                  else
                  {
                      //reset fields//
@@ -88,8 +90,11 @@ public class CreatePetProfile extends AppCompatActivity {
 
 
                 Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
-                 i.putExtra("petNameInput", petNameInput);
-//                 i.putExtra("petGenderInput", petGenderInput);
+                 i.putExtra("petNameIn", name);
+                 i.putExtra("petGenderIn", gender);
+                i.putExtra("petGenderIn", breed);
+
+                Log.d(TAG, "name is " + name + "gender is" + gender + "breed:" +  breed);
 
 
                 startActivity(new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class));

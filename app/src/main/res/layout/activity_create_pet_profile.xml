@@ -86,7 +86,7 @@
 
 
     <EditText
-        android:id="@+id/namePet"
+        android:id="@+id/petNameIn"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -104,6 +104,7 @@
         android:id="@+id/nextButton"
         android:layout_width="150dp"
         android:layout_height="45dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/next"
@@ -111,7 +112,8 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petBreedIn" />
 
     <RadioGroup
         android:id="@+id/radioGender"
@@ -149,7 +151,7 @@
         android:layout_marginTop="20dp"
 
         android:background="@drawable/greenbuttondesign"
-        android:text="Upload"
+        android:text="@string/upload"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -162,7 +164,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/greenbuttondesign"
-        android:text="Choose"
+        android:text="@string/choose"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/upload"
         app:layout_constraintHorizontal_bias="0.5"
@@ -170,18 +172,19 @@
         app:layout_constraintTop_toBottomOf="@+id/uploadPetImage" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/petBreedIn"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/textareaborder"
         android:ems="10"
-        android:hint="What's the Breed?"
+        android:autofillHints="@string/whatbreed"
+        android:hint="@string/whatbreed"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namePet" />
+        app:layout_constraintTop_toBottomOf="@+id/petNameIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

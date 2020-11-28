@@ -58,5 +58,8 @@
     <string name="tellusmore">Tell us a little bit  more about him/her?</string>
     <string name="description">Description:</string>
     <string name="post">Post</string>
+    <string name="upload">Upload</string>
+    <string name="choose">Choose</string>
+    <string name="whatbreed">What\'s the Breed?</string>
 </resources>
 
