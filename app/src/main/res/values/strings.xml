@@ -44,6 +44,14 @@
     <string name="next">Next</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-
+    <string name="likes">likes</string>
+    <string name="postImage">images</string>
+    <string name="signup">SignUp</string>
+    <string name="login">Login</string>
+    <string name="petprofile">Pet Profile</string>
+    <string name="petage">Age:</string>
+    <string name="petdescription">Description:</string>
+    <string name="okay">Okay</string>
+    <string name="petsowned">Pets Owned: </string>
 </resources>
 

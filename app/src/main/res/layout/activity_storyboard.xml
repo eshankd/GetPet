@@ -44,18 +44,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017" />
 
-    <Button
-        android:id="@+id/inbox"
-        android:layout_width="46dp"
-        android:layout_height="39dp"
-        android:background="@drawable/inbox"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
-
 
     <ListView
         android:id="@+id/storyboardList"
@@ -68,16 +56,16 @@
 
     </ListView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="#3498DB"
-        android:src="@drawable/ic_baseline_add_24"
-        app:elevation="6dp"
-        android:id="@+id/addStory"
-        app:layout_constraintBottom_toBottomOf="@+id/storyboardList"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:background="#3498DB"-->
+<!--        android:src="@drawable/ic_baseline_add_24"-->
+<!--        app:elevation="6dp"-->
+<!--        android:id="@+id/addStory"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/storyboardList"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
 

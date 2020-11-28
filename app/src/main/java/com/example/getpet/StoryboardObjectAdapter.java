@@ -48,7 +48,8 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("postID", currentStoryCard.getPostID());
-        StorageReference reference = storage.getReference().child("Storyboard Images/" + currentStoryCard.getPostID() + ".jpg");
+
+        StorageReference reference = storage.getReference().child("Storyboard Thumbnails/" + currentStoryCard.getPostID() + ".jpg");
 
         final File localFile;
         try {
@@ -57,7 +58,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
             reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(mContext, "Picture Retrieved", Toast.LENGTH_SHORT).show();
                     Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                     ((ImageView)finalListItem.findViewById(R.id.postImage)).setImageBitmap(bitmap);
                 }
@@ -67,17 +67,17 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         }
 
 
-        TextView name = listItem.findViewById(R.id.petName);
-        name.setText(currentStoryCard.getName());
-
         TextView userName = listItem.findViewById(R.id.userName);
-        userName.setText(currentStoryCard.getCaption());
+        userName.setText(currentStoryCard.getName());
 
-        TextView timeAgo = listItem.findViewById(R.id.timeAgo);
-        timeAgo.setText(currentStoryCard.getTime());
+        TextView caption = listItem.findViewById(R.id.caption);
+        caption.setText(currentStoryCard.getCaption());
 
-        TextView numberOfLikes = listItem.findViewById(R.id.numberOfLikes);
-        numberOfLikes.setText(currentStoryCard.getLikes());
+//        TextView timeAgo = listItem.findViewById(R.id.timeAgo);
+//        timeAgo.setText(currentStoryCard.getTime());
+
+        TextView likes = listItem.findViewById(R.id.likes);
+        likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
         return listItem;
     }
