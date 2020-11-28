@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,27 +66,34 @@ public class CreatePetProfile extends AppCompatActivity {
     }
 
     private void next() {
-        
+
         EditText petName = findViewById(R.id.namePet);
-        RadioGroup radioGroup = findViewById(R.id.radioGender);
+        RadioGroup radioGender = findViewById(R.id.radioGender);
         Button next = findViewById(R.id.nextButton);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                 String petNameInput = petName.getText().toString();
+                 boolean petGenderInput;
+                 Toast.makeText(CreatePetProfile.this, Integer.toString(radioGender.getCheckedRadioButtonId()), Toast.LENGTH_SHORT).show();
+                 if (radioGender.getCheckedRadioButtonId() == R.id.Male)
+                    petGenderInput = true;
+                 else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
+                     petGenderInput = false;
+                 else
+                 {
+                     //reset fields//
+                 }
+
+
+                Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
+                 i.putExtra("petNameInput", petNameInput);
+//                 i.putExtra("petGenderInput", petGenderInput);
 
 
                 startActivity(new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class));
             }
         });
-    }
-
-
-    public void checkButton(View v){
-
-        int radioID = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(radioID);
-
-
     }
 }

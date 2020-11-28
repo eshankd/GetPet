@@ -96,15 +96,6 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
         submit();
     }
 
-
-
-
-
-
-
-
-
-
     private void submit() {
         Button submit = findViewById(R.id.submitPetProfile);
         descriptionIn = findViewById(R.id.description);;
@@ -117,22 +108,22 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
          userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
          DocumentReference docref = fStore.collection("Dogs").document(userid);
          Map<String, Object> user = new HashMap<>();
-         user.put("Name", petName);
-         user.put("ID", petID);
-         user.put("Gender", petGender);
-         user.put("Age", petAge);
-        user.put("Breed", petBreed);
-        user.put("Description", petDescription);
+//         user.put("Name", petName);
+//         user.put("ID", petID);
+//         user.put("Gender", petGender);
+//         user.put("Age", petAge);
+//         user.put("Breed", petBreed);
+//         user.put("Description", petDescription);
 
          docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
          @Override
          public void onSuccess(Void aVoid) {
-             Log.d(TAG, "onSuccess: user Profile is created for " + userid);
+//             Log.d(TAG, "onSuccess: user Profile is created for " + userid);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Profile not created");
+//                                Log.w(TAG, "Profile not created");
                             }
                         });
                         startActivity(new Intent(CreatePetProfileSubmit.this, PetsList.class));
