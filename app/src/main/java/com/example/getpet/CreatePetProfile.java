@@ -2,7 +2,6 @@ package com.example.getpet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +31,6 @@ public class CreatePetProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile);
-
 
         petName = findViewById(R.id.petNameIn);
         petBreed = findViewById(R.id.petBreedIn);
@@ -67,14 +65,16 @@ public class CreatePetProfile extends AppCompatActivity {
                 return true;
             }
         });
-        next();
+        nextForm();
     }
 
-    private void next() {
+    private void nextForm() {
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(CreatePetProfile.this, "PLEASE RUN MY DEAR", Toast.LENGTH_SHORT).show();
                  String name = petName.getText().toString();
                  String breed = petBreed.getText().toString();
 
@@ -92,7 +92,7 @@ public class CreatePetProfile extends AppCompatActivity {
                 Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
                  i.putExtra("petNameIn", name);
                  i.putExtra("petGenderIn", gender);
-                i.putExtra("petGenderIn", breed);
+                i.putExtra("petBreedIn", breed);
 
                 Log.d(TAG, "name is " + name + "gender is" + gender + "breed:" +  breed);
 
