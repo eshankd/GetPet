@@ -94,44 +94,46 @@
         android:hint="@string/whatdoyoucall"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGender" />
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="110dp"
         android:layout_height="45dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/next"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namePet" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="173dp"
-        android:layout_height="116dp"
+        android:id="@+id/radioGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
         app:layout_constraintStart_toEndOf="@+id/textView42"
         app:layout_constraintTop_toBottomOf="@+id/imageView17">
 
         <RadioButton
+            android:id="@+id/Male"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/male"
-            android:onClick="checkButton">
+            android:onClick="checkButton"
+            android:text="@string/male">
 
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/Female"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="@string/female"
-            android:onClick="checkButton">
-    </RadioButton>
+            android:onClick="checkButton"
+            android:text="@string/female">
 
+        </RadioButton>
 
     </RadioGroup>
 

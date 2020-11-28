@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +30,7 @@ public class CreatePetProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile);
 
-        radioGroup =findViewById(R.id.radioGroup2);
+        radioGroup =findViewById(R.id.radioGender);
 
         auth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_create_pet_profile);
@@ -62,10 +64,16 @@ public class CreatePetProfile extends AppCompatActivity {
     }
 
     private void next() {
+        
+        EditText petName = findViewById(R.id.namePet);
+        RadioGroup radioGroup = findViewById(R.id.radioGender);
         Button next = findViewById(R.id.nextButton);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 startActivity(new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class));
             }
         });
