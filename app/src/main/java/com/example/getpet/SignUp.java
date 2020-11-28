@@ -58,9 +58,6 @@ public class SignUp extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-
-
-
         signup();
     }
 
@@ -96,7 +93,6 @@ public class SignUp extends AppCompatActivity {
                     final String password = passwordIn.getText().toString();
                     final String fName = fNameIn.getText().toString();
                     final String lName = lNameIn.getText().toString();
-                    final String[] adopted = {};
 
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -104,13 +100,12 @@ public class SignUp extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
                                 userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                                DocumentReference docref = fStore.collection("users").document(userid);
+                                DocumentReference docref = fStore.collection("Users").document(userid);
                                 Map<String, Object> user = new HashMap<>();
-                                user.put("fName", fName);
-                                user.put("lName", lName);
-                                user.put("email", email);
-                                user.put("pwd", password);
-                                user.put("adopted", adopted);
+                                user.put("FirstName", fName);
+                                user.put("LastName", lName);
+                                user.put("Email", email);
+                                user.put("PetsOwned", 0);
                                 docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -124,12 +119,12 @@ public class SignUp extends AppCompatActivity {
                                 });
                                 startActivity(new Intent(SignUp.this, AdoptFoster.class));
                             } else {
-                                Query emailQuery = fStore.collection("users").whereEqualTo("email", email);
+                                Query emailQuery = fStore.collection("Users").whereEqualTo("Email", email);
                                 emailQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(SignUp.this, "Email-id already in use", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SignUp.this, "Email-ID already in use", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

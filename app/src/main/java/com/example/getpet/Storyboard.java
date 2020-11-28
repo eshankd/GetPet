@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -63,7 +64,7 @@ public class Storyboard extends AppCompatActivity {
         });
 
 
-//        addStory();
+        addStory();
         LoadPosts();
     }
 
@@ -94,13 +95,13 @@ public class Storyboard extends AppCompatActivity {
 
 
 
-//    private void addStory() {
-//        Button addStory = findViewById(R.id.addStory);
-//        addStory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(Storyboard.this, AddStory.class));
-//            }
-//        });
-//    }
+    private void addStory() {
+        FloatingActionButton addStory = findViewById(R.id.addStory);
+        addStory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Storyboard.this, AddStory.class));
+            }
+        });
+    }
 }
