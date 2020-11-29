@@ -76,7 +76,7 @@ public class Storyboard extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         int count = queryDocumentSnapshots.size();
 
-                        ArrayList <StoryboardObject> postsList = new ArrayList<StoryboardObject>();
+                        ArrayList <StoryboardObject> postsList = new ArrayList<>();
                         postsListView = findViewById(R.id.storyboardList);
 
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){

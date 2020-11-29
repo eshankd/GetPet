@@ -36,7 +36,7 @@ public class ARView extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child("beagle.glb");
+        StorageReference modelRef = storage.getReference().child("labrador.glb");
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
@@ -44,7 +44,7 @@ public class ARView extends AppCompatActivity {
         findViewById(R.id.GetPet).setOnClickListener(v -> {
 
             try {
-                File file = File.createTempFile("beagle", "glb");
+                File file = File.createTempFile("temp", "glb");
                 modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {

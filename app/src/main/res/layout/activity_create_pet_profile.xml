@@ -52,20 +52,22 @@
         android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="35dp"
         android:text="@string/uploadpetpicture"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/uploadPetImage"
         android:layout_width="131dp"
         android:layout_height="120dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/postImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView41"
         app:srcCompat="@drawable/profilepic3" />
@@ -75,65 +77,114 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="45dp"
         android:text="@string/gender"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+        app:layout_constraintTop_toBottomOf="@+id/choose" />
 
 
     <EditText
-        android:id="@+id/namePet"
-        android:layout_width="272dp"
+        android:id="@+id/petNameIn"
+        android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
+        android:layout_marginTop="28dp"
+        android:autofillHints="@string/whatdoyoucall"
         android:background="@drawable/textareaborder"
+        android:ems="10"
         android:hint="@string/whatdoyoucall"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGender" />
 
     <Button
         android:id="@+id/nextButton"
-        android:layout_width="110dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/next"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namePet" />
+        app:layout_constraintTop_toBottomOf="@+id/petBreedIn" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="173dp"
-        android:layout_height="116dp"
+        android:id="@+id/radioGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintStart_toEndOf="@+id/textView42"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17">
+        app:layout_constraintTop_toBottomOf="@+id/choose">
 
         <RadioButton
+            android:id="@+id/Male"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="@string/male"
-            android:onClick="checkButton">
+            android:textSize="18sp">
 
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/Female"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="@string/female"
-            android:onClick="checkButton">
-    </RadioButton>
+            android:textSize="18sp">
 
+        </RadioButton>
 
     </RadioGroup>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+
+        android:background="@drawable/greenbuttondesign"
+        android:text="@string/upload"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/choose"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPetImage" />
+
+    <Button
+        android:id="@+id/choose"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/greenbuttondesign"
+        android:text="@string/choose"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/upload"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPetImage" />
+
+    <EditText
+        android:id="@+id/petBreedIn"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/textareaborder"
+        android:ems="10"
+        android:autofillHints="@string/whatbreed"
+        android:hint="@string/whatbreed"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petNameIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

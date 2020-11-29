@@ -21,7 +21,7 @@
         android:layout_width="46dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="picture"
+        android:contentDescription="@string/postImage"
         app:layout_constraintEnd_toStartOf="@+id/textView16"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
         android:layout_height="49dp"
         android:layout_marginEnd="136dp"
         android:background="@drawable/greenbuttondesign"
-        android:text="Post"
+        android:text="@string/post"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPost" />
