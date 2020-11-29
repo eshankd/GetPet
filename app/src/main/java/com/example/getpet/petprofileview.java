@@ -82,45 +82,39 @@ public class petprofileview extends AppCompatActivity {
         final File localFile;
         try {
             localFile = File.createTempFile(transferredPetID, "jpg");
-            reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+            reference.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
 
-                    petImage = findViewById(R.id.petImage);
-                    petImage.setImageBitmap(bitmap);
+                petImage = findViewById(R.id.petImage);
+                petImage.setImageBitmap(bitmap);
 
 
-                }
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(petprofileview.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(petprofileview.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(petprofileview.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(petprofileview.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(petprofileview.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch(item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(petprofileview.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(petprofileview.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(petprofileview.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(petprofileview.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(petprofileview.this, Profile.class));
+                    break;
             }
+            return true;
         });
 
         virtuallyAdopt();
@@ -129,12 +123,7 @@ public class petprofileview extends AppCompatActivity {
 
     private void virtuallyAdopt(){
         Button virtuallyadopt = findViewById(R.id.viewinAR);
-        virtuallyadopt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(petprofileview.this,ARView.class));
-            }
-        });
+        virtuallyadopt.setOnClickListener(v -> startActivity(new Intent(petprofileview.this,ARView.class)));
     }
 
     private void adoptButton(){
@@ -142,23 +131,20 @@ public class petprofileview extends AppCompatActivity {
         Dialog mDialog;
         mDialog = new Dialog(this);
 
-        adopt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        adopt.setOnClickListener(v -> {
 
-                mDialog.setContentView(R.layout.adoptpopup);
-                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mDialog.show();
+            mDialog.setContentView(R.layout.adoptpopup);
+            mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            mDialog.show();
 
-                Button okay = mDialog.findViewById(R.id.okayButton);
-                okay.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mDialog.dismiss();
-                    }
-                });
+            Button okay = mDialog.findViewById(R.id.okayButton);
+            okay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDialog.dismiss();
+                }
+            });
 
-            }
         });
     }
 

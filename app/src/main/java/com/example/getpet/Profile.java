@@ -38,28 +38,25 @@ public class Profile extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.profile));
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(Profile.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(Profile.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(Profile.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(Profile.this, Notification.class));
-                        break;
-                    case "Profile":
-                        //Do Nothing
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(Profile.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(Profile.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(Profile.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(Profile.this, Notification.class));
+                    break;
+                case "Profile":
+                    //Do Nothing
+                    break;
             }
+            return true;
         });
 
         nameOUT = findViewById(R.id.userProfileFName);
@@ -79,6 +76,7 @@ public class Profile extends AppCompatActivity {
         }
 
         signOut();
+        loginButton();
     }
 
     private void signOut() {
@@ -94,13 +92,13 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-
-
-
-
+    private void loginButton() {
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profile.this, MainActivity.class));
+            }
+        });
+    }
 }
-//    public void revokeAccess(){
-//        auth.signOut();
-//        gSignInClient.revokeAccess();
-//    }
-//}

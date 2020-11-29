@@ -45,28 +45,25 @@ public class PetsList extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(PetsList.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(PetsList.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(PetsList.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(PetsList.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(PetsList.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(PetsList.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(PetsList.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(PetsList.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(PetsList.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(PetsList.this, Profile.class));
+                    break;
             }
+            return true;
         });
         transferredBreed = getIntent().getStringExtra("breed");
         transferredAge = getIntent().getIntExtra("age",0);
@@ -78,44 +75,41 @@ public class PetsList extends AppCompatActivity {
 
     private void LoadPets() {
         fStore.collection("Dogs")
-          //  .whereEqualTo("Age",transferredAge)
+            .whereEqualTo("Age",transferredAge)
 //            .whereEqualTo("Breed", transferredBreed)
 //            .whereEqualTo("Gender", transferredGender)
             .get()
-            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    int count = queryDocumentSnapshots.size();
-                    Log.d(TAG,Integer.toString(count));
+            .addOnSuccessListener(queryDocumentSnapshots -> {
+                int count = queryDocumentSnapshots.size();
+                Log.d(TAG,Integer.toString(count));
 
-                    ArrayList <PetObject> petList = new ArrayList<PetObject>();
-                    petListView = findViewById(R.id.PetList);
+                ArrayList <PetObject> petList = new ArrayList<PetObject>();
+                petListView = findViewById(R.id.PetList);
 
-                    for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+                for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                        petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
-                }
+                    petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
+            }
 
-                    petAdapter = new PetObjectAdapter(PetsList.this, petList);
-                    petListView.setAdapter(petAdapter);
+                petAdapter = new PetObjectAdapter(PetsList.this, petList);
+                petListView.setAdapter(petAdapter);
 
-                    petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            PetObject obj = petList.get(position);
+                petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        PetObject obj = petList.get(position);
 
-                            Intent toPetProfile = new Intent(PetsList.this, petprofileview.class);
-                            toPetProfile.putExtra("petName", obj.getName());
-                            toPetProfile.putExtra("petAge", obj.getAge());
-                            toPetProfile.putExtra("petGender", obj.getGender());
-                            toPetProfile.putExtra("petBreed", obj.getBreed());
-                            toPetProfile.putExtra("petDescription" , obj.getDescription());
-                            toPetProfile.putExtra("petID", obj.getPetID());
-                            startActivity(toPetProfile);
-                        }
-                    });
+                        Intent toPetProfile = new Intent(PetsList.this, petprofileview.class);
+                        toPetProfile.putExtra("petName", obj.getName());
+                        toPetProfile.putExtra("petAge", obj.getAge());
+                        toPetProfile.putExtra("petGender", obj.getGender());
+                        toPetProfile.putExtra("petBreed", obj.getBreed());
+                        toPetProfile.putExtra("petDescription" , obj.getDescription());
+                        toPetProfile.putExtra("petID", obj.getPetID());
+                        startActivity(toPetProfile);
+                    }
+                });
 
-                }
             });
     }
 }

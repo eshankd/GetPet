@@ -45,13 +45,7 @@ public class ARView extends AppCompatActivity {
 
             try {
                 File file = File.createTempFile("temp", "glb");
-                modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                        buildModel(file);
-                    }
-                });
+                modelRef.getFile(file).addOnSuccessListener(taskSnapshot -> buildModel(file));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -97,12 +91,7 @@ public class ARView extends AppCompatActivity {
     private void goBackToProfile(){
 
         TextView gobacktoprofile = findViewById(R.id.gobacktoprofile);
-        gobacktoprofile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        gobacktoprofile.setOnClickListener(v -> finish());
     }
 
 

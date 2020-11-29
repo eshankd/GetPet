@@ -39,7 +39,9 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
     int dayIn, monthIn, yearIn;
-
+    String transferredName;
+    String transferredBreed;
+    String transferredGender;
     private String userid;
 
 
@@ -60,77 +62,73 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(CreatePetProfileSubmit.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(CreatePetProfileSubmit.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(CreatePetProfileSubmit.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(CreatePetProfileSubmit.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(CreatePetProfileSubmit.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(CreatePetProfileSubmit.this, Explore.class));
+                    break;
+                case "Adopt":
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(CreatePetProfileSubmit.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(CreatePetProfileSubmit.this, Profile.class));
+                    break;
             }
+            return true;
         });
 
 
-        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                dayIn = dayOfMonth;
-                monthIn = month;
-                yearIn = year;
-            }
+        mCalendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            dayIn = dayOfMonth;
+            monthIn = month;
+            yearIn = year;
         });
 
 
-        submit();
+        submitForm();
     }
 
-    private void submit() {
+    private void submitForm() {
+
         Button submit = findViewById(R.id.submitPetProfile);
-        descriptionIn = findViewById(R.id.description);
 
-        final String description = descriptionIn.getText().toString();
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                descriptionIn = findViewById(R.id.description);
 
-        String transferredName = getIntent().getStringExtra("name");
-        String transferredBreed = getIntent().getStringExtra("breed");
-        String transferredGender = getIntent().getStringExtra("gender");
+                final String description = descriptionIn.getText().toString();
 
-         userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-         DocumentReference docref = fStore.collection("Dogs").document(userid);
-         Map<String, Object> user = new HashMap<>();
-         user.put("Name", transferredName);
-         user.put("ID", "D006");
-         user.put("Gender", transferredGender);
-         user.put("Age", 0);
-         user.put("Breed", transferredBreed);
-         user.put("Description", description);
+                transferredName = getIntent().getStringExtra("name");
+                transferredBreed = getIntent().getStringExtra("breed");
+                transferredGender = getIntent().getStringExtra("gender");
 
-         docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-         @Override
-         public void onSuccess(Void aVoid) {
-             Log.d(TAG, "Profile Created Success");
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Profile not created");
-                            }
-                        });
-                        startActivity(new Intent(CreatePetProfileSubmit.this, PetsList.class));
+                userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                DocumentReference docref = fStore.collection("Dogs").document(userid);
+                Map<String, Object> user = new HashMap<>();
+                user.put("Name", transferredName);
+                user.put("ID", "D008");
+                user.put("Gender", transferredGender);
+                user.put("Age", 0);
+                user.put("Breed", transferredBreed);
+                user.put("Description", description);
+
+                docref.set(user).addOnSuccessListener(aVoid ->
+                        Log.d(TAG, "Profile Created Success"))
+                        .addOnFailureListener(e -> Log.w(TAG, "Profile not created"));
+
+
+                startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));
+
+            }
+        });
+
                     }
-
 
         }
 

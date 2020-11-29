@@ -40,27 +40,24 @@ public class AdoptFoster extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(AdoptFoster.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(AdoptFoster.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(AdoptFoster.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(AdoptFoster.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch(item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(AdoptFoster.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(AdoptFoster.this, Explore.class));
+                    break;
+                case "Adopt":
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(AdoptFoster.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(AdoptFoster.this, Profile.class));
+                    break;
             }
+            return true;
         });
         adoptFoster();
         findAHome();
@@ -88,22 +85,7 @@ public class AdoptFoster extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
 
     private void adoptFoster(){
         Button adoptFoster = findViewById(R.id.adoptfoster);

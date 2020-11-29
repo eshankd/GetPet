@@ -22,10 +22,6 @@ public class StoryboardObject {
 
     public String getCaption() { return caption; };
 
-    public int getTime() { return time; };
-
     public int getLikes() { return likes; };
-
-    public boolean isLiked() { return isLiked; };
 
 }

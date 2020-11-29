@@ -28,28 +28,25 @@ public class FilterBy extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(FilterBy.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(FilterBy.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(FilterBy.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(FilterBy.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(FilterBy.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch(item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(FilterBy.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(FilterBy.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(FilterBy.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(FilterBy.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(FilterBy.this, Profile.class));
+                    break;
             }
+            return true;
         });
 
         searchByFilter();
@@ -220,19 +217,16 @@ public class FilterBy extends AppCompatActivity {
 
     private void searchByFilter(){
         Button search = findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        search.setOnClickListener(v -> {
 
-                Intent transfer = new Intent(FilterBy.this, PetsList.class);
-                transfer.putExtra("type",typeChosen);
-                transfer.putExtra("breed",breedChosen);
-                transfer.putExtra("age",ageChosen);
-                transfer.putExtra("gender",genderChosen);
-                transfer.putExtra("adoptfoster",AdoptFosterChosen);
-                startActivity(transfer);
+            Intent transfer = new Intent(FilterBy.this, PetsList.class);
+            transfer.putExtra("type",typeChosen);
+            transfer.putExtra("breed",breedChosen);
+            transfer.putExtra("age",ageChosen);
+            transfer.putExtra("gender",genderChosen);
+            transfer.putExtra("adoptfoster",AdoptFosterChosen);
+            startActivity(transfer);
 
-            }
         });
     }
 }

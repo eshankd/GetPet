@@ -57,13 +57,10 @@ public class PetObjectAdapter extends ArrayAdapter<PetObject> {
         try {
             localFile = File.createTempFile(currentPet.getPetID(), "jpg");
             View finalListItem = listItem;
-            reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+            reference.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    ((ImageView)finalListItem.findViewById(R.id.petImage)).setImageBitmap(bitmap);
-                }
+                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                ((ImageView)finalListItem.findViewById(R.id.petImage)).setImageBitmap(bitmap);
             });
         } catch (IOException e) {
             e.printStackTrace();

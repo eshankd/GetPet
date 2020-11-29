@@ -10,16 +10,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AddStory extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class AddStory extends AppCompatActivity {
     private FirebaseFirestore fStore;
     BottomNavigationView navBar;
     private String TAG = "AddStory";
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,38 +66,39 @@ public class AddStory extends AppCompatActivity {
             }
         });
 
-        post();
+        postStory();
 
     }
 
-    private void post() {
-        Button post = findViewById(R.id.post);
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void postStory() {
+        Button postStoryButton = findViewById(R.id.post);
+        postStoryButton.setOnClickListener(v -> {
 
-                captionIn = findViewById(R.id.inputPost);
+            captionIn = findViewById(R.id.inputPost);
+            String caption = captionIn.getText().toString();
+            DocumentReference docref = fStore.collection("Posts").document("test");
+            Map<String, Object> post = new HashMap<>();
+            post.put("Caption", caption);
+            post.put("Likes", 0);
+            post.put("Name", "Test");
+            post.put("PostID", "P008");
 
-                DocumentReference docref = fStore.collection("Posts").document("test");
-                Map<String, Object> post = new HashMap<>();
-                post.put("Caption", captionIn);
-                post.put("Likes", 0);
-                post.put("Name", "Test");
-                post.put("PostID", 0001);
-                docref.set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "Story added");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Story not added");
-                    }
-                });
+            docref.set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG, "Story added");
+                    Toast.makeText(AddStory.this, "STORY ADDED", Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(AddStory.this, Storyboard.class));
-            }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    Log.w(TAG, "Story not added");
+
+                }
+            });
+            startActivity(new Intent(AddStory.this, Storyboard.class));
         });
     }
 

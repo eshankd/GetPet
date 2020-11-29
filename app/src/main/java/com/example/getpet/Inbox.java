@@ -21,28 +21,25 @@ public class Inbox extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.adopt));
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(Inbox.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(Inbox.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(Inbox.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(Inbox.this, Notification.class));
-                        break;
-                    case "Profile":
-                        //Do Nothing
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch(item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(Inbox.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(Inbox.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(Inbox.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(Inbox.this, Notification.class));
+                    break;
+                case "Profile":
+                    //Do Nothing
+                    break;
             }
+            return true;
         });
     }
 }

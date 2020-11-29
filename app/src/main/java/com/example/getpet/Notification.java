@@ -21,28 +21,25 @@ public class Notification extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.notifications));
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(Notification.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(Notification.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(Notification.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        //Do something
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(Notification.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch(item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(Notification.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    startActivity(new Intent(Notification.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(Notification.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    //Do something
+                    break;
+                case "Profile":
+                    startActivity(new Intent(Notification.this, Profile.class));
+                    break;
             }
+            return true;
         });
 
 
