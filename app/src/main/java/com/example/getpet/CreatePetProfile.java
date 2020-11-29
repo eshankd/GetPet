@@ -60,35 +60,36 @@ public class CreatePetProfile extends AppCompatActivity {
             }
             return true;
         });
-
-
-
-
     }
 
     public void nextForm(View view){
 
-            String name = petName.getText().toString();
-            String breed = petBreed.getText().toString();
+        String name = petName.getText().toString();
+        String breed = petBreed.getText().toString();
 
-            if (radioGender.getCheckedRadioButtonId() == R.id.Male)
-                gender = true;
-            else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
-                gender = false;
-            else
-            {
-                //reset fields//
-            }
-
-            Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
-            i.putExtra("name", name);
-            i.putExtra("gender", gender);
-            i.putExtra("breed", breed);
-
-            Log.d(TAG, "name is " + name + "gender is" + gender + "breed:" +  breed);
-            startActivity(i);
+        if (radioGender.getCheckedRadioButtonId() == R.id.Male)
+            gender = true;
+        else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
+            gender = false;
+        else
+        {
+            Log.d("debug", "else");
         }
 
+        Toast.makeText(CreatePetProfile.this, "test1", Toast.LENGTH_SHORT).show();
+        try {
+            Thread.sleep(3000);
+            // Do some stuff
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
+        i.putExtra("name", name);
+        i.putExtra("gender", gender);
+        i.putExtra("breed", breed);
+        startActivity(i);
     }
+}
 
 

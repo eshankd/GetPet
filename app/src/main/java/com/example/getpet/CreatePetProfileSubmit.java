@@ -96,6 +96,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private void submitForm() {
 
         Button submit = findViewById(R.id.submitPetProfile);
+        Toast.makeText(CreatePetProfileSubmit.this, "test", Toast.LENGTH_SHORT).show();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,10 +128,8 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
             }
         });
-
-                    }
-
-        }
+    }
+}
 
 
 
