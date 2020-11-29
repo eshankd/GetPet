@@ -94,7 +94,6 @@ public class Storyboard extends AppCompatActivity {
     }
 
 
-
     private void addStory() {
         FloatingActionButton addStory = findViewById(R.id.addStory);
         addStory.setOnClickListener(new View.OnClickListener() {
