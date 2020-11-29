@@ -50,36 +50,33 @@ public class MainActivity extends AppCompatActivity {
     private void login() {
 
         Button loginBTN = findViewById(R.id.login);
-        loginBTN.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                emailIN = findViewById(R.id.userEmail);
-                passwordIN = findViewById(R.id.userPassword);
+        loginBTN.setOnClickListener(v -> {
+            emailIN = findViewById(R.id.userEmail);
+            passwordIN = findViewById(R.id.userPassword);
 
-                String email = emailIN.getText().toString();
-                String password = passwordIN.getText().toString();
+            String email = emailIN.getText().toString();
+            String password = passwordIN.getText().toString();
 
-                Log.d("email", email);
-                Log.d("pass", password);
+            Log.d("email", email);
+            Log.d("pass", password);
 
-                if(!validateForm(email, password)){
-                    Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
-                            startActivity(new Intent(MainActivity.this, AdoptFoster.class));
-                        } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Account doesn't exit, please signup", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            if(!validateForm(email, password)){
+                Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInWithEmail:success");
+                        startActivity(new Intent(MainActivity.this, AdoptFoster.class));
+                    } else {
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(MainActivity.this, "Account doesn't exit, please signup", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         });
     }
 
@@ -93,12 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginAsGuest(){
         TextView loginAsGuest = findViewById(R.id.loginasguest);
-        loginAsGuest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AdoptFoster.class));
-            }
-        });
+        loginAsGuest.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AdoptFoster.class)));
     }
 
     private void signUp(){

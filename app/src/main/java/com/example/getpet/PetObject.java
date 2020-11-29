@@ -40,21 +40,10 @@ public class PetObject {
 
     public String getDescription(){return description;}
 
-    public void setPetID(String petID){this.petID = petID;}
 
     public void setName(String name) { this.name = name; }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setDescription(String description){this.description = description;}
 }

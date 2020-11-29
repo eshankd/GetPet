@@ -96,11 +96,6 @@ public class Storyboard extends AppCompatActivity {
 
     private void addStory() {
         FloatingActionButton addStory = findViewById(R.id.addStory);
-        addStory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Storyboard.this, AddStory.class));
-            }
-        });
+        addStory.setOnClickListener(v -> startActivity(new Intent(Storyboard.this, AddStory.class)));
     }
 }

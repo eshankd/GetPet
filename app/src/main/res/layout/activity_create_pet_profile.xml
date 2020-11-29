@@ -100,21 +100,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGender" />
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/greenbuttondesign"
-        android:text="@string/next"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petBreedIn" />
-
     <RadioGroup
         android:id="@+id/radioGender"
         android:layout_width="wrap_content"
@@ -126,7 +111,7 @@
 
         <RadioButton
             android:id="@+id/Male"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/male"
             android:textSize="18sp">
@@ -135,7 +120,7 @@
 
         <RadioButton
             android:id="@+id/Female"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/female"
             android:textSize="18sp">
@@ -176,15 +161,32 @@
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
+        android:autofillHints="@string/whatbreed"
         android:background="@drawable/textareaborder"
         android:ems="10"
-        android:autofillHints="@string/whatbreed"
         android:hint="@string/whatbreed"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petNameIn" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/greenbuttondesign"
+        android:text="@string/next"
+        android:textColor="#FFFFFF"
+        android:onClick="nextForm"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petBreedIn"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

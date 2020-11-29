@@ -21,28 +21,25 @@ public class Explore extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.explore));
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.toString()) {
-                    case "Storyboard":
-                        startActivity(new Intent(Explore.this, Storyboard.class));
-                        break;
-                    case "Explore":
-                        //Do something
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(Explore.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(Explore.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(Explore.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch(item.toString()) {
+                case "Storyboard":
+                    startActivity(new Intent(Explore.this, Storyboard.class));
+                    break;
+                case "Explore":
+                    //Do something
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(Explore.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(Explore.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(Explore.this, Profile.class));
+                    break;
             }
+            return true;
         });
     }
 

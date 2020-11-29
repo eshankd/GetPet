@@ -65,75 +65,67 @@ public class SignUp extends AppCompatActivity {
     private void signup() {
         Button signupBTN = findViewById(R.id.signup);
 
-        signupBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fNameIn = findViewById(R.id.signUpFname);
-                lNameIn = findViewById(R.id.signUpLname);
-                emailIn = findViewById(R.id.signUpEmail);
-                passwordIn = findViewById(R.id.signUpPassword);
-                confirmPassword = findViewById(R.id.confirmPassword);
-                notMatch = findViewById(R.id.notMatch);
+        signupBTN.setOnClickListener(v -> {
+            fNameIn = findViewById(R.id.signUpFname);
+            lNameIn = findViewById(R.id.signUpLname);
+            emailIn = findViewById(R.id.signUpEmail);
+            passwordIn = findViewById(R.id.signUpPassword);
+            confirmPassword = findViewById(R.id.confirmPassword);
+            notMatch = findViewById(R.id.notMatch);
 
 
-                if (!passwordIn.getText().toString().equals(confirmPassword.getText().toString())) {
-                    notMatch.setText("Passwords do not match!");
-                }
+            if (!passwordIn.getText().toString().equals(confirmPassword.getText().toString())) {
+                notMatch.setText("Passwords do not match!");
+            }
 
-                else if(fNameIn.getText().toString() == "" || lNameIn.getText().toString() == "" || emailIn.getText().toString() == ""|| passwordIn.getText().toString() == "")
-                {
-                    notMatch.setText("Please fill in all the details");
-                }
+            else if(fNameIn.getText().toString() == "" || lNameIn.getText().toString() == "" || emailIn.getText().toString() == ""|| passwordIn.getText().toString() == "")
+            {
+                notMatch.setText("Please fill in all the details");
+            }
 
 
 
-                else {
+            else {
 
-                    final String email = emailIn.getText().toString();
-                    final String password = passwordIn.getText().toString();
-                    final String fName = fNameIn.getText().toString();
-                    final String lName = lNameIn.getText().toString();
+                final String email = emailIn.getText().toString();
+                final String password = passwordIn.getText().toString();
+                final String fName = fNameIn.getText().toString();
+                final String lName = lNameIn.getText().toString();
 
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
-                                userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                                DocumentReference docref = fStore.collection("Users").document(userid);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("FirstName", fName);
-                                user.put("LastName", lName);
-                                user.put("Email", email);
-                                user.put("PetsOwned", 0);
-                                docref.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: user Profile is created for " + userid);
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
+                            userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                            DocumentReference docref = fStore.collection("Users").document(userid);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("FirstName", fName);
+                            user.put("LastName", lName);
+                            user.put("Email", email);
+                            user.put("PetsOwned", 0);
+                            docref.set(user).addOnSuccessListener(aVoid -> Log.d(TAG, "onSuccess: user Profile is created for " + userid)).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Profile not created");
+                                }
+                            });
+                            startActivity(new Intent(SignUp.this, AdoptFoster.class));
+                        } else {
+                            Query emailQuery = fStore.collection("Users").whereEqualTo("Email", email);
+                            emailQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SignUp.this, "Email-ID already in use", Toast.LENGTH_SHORT).show();
                                     }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w(TAG, "Profile not created");
-                                    }
-                                });
-                                startActivity(new Intent(SignUp.this, AdoptFoster.class));
-                            } else {
-                                Query emailQuery = fStore.collection("Users").whereEqualTo("Email", email);
-                                emailQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(SignUp.this, "Email-ID already in use", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
+                                }
+                            });
 
-                            }
                         }
-                    });
+                    }
+                });
 
-                }
             }
         });
     }

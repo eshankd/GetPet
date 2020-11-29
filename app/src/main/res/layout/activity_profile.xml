@@ -81,37 +81,40 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="352dp"
+        android:layout_width="300dp"
         android:layout_height="53dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/manageStoryboard"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petsOwned" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="352dp"
+        android:layout_width="300dp"
         android:layout_height="53dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/viewSearchHistory"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <Button
         android:id="@+id/signOut"
-        android:layout_width="352dp"
+        android:layout_width="300dp"
         android:layout_height="53dp"
-        android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/redbuttondesign"
         android:text="@string/signout"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button9" />
 
@@ -148,5 +151,18 @@
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@+id/petsOwned"
         app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="300dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/greenbuttondesign"
+        android:text="@string/login"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petsOwned" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
