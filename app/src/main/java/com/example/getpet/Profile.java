@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -32,6 +33,7 @@ public class Profile extends AppCompatActivity {
     private FirebaseUser user;
     private TextView nameOUT;
     private TextView emailOUT;
+    private TextView petsOwnedOUT;
     private ImageView profilePictureOut;
     private String name;
     private String email;
@@ -73,28 +75,27 @@ public class Profile extends AppCompatActivity {
         nameOUT = findViewById(R.id.userProfileFName);
         emailOUT = findViewById(R.id.userProfileEmail);
         profilePictureOut = findViewById(R.id.imageView9);
+        petsOwnedOUT = findViewById(R.id.petsOwnedOut);
 
         user = auth.getCurrentUser();
         userId = Objects.requireNonNull(user.getUid());
-        if (user != null) {
-            fStore.collection("Users")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
-                                if (snapDoc.getId().equals(userId)){
-                                    name = snapDoc.getString("FirstName") + " " + snapDoc.getString("LastName");
-                                    break;
-                                }
-                        }
-                    }
-            });
-            email = user.getEmail();
-            nameOUT.setText(name);
-            emailOUT.setText(email);
 
-        } else {
+        //query the db with uid
+        //if exists update ui
+        //if not
+        if (user != null) {
+            fStore.collection("Users").whereEqualTo(FieldPath.documentId(), userId).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
+                        nameOUT.setText(snapDoc.getString("FirstName") + " " + snapDoc.getString("LastName"));
+                        emailOUT.setText(snapDoc.getString("Email"));
+                        petsOwnedOUT.setText(snapDoc.getLong("PetsOwned").toString());
+                    }
+                }
+            });
+        }
+        else {
             Toast.makeText(Profile.this, "User info not found", Toast.LENGTH_SHORT).show();
         }
 
