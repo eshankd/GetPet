@@ -12,20 +12,30 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
 
     BottomNavigationView navBar;
     private FirebaseAuth auth;
+    private FirebaseFirestore fStore;
     private FirebaseUser user;
     private TextView nameOUT;
     private TextView emailOUT;
     private ImageView profilePictureOut;
     private String name;
     private String email;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,7 @@ public class Profile extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.profile));
@@ -66,14 +77,26 @@ public class Profile extends AppCompatActivity {
         emailOUT = findViewById(R.id.userProfileEmail);
         profilePictureOut = findViewById(R.id.imageView9);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        user = auth.getCurrentUser();
+        userId = Objects.requireNonNull(user.getUid());
         if (user != null) {
-            name = user.getDisplayName();
+            fStore.collection("Users")
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+                                if (snapDoc.getId().equals(userId)){
+                                    name = snapDoc.getString("FirstName") + " " + snapDoc.getString("LastName");
+                                    break;
+                                }
+                        }
+                    }
+            });
             email = user.getEmail();
-//            googlePhoto = user.getPhotoUrl();
             nameOUT.setText(name);
             emailOUT.setText(email);
-//            profilePictureOut.setImageURI(googlePhoto);
+
         } else {
             Toast.makeText(Profile.this, "User info not found", Toast.LENGTH_SHORT).show();
         }
@@ -87,7 +110,6 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 auth.signOut();
-//                gSignInClient.signOut();
                 startActivity(new Intent(Profile.this, MainActivity.class));
                 Toast.makeText(Profile.this, "Successfully signed out", Toast.LENGTH_SHORT).show();
             }
