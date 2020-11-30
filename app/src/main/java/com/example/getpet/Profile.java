@@ -36,12 +36,20 @@ public class Profile extends AppCompatActivity {
     private TextView petsOwnedOUT;
     private ImageView profilePictureOut;
 
+    private TextView petsOwnedLabel;
+    private TextView emailLabel;
+
+    private Button loginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         user = User.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+        loginButton = findViewById(R.id.loginButton);
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.profile));
@@ -72,9 +80,20 @@ public class Profile extends AppCompatActivity {
         profilePictureOut = findViewById(R.id.imageView9);
         petsOwnedOUT = findViewById(R.id.petsOwnedOut);
 
-        nameOUT.setText(user.getFullName());
-        emailOUT.setText(user.getEmail());
-        petsOwnedOUT.setText(Integer.toString(user.getPetsOwned()));
+        if (user.getPetsOwned() == -1){
+            nameOUT.setText(user.getFullName());
+            emailLabel = findViewById(R.id.emailLabel);
+            petsOwnedLabel = findViewById(R.id.petsOwned);
+            emailLabel.setVisibility(View.GONE);
+            petsOwnedLabel.setVisibility(View.GONE);
+        }
+        else{
+            nameOUT.setText(user.getFullName());
+            emailOUT.setText(user.getEmail());
+            petsOwnedOUT.setText(Integer.toString(user.getPetsOwned()));
+            loginButton.setVisibility(View.GONE);
+
+        }
 
         signOut();
         loginButton();
@@ -93,7 +112,6 @@ public class Profile extends AppCompatActivity {
     }
 
     private void loginButton() {
-        Button loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

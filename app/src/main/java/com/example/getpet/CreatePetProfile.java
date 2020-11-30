@@ -76,7 +76,6 @@ public class CreatePetProfile extends AppCompatActivity {
             Log.d("debug", "else");
         }
 
-        Toast.makeText(CreatePetProfile.this, "test1", Toast.LENGTH_SHORT).show();
         try {
             Thread.sleep(3000);
             // Do some stuff
