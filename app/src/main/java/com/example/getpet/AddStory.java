@@ -113,28 +113,28 @@ public class AddStory extends AppCompatActivity {
 
             captionIn = findViewById(R.id.inputPost);
             String caption = captionIn.getText().toString();
-            DocumentReference docref = fStore.collection("Posts").document("test");
+
+            CollectionReference docref = fStore.collection("Posts");
             Map<String, Object> post = new HashMap<>();
             post.put("Caption", caption);
             post.put("Likes", 0);
             post.put("Name", user.getFullName());
             post.put("PostID", "P008");
 
-            docref.set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "Story added");
-                    Toast.makeText(AddStory.this, "STORY ADDED", Toast.LENGTH_SHORT).show();
 
+
+            docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.d(TAG, "Story added");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-
-                    Log.w(TAG, "Story not added");
-
+                    Log.w(TAG, "Error adding post");
                 }
             });
+
             startActivity(new Intent(AddStory.this, Storyboard.class));
         });
     }

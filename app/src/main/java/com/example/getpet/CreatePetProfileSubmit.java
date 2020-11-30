@@ -6,24 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,8 +28,8 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
 
     BottomNavigationView navBar;
-    private FirebaseAuth auth;
     private FirebaseFirestore fStore;
+    private User user;
     private CalendarView mCalendarView;
     private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
@@ -43,19 +38,15 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     String transferredName;
     String transferredBreed;
     String transferredGender;
-    private String userid;
-    private User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile_submit);
-
-
-
         setContentView(R.layout.activity_create_pet_profile_submit);
-        auth = FirebaseAuth.getInstance();
+
         fStore = FirebaseFirestore.getInstance();
+        user = User.getInstance();
 
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
@@ -109,22 +100,28 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 transferredBreed = getIntent().getStringExtra("breed");
                 transferredGender = getIntent().getStringExtra("gender");
 
+                CollectionReference docref = fStore.collection("Dogs");
+                Map<String, Object> dogProfile = new HashMap<>();
+                dogProfile.put("Name", transferredName);
+                dogProfile.put("ID", "D008");
+                dogProfile.put("Gender", transferredGender);
+                dogProfile.put("Age", 0);
+                dogProfile.put("Breed", transferredBreed);
+                dogProfile.put("Description", description);
+                dogProfile.put("userEmail", user.getEmail());
 
 
-
-                userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                DocumentReference docref = fStore.collection("Dogs").document(userid);
-                Map<String, Object> user = new HashMap<>();
-                user.put("Name", transferredName);
-                user.put("ID", "D009");
-                user.put("Gender", transferredGender);
-                user.put("Age", 0);
-                user.put("Breed", transferredBreed);
-                user.put("Description", descriptionIn);
-
-                docref.set(user).addOnSuccessListener(aVoid ->
-                        Log.d(TAG, "Profile Created Success"))
-                        .addOnFailureListener(e -> Log.w(TAG, "Profile not created"));
+                docref.add(dogProfile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "Profile Created Success");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Profile not created");
+                    }
+                });
 
 
                 startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));

@@ -6,15 +6,14 @@ public class User {
     private int petsOwned;
     private String email;
 
-    //private static final User instance = new User();
 
     private static User single_instance = null;
 
-//    public static User getInstance() {
-//        return instance;
-//    }
-
-    User () { }
+    User () {
+        fName = "Guest";
+        lName = "User";
+        petsOwned = -1;
+    }
 
     public static User getInstance(){
         if (single_instance == null)

@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="45dp"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintStart_toEndOf="@+id/emailLabel"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Button
@@ -141,7 +141,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/petsowned"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
 
     <TextView
         android:id="@+id/petsOwnedOut"
