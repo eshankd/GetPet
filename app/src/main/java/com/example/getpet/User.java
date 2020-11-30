@@ -6,12 +6,22 @@ public class User {
     private int petsOwned;
     private String email;
 
-    private static final User instance = new User();
-    public static User getInstance() {
-        return instance;
-    }
+    //private static final User instance = new User();
+
+    private static User single_instance = null;
+
+//    public static User getInstance() {
+//        return instance;
+//    }
 
     User () { }
+
+    public static User getInstance(){
+        if (single_instance == null)
+            single_instance = new User();
+
+        return single_instance;
+    }
 
     public void setData(String fName, String lName, int petsOwned, String email) {
         this.fName = fName;

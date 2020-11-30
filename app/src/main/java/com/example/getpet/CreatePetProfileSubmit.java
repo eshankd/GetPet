@@ -38,13 +38,13 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private CalendarView mCalendarView;
     private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
+
     int dayIn, monthIn, yearIn;
     String transferredName;
     String transferredBreed;
     String transferredGender;
     private String userid;
-
-
+    private User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

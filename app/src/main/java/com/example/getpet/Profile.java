@@ -30,8 +30,7 @@ public class Profile extends AppCompatActivity {
     BottomNavigationView navBar;
     private FirebaseAuth auth;
     private FirebaseFirestore fStore;
-//    private FirebaseUser fUser;
-    User user;
+    private User user;
     private TextView nameOUT;
     private TextView emailOUT;
     private TextView petsOwnedOUT;
@@ -42,13 +41,10 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
-        auth = FirebaseAuth.getInstance();
-//        fStore = FirebaseFirestore.getInstance();
+        user = User.getInstance();
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.profile));
-        user.getInstance();
 
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.toString()) {
@@ -78,30 +74,7 @@ public class Profile extends AppCompatActivity {
 
         nameOUT.setText(user.getFullName());
         emailOUT.setText(user.getEmail());
-        petsOwnedOUT.setText(user.getPetsOwned());
-
-
-//        user = auth.getCurrentUser();
-//        userId = Objects.requireNonNull(user.getUid());
-
-        //query the db with uid
-        //if exists update ui
-        //if not
-//        if (user != null) {
-//            fStore.collection("Users").whereEqualTo(FieldPath.documentId(), userId).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                @Override
-//                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                    for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
-//                        nameOUT.setText(snapDoc.getString("FirstName") + " " + snapDoc.getString("LastName"));
-//                        emailOUT.setText(snapDoc.getString("Email"));
-//                        //petsOwnedOUT.setText(snapDoc.getLong("PetsOwned").toString());
-//                    }
-//                }
-//            });
-//        }
-//        else {
-//            Toast.makeText(Profile.this, "User info not found", Toast.LENGTH_SHORT).show();
-//        }
+        petsOwnedOUT.setText(Integer.toString(user.getPetsOwned()));
 
         signOut();
         loginButton();

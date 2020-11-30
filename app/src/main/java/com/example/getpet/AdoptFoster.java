@@ -32,13 +32,14 @@ public class AdoptFoster extends AppCompatActivity {
 
     BottomNavigationView navBar;
     private FirebaseAuth auth;
-    public final User user = new User();
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         auth = FirebaseAuth.getInstance();
+        user = User.getInstance();
         setContentView(R.layout.activity_adopt_foster);
 
         navBar = findViewById(R.id.bottom_navbar);
@@ -65,6 +66,7 @@ public class AdoptFoster extends AppCompatActivity {
         });
         adoptFoster();
         findAHome();
+        setupUser();
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", "D003");
@@ -131,6 +133,8 @@ public class AdoptFoster extends AppCompatActivity {
                         userEmail = snapDoc.getString("Email");
                         userPetsOwned = (ArrayList<String>) snapDoc.get("PetsOwned");
                         userNumPetsOwned = userPetsOwned.size();
+
+                        Log.d("petID", Integer.toString(userNumPetsOwned));
 
                         user.setData(userFName, userLName, userNumPetsOwned, userEmail);
                     }
