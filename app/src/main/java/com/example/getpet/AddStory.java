@@ -1,15 +1,28 @@
 package com.example.getpet;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileUtils;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
@@ -19,15 +32,26 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.firestore.v1.FirestoreGrpc;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class AddStory extends AppCompatActivity {
 
     private EditText captionIn;
+    private Button chooseImage;
+    private Button uploadImage;
+    private ImageView postImage;
+    private Uri ImageUri;
+
     private FirebaseFirestore fStore;
+    private StorageReference storageReference;
     BottomNavigationView navBar;
     private String TAG = "AddStory";
     private FirebaseAuth auth;
@@ -39,6 +63,13 @@ public class AddStory extends AppCompatActivity {
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.storyboard));
+
+        chooseImage = findViewById(R.id.chooseButton);
+        uploadImage = findViewById(R.id.uploadButton);
+        postImage = findViewById(R.id.postImage);
+
+
+
 
         fStore = FirebaseFirestore.getInstance();
 
@@ -67,6 +98,8 @@ public class AddStory extends AppCompatActivity {
         });
 
         postStory();
+      //  upload();
+        choose();
 
     }
 
@@ -101,6 +134,84 @@ public class AddStory extends AppCompatActivity {
             startActivity(new Intent(AddStory.this, Storyboard.class));
         });
     }
+
+
+    private void choose(){
+
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                openFileChosen();
+            }
+        });
+
+
+    }
+//    private void upload(){
+//
+//        final String randomKey = UUID.randomUUID().toString();
+//        StorageReference thisReference = storageReference.child("Storyboard Thumbnails/" + randomKey);
+//
+//        thisReference.putFile(ImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                Toast.makeText(AddStory.this, "Upload Success", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(AddStory.this, "Upload Failed", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//
+//    }
+
+
+
+
+//    ActivityResultLauncher<String> myActivityResultLauncher = registerForActivityResult(
+//            new ActivityResultContracts.GetContent(),
+//            new ActivityResultCallback<Uri>() {
+//                @Override
+//                public void onActivityResult(Uri uri) {
+//                    ImageUri = uri;
+//                    postImage.setImageURI(ImageUri);
+//                }
+//            });
+
+
+    private void openFileChosen(){
+
+
+
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        //startActivityForResult(i);
+        //myActivityResultLauncher.launch(i.toString());
+
+
+    }
+
+
+
+    protected void onActivityResult(int requestCode,int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK && data!=null){
+
+
+          //  ImageUri = result.getUri();
+
+            postImage.setImageURI(ImageUri);
+        }
+
+
+    }
+
 
 
 }

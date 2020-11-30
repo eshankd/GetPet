@@ -71,14 +71,14 @@ public class Profile extends AppCompatActivity {
             return true;
         });
 
-        nameOUT = findViewById(R.id.userProfileFName);
-        emailOUT = findViewById(R.id.userProfileEmail);
-        profilePictureOut = findViewById(R.id.imageView9);
-        petsOwnedOUT = findViewById(R.id.petsOwnedOut);
-
-        nameOUT.setText(user.getFullName());
-        emailOUT.setText(user.getEmail());
-        petsOwnedOUT.setText(user.getPetsOwned());
+//        nameOUT = findViewById(R.id.userProfileFName);
+//        emailOUT = findViewById(R.id.userProfileEmail);
+//        profilePictureOut = findViewById(R.id.imageView9);
+//        petsOwnedOUT = findViewById(R.id.petsOwnedOut);
+//
+//        nameOUT.setText(user.getFullName());
+//        emailOUT.setText(user.getEmail());
+//        petsOwnedOUT.setText(user.getPetsOwned());
 
 
 //        user = auth.getCurrentUser();

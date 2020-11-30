@@ -109,15 +109,18 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 transferredBreed = getIntent().getStringExtra("breed");
                 transferredGender = getIntent().getStringExtra("gender");
 
+
+
+
                 userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
                 DocumentReference docref = fStore.collection("Dogs").document(userid);
                 Map<String, Object> user = new HashMap<>();
                 user.put("Name", transferredName);
-                user.put("ID", "D008");
+                user.put("ID", "D009");
                 user.put("Gender", transferredGender);
                 user.put("Age", 0);
                 user.put("Breed", transferredBreed);
-                user.put("Description", description);
+                user.put("Description", descriptionIn);
 
                 docref.set(user).addOnSuccessListener(aVoid ->
                         Log.d(TAG, "Profile Created Success"))

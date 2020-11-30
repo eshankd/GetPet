@@ -75,7 +75,7 @@ public class PetsList extends AppCompatActivity {
 
     private void LoadPets() {
         fStore.collection("Dogs")
-            .whereEqualTo("Age",transferredAge)
+  //          .whereEqualTo("Age",transferredAge)
 //            .whereEqualTo("Breed", transferredBreed)
 //            .whereEqualTo("Gender", transferredGender)
             .get()

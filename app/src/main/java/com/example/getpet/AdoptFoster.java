@@ -89,6 +89,8 @@ public class AdoptFoster extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+        //setupUser();
     }
 
     private void adoptFoster(){
@@ -111,33 +113,35 @@ public class AdoptFoster extends AppCompatActivity {
         });
     }
 
-    private void setupUser()    {
-        FirebaseUser firebaseUser = auth.getCurrentUser();
-        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-
-        if (firebaseUser != null)   {
-            fStore.collection("Users").whereEqualTo(FieldPath.documentId(), firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    String userFName;
-                    String userLName;
-                    String userEmail;
-                    int userNumPetsOwned;
-                    ArrayList<String> userPetsOwned;
-                    for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
-
-                        userFName = snapDoc.getString("FirstName");
-                        userLName = snapDoc.getString("LastName");
-                        userEmail = snapDoc.getString("Email");
-                        userPetsOwned = (ArrayList<String>) snapDoc.get("PetsOwned");
-                        userNumPetsOwned = userPetsOwned.size();
-
-                        user.setData(userFName, userLName, userNumPetsOwned, userEmail);
-                    }
-                }
-            });
-        }
-    }
+//    private void setupUser()    {
+//        FirebaseUser firebaseUser = auth.getCurrentUser();
+//        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+//
+//        if (firebaseUser != null)   {
+//            fStore.collection("Users").whereEqualTo(FieldPath.documentId(), firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                @Override
+//                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                    String userFName;
+//                    String userLName;
+//                    String userEmail;
+//                    int userNumPetsOwned;
+//                    ArrayList<String> userPetsOwned;
+//                    for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
+//
+//                        userFName = snapDoc.getString("FirstName");
+//                        userLName = snapDoc.getString("LastName");
+//                        userEmail = snapDoc.getString("Email");
+//                        userPetsOwned = (ArrayList<String>) snapDoc.get("PetsOwned");
+//                        userNumPetsOwned = userPetsOwned.size();
+//
+//
+//
+//                        user.setData(userFName, userLName, userNumPetsOwned, userEmail);
+//                    }
+//                }
+//            });
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
