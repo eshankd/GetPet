@@ -3,6 +3,7 @@ package com.example.getpet;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,18 +23,11 @@ public class CreatePetProfile extends AppCompatActivity {
     EditText petName;
     EditText petBreed;
     RadioGroup radioGender;
-    Button nextButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile);
-
-        petName = findViewById(R.id.petNameIn);
-        petBreed = findViewById(R.id.petBreedIn);
-        radioGender = findViewById(R.id.radioGender);
-        nextButton = findViewById(R.id.nextButton);
 
         auth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_create_pet_profile);
@@ -66,18 +60,27 @@ public class CreatePetProfile extends AppCompatActivity {
 
     public void nextForm(){
 
+        petName = findViewById(R.id.petNameIn);
+        petBreed = findViewById(R.id.petBreedIn);
+        radioGender = findViewById(R.id.radioGender);
 
-        Button nextForm = findViewById(R.id.nextButton);
-
-        nextForm.setOnClickListener(new View.OnClickListener() {
+        Button nextButton = findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String name = petName.getText().toString();
+                final String name = petName.getText().toString();
+
                 String breed = petBreed.getText().toString();
+
+
+                Log.d("this chicken" , "beef");
+                Log.d("this chicken" , name);
+
 
                 if (radioGender.getCheckedRadioButtonId() == R.id.Male)
                     gender = true;
+
                 else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
                     gender = false;
                 else
@@ -85,10 +88,10 @@ public class CreatePetProfile extends AppCompatActivity {
 
                 }
 
-
                 Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
 
                 i.putExtra("name", name);
+                Toast.makeText(CreatePetProfile.this, "name"+ name, Toast.LENGTH_SHORT).show();
                 i.putExtra("gender", gender);
                 i.putExtra("breed", breed);
                 startActivity(i);

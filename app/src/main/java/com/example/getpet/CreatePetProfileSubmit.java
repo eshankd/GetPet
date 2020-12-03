@@ -62,6 +62,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     startActivity(new Intent(CreatePetProfileSubmit.this, Explore.class));
                     break;
                 case "Adopt":
+                    startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));
                     break;
                 case "Notifications":
                     startActivity(new Intent(CreatePetProfileSubmit.this, Notification.class));
