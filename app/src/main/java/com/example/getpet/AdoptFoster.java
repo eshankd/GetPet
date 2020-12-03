@@ -71,26 +71,7 @@ public class AdoptFoster extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", "D003");
         StorageReference reference = storage.getReference().child("Dog Thumbnails/" + "D003" + ".jpg");
-
-        final File localFile;
-        try {
-            localFile = File.createTempFile("D003", "jpg");
-            reference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-
-                    ImageView vadoptedPet = findViewById(R.id.vadoptedPet);
-                    vadoptedPet.setImageBitmap(bitmap);
-
-
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        
     }
 
     private void adoptFoster(){
