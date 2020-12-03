@@ -23,7 +23,6 @@
         <activity android:name=".CreatePetProfileSubmit"/>
         <activity android:name=".CreatePetProfile" />
         <activity android:name=".AddStory" />
-        <activity android:name=".Inbox" />
         <activity android:name=".Notification" />
         <activity android:name=".Explore" />
         <activity android:name=".Storyboard" />

@@ -128,8 +128,8 @@
                 android:layout_height="100dp"
                 android:id="@+id/vadoptedPet"/>
         </LinearLayout>
-        
-        
+
+
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
