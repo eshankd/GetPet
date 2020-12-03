@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="24dp"
         android:text="@string/gender"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -85,27 +85,12 @@
         app:layout_constraintTop_toBottomOf="@+id/choose" />
 
 
-    <EditText
-        android:id="@+id/petNameIn"
-        android:layout_width="290dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:autofillHints="@string/whatdoyoucall"
-        android:background="@drawable/textareaborder"
-        android:ems="10"
-        android:hint="@string/whatdoyoucall"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGender" />
-
     <RadioGroup
         android:id="@+id/radioGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView42"
         app:layout_constraintTop_toBottomOf="@+id/choose">
 
@@ -157,17 +142,26 @@
         app:layout_constraintTop_toBottomOf="@+id/uploadPetImage" />
 
     <EditText
+        android:id="@+id/petNameIn"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="What do you call him/her?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGender" />
+
+    <EditText
         android:id="@+id/petBreedIn"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:autofillHints="@string/whatbreed"
-        android:background="@drawable/textareaborder"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/whatbreed"
         android:inputType="textPersonName"
+        android:hint="What breed are they?"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petNameIn" />
 
@@ -175,18 +169,15 @@
         android:id="@+id/nextButton"
         android:layout_width="150dp"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/greenbuttondesign"
         android:text="@string/next"
         android:textColor="#FFFFFF"
-        android:onClick="nextForm"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petBreedIn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
