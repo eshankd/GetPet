@@ -34,19 +34,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="96dp"
-        android:fontFamily="@font/alike_angular"
-        android:text="@string/petprofile"
-        android:textColor="#FFFFFF"
-        android:textSize="45sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView39"
-        app:layout_constraintTop_toTopOf="@+id/textView39" />
-
-    <TextView
         android:id="@+id/textView40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,22 +72,22 @@
         app:layout_constraintTop_toBottomOf="@+id/textView41"
         app:srcCompat="@drawable/profilepic3" />
 
+
     <TextView
         android:id="@+id/textView42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="60dp"
         android:text="@string/gender"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose" />
 
-
     <EditText
         android:id="@+id/petNameIn"
-        android:layout_width="290dp"
+        android:layout_width="338dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/textareaborder"
@@ -108,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGender" />
+        app:layout_constraintTop_toBottomOf="@id/typeSpinnerIn" />
 
     <RadioGroup
         android:id="@+id/radioGender"
@@ -116,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="45dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toEndOf="@+id/textView42"
         app:layout_constraintTop_toBottomOf="@+id/choose">
 
@@ -123,6 +111,7 @@
             android:id="@+id/Male"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginRight="20dp"
             android:text="@string/male"
             android:textSize="18sp">
 
@@ -168,7 +157,7 @@
 
     <EditText
         android:id="@+id/petBreedIn"
-        android:layout_width="290dp"
+        android:layout_width="338dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/textareaborder"
@@ -185,15 +174,36 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/greenbuttondesign"
+        android:onClick="nextForm"
         android:text="@string/next"
         android:textColor="#FFFFFF"
-        android:onClick="nextForm"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petBreedIn"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/typeSpinnerIn"
+        android:layout_width="338dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/filterdropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGender"/>
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="59dp"
+        android:layout_height="49dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/typeSpinnerIn"
+        app:layout_constraintEnd_toEndOf="@+id/typeSpinnerIn"
+        app:layout_constraintTop_toTopOf="@+id/typeSpinnerIn"
+        app:srcCompat="@mipmap/baseline_arrow_drop_down_black_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

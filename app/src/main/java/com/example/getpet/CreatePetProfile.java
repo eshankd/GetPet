@@ -80,14 +80,14 @@ public class CreatePetProfile extends AppCompatActivity {
 
                 String breed = petBreed.getText().toString();
 
-        if (radioGender.getCheckedRadioButtonId() == R.id.Male)
-            gender = "Male";
-        else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
-            gender = "Female";
-        else
-        {
-            Log.d("debug", "else");
-        }
+                if (radioGender.getCheckedRadioButtonId() == R.id.Male)
+                    gender = "Male";
+                else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
+                    gender = "Female";
+                else
+                {
+                    Log.d("debug", "else");
+                }
 
                 Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
 
@@ -96,8 +96,6 @@ public class CreatePetProfile extends AppCompatActivity {
                 i.putExtra("gender", gender);
                 i.putExtra("breed", breed);
                 startActivity(i);
-
-
             }
         });
 
