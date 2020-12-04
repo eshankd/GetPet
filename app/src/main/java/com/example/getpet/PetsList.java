@@ -29,16 +29,13 @@ import java.util.Map;
 public class PetsList extends AppCompatActivity {
 
     BottomNavigationView navBar;
-    private FirebaseFirestore fStore;
-
-
-    private ListView petListView;
+    private FirebaseFirestore fStore;private ListView petListView;
     private PetObjectAdapter petAdapter;
 
     private int transferredAge;
     private String transferredBreed;
     private String transferredGender;
-    private String TAG = "DogsList";
+    private String TAG = "PetsList";
 
     Map<String, Object> choice = new HashMap<>();
 
@@ -110,7 +107,7 @@ public class PetsList extends AppCompatActivity {
 
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                        petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
+                        petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
                 }
 
 
