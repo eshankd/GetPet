@@ -61,5 +61,9 @@
     <string name="upload">Upload</string>
     <string name="choose">Choose</string>
     <string name="whatbreed">What\'s the Breed?</string>
+    <string name="whatsthispost">What\'s this post about?</string>
+    <string name="vetclinic">Vetenary Clinics near you</string>
+    <string name="other">Other</string>
+    <string name="groomingnear">Grooming Near you</string>
 </resources>
 

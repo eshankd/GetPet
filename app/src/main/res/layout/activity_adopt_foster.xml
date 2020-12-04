@@ -8,40 +8,33 @@
     tools:context=".AdoptFoster">
 
     <Button
-        android:id="@+id/findahome"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="26dp"
-        android:background="@drawable/button_design"
-        android:fontFamily="@font/alike_angular"
-        android:text="@string/findaHome"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
-
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="168dp"
-        android:layout_height="169dp"
-        android:layout_marginTop="126dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:srcCompat="@drawable/findahome" />
-
-    <Button
         android:id="@+id/adoptfoster"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="224dp"
         android:background="@drawable/button_design"
         android:fontFamily="@font/alike_angular"
         android:text="@string/adoptFoster"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        app:layout_constraintEnd_toStartOf="@+id/findahome"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/findahome"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="224dp"
+        android:background="@drawable/button_design"
+        android:fontFamily="@font/alike_angular"
+        android:text="@string/findaHome"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/adoptfoster" />
 
     <View
         android:id="@+id/textView5"
@@ -93,13 +86,29 @@
         app:menu="@menu/bottom_navbar_menu" />
 
     <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="168dp"
+        android:id="@+id/imageView6"
+        android:layout_width="164dp"
         android:layout_height="164dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="131dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/adoptfoster"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:srcCompat="@drawable/adoptfoster" />
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="164dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/findahome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:srcCompat="@drawable/findahome" />
 </androidx.constraintlayout.widget.ConstraintLayout>

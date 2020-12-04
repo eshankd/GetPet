@@ -41,7 +41,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     int dayIn, monthIn, yearIn;
     String transferredName;
     String transferredBreed;
-    String transferredGender;
+    boolean transferredGender;
 
     Period diff;
 
@@ -69,6 +69,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     startActivity(new Intent(CreatePetProfileSubmit.this, Explore.class));
                     break;
                 case "Adopt":
+                    startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));
                     break;
                 case "Notifications":
                     startActivity(new Intent(CreatePetProfileSubmit.this, Notification.class));
@@ -110,7 +111,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
                 transferredName = getIntent().getStringExtra("name");
                 transferredBreed = getIntent().getStringExtra("breed");
-                transferredGender = getIntent().getStringExtra("gender");
+                transferredGender = getIntent().getBooleanExtra("gender",false);
 
                 CollectionReference docref = fStore.collection("Dogs");
                 Map<String, Object> dogProfile = new HashMap<>();

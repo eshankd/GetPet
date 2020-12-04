@@ -3,6 +3,7 @@ package com.example.getpet;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -60,12 +61,24 @@ public class CreatePetProfile extends AppCompatActivity {
             }
             return true;
         });
+
+        nextForm();
     }
 
-    public void nextForm(View view){
+    public void nextForm(){
 
-        String name = petName.getText().toString();
-        String breed = petBreed.getText().toString();
+        petName = findViewById(R.id.petNameIn);
+        petBreed = findViewById(R.id.petBreedIn);
+        radioGender = findViewById(R.id.radioGender);
+
+        Button nextButton = findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final String name = petName.getText().toString();
+
+                String breed = petBreed.getText().toString();
 
         if (radioGender.getCheckedRadioButtonId() == R.id.Male)
             gender = "Male";
@@ -76,19 +89,22 @@ public class CreatePetProfile extends AppCompatActivity {
             Log.d("debug", "else");
         }
 
-        try {
-            Thread.sleep(3000);
-            // Do some stuff
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
 
-        Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
-        i.putExtra("name", name);
-        i.putExtra("gender", gender);
-        i.putExtra("breed", breed);
-        startActivity(i);
-    }
+                i.putExtra("name", name);
+                Toast.makeText(CreatePetProfile.this, "name"+ name, Toast.LENGTH_SHORT).show();
+                i.putExtra("gender", gender);
+                i.putExtra("breed", breed);
+                startActivity(i);
+
+
+            }
+        });
+
 }
+}
+
+
+
 
 
