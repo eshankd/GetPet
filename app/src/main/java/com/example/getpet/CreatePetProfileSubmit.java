@@ -1,9 +1,11 @@
 package com.example.getpet;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -39,6 +43,9 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     String transferredBreed;
     String transferredGender;
 
+    Period diff;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +85,10 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
             dayIn = dayOfMonth;
             monthIn = month;
             yearIn = year;
+
+            LocalDate loc = LocalDate.of(yearIn,monthIn,dayIn);
+            LocalDate now = LocalDate.now();
+            diff = Period.between(loc,now);
         });
 
 
@@ -90,6 +101,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
         Toast.makeText(CreatePetProfileSubmit.this, "test", Toast.LENGTH_SHORT).show();
 
         submit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 descriptionIn = findViewById(R.id.description);
@@ -103,9 +115,9 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 CollectionReference docref = fStore.collection("Dogs");
                 Map<String, Object> dogProfile = new HashMap<>();
                 dogProfile.put("Name", transferredName);
-                dogProfile.put("ID", "D008");
+                dogProfile.put("ID", "D009");
                 dogProfile.put("Gender", transferredGender);
-                dogProfile.put("Age", 0);
+                dogProfile.put("Age", diff.getYears());
                 dogProfile.put("Breed", transferredBreed);
                 dogProfile.put("Description", description);
                 dogProfile.put("userEmail", user.getEmail());
@@ -115,6 +127,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "Profile Created Success");
+                        Toast.makeText(CreatePetProfileSubmit.this, "Hope we find you a new home!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

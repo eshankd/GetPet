@@ -18,7 +18,7 @@ public class CreatePetProfile extends AppCompatActivity {
     BottomNavigationView navBar;
     private FirebaseAuth auth;
     private String TAG = "CreatePetProfile";
-    boolean gender;
+    String gender;
     EditText petName;
     EditText petBreed;
     RadioGroup radioGender;
@@ -68,9 +68,9 @@ public class CreatePetProfile extends AppCompatActivity {
         String breed = petBreed.getText().toString();
 
         if (radioGender.getCheckedRadioButtonId() == R.id.Male)
-            gender = true;
+            gender = "Male";
         else if (radioGender.getCheckedRadioButtonId() == R.id.Female)
-            gender = false;
+            gender = "Female";
         else
         {
             Log.d("debug", "else");

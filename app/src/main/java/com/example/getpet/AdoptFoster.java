@@ -71,7 +71,7 @@ public class AdoptFoster extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", "D003");
         StorageReference reference = storage.getReference().child("Dog Thumbnails/" + "D003" + ".jpg");
-        
+
     }
 
     private void adoptFoster(){

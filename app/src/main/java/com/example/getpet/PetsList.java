@@ -13,12 +13,17 @@ import android.widget.ListView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PetsList extends AppCompatActivity {
@@ -34,6 +39,8 @@ public class PetsList extends AppCompatActivity {
     private String transferredBreed;
     private String transferredGender;
     private String TAG = "DogsList";
+
+    Map<String, Object> choice = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,27 +76,40 @@ public class PetsList extends AppCompatActivity {
         transferredAge = getIntent().getIntExtra("age",0);
         transferredGender = getIntent().getStringExtra("gender");
 
+
+        if(!transferredBreed.equals("Any"))
+            choice.put("Breed",transferredBreed);
+        if(transferredAge != -1)
+            choice.put("Age",transferredAge);
+        if(!transferredGender.equals("Any"))
+            choice.put("Gender",transferredGender);
+
+
         LoadPets();
     }
 
 
     private void LoadPets() {
-        fStore.collection("Dogs")
-            .whereEqualTo("Age",transferredAge)
-//            .whereEqualTo("Breed", transferredBreed)
-//            .whereEqualTo("Gender", transferredGender)
-            .get()
-            .addOnSuccessListener(queryDocumentSnapshots -> {
-                int count = queryDocumentSnapshots.size();
-                Log.d(TAG,Integer.toString(count));
 
-                ArrayList <PetObject> petList = new ArrayList<PetObject>();
-                petListView = findViewById(R.id.PetList);
+        Query docref = fStore.collection("Dogs");
 
-                for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+        for (String i : choice.keySet()) {
+            docref = docref.whereEqualTo(i,choice.get(i));
+        }
 
-                    petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
-            }
+        docref.get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    int count = queryDocumentSnapshots.size();
+                    Log.d(TAG,Integer.toString(count));
+
+                    ArrayList <PetObject> petList = new ArrayList<PetObject>();
+                    petListView = findViewById(R.id.PetList);
+
+                    for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+
+                        petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
+                }
+
 
                 petAdapter = new PetObjectAdapter(PetsList.this, petList);
                 petListView.setAdapter(petAdapter);
