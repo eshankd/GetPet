@@ -39,7 +39,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.firestore.v1.FirestoreGrpc;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;

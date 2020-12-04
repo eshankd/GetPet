@@ -41,7 +41,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     int dayIn, monthIn, yearIn;
     String transferredName;
     String transferredBreed;
-    boolean transferredGender;
+    String transferredGender;
 
     Period diff;
 
@@ -99,7 +99,6 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private void submitForm() {
 
         Button submit = findViewById(R.id.submitPetProfile);
-        Toast.makeText(CreatePetProfileSubmit.this, "test", Toast.LENGTH_SHORT).show();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -111,7 +110,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
                 transferredName = getIntent().getStringExtra("name");
                 transferredBreed = getIntent().getStringExtra("breed");
-                transferredGender = getIntent().getBooleanExtra("gender",false);
+                transferredGender = getIntent().getStringExtra("gender");
 
                 CollectionReference docref = fStore.collection("Dogs");
                 Map<String, Object> dogProfile = new HashMap<>();

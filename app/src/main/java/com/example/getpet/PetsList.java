@@ -94,7 +94,10 @@ public class PetsList extends AppCompatActivity {
         Query docref = fStore.collection("Dogs");
 
         for (String i : choice.keySet()) {
-            docref = docref.whereEqualTo(i,choice.get(i));
+            if(i.equals("Age") && (((Integer)choice.get(i)) == 6))
+                docref = docref.whereGreaterThanOrEqualTo(i,6);
+            else
+                docref = docref.whereEqualTo(i,choice.get(i));
         }
 
         docref.get()
