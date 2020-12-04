@@ -33,7 +33,7 @@ public class Notification extends AppCompatActivity {
                     startActivity(new Intent(Notification.this, AdoptFoster.class));
                     break;
                 case "Notifications":
-                    //Do something
+                    startActivity(new Intent(Notification.this, Notification.class));
                     break;
                 case "Profile":
                     startActivity(new Intent(Notification.this, Profile.class));

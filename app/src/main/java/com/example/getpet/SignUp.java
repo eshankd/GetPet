@@ -84,7 +84,6 @@ public class SignUp extends AppCompatActivity {
             }
 
 
-
             else {
 
                 final String email = emailIn.getText().toString();

@@ -42,6 +42,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     String transferredName;
     String transferredBreed;
     String transferredGender;
+    String transferredType;
 
     Period diff;
 
@@ -111,23 +112,26 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 transferredName = getIntent().getStringExtra("name");
                 transferredBreed = getIntent().getStringExtra("breed");
                 transferredGender = getIntent().getStringExtra("gender");
-
-                CollectionReference docref = fStore.collection("Dogs");
-                Map<String, Object> dogProfile = new HashMap<>();
-                dogProfile.put("Name", transferredName);
-                dogProfile.put("ID", "D009");
-                dogProfile.put("Gender", transferredGender);
-                dogProfile.put("Age", diff.getYears());
-                dogProfile.put("Breed", transferredBreed);
-                dogProfile.put("Description", description);
-                dogProfile.put("userEmail", user.getEmail());
+                transferredType = getIntent().getStringExtra("type");
 
 
-                docref.add(dogProfile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                CollectionReference docref = fStore.collection("Pets");
+                Map<String, Object> petProfile = new HashMap<>();
+                petProfile.put("Name", transferredName);
+                petProfile.put("ID", "D009");
+                petProfile.put("Gender", transferredGender);
+                petProfile.put("Type",transferredType);
+                petProfile.put("Age", diff.getYears());
+                petProfile.put("Breed", transferredBreed);
+                petProfile.put("Description", description);
+                petProfile.put("userEmail", user.getEmail());
+
+
+                docref.add(petProfile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "Profile Created Success");
-                        Toast.makeText(CreatePetProfileSubmit.this, "Hope we find you a new home!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreatePetProfileSubmit.this, transferredName + " is up for adoption!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

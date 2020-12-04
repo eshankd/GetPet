@@ -42,7 +42,7 @@ public class Explore extends AppCompatActivity {
                     startActivity(new Intent(Explore.this, Storyboard.class));
                     break;
                 case "Explore":
-                    //Do something
+                    startActivity(new Intent(Explore.this, Explore.class));
                     break;
                 case "Adopt":
                     startActivity(new Intent(Explore.this, AdoptFoster.class));

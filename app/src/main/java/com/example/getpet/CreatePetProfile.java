@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +27,7 @@ public class CreatePetProfile extends AppCompatActivity {
     EditText petBreed;
     RadioGroup radioGender;
     Button nextButton;
+    String typeChosen;
 
 
     @Override
@@ -62,8 +66,35 @@ public class CreatePetProfile extends AppCompatActivity {
             return true;
         });
 
-        nextForm();
+
+        Spinner typeSpinnerIn = findViewById(R.id.typeSpinnerIn);
+        String type[] = {"Dog", "Cat", "Bird"};
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(CreatePetProfile.this, android.R.layout.simple_spinner_dropdown_item, type);
+        typeSpinnerIn.setAdapter(adapter);
+
+
+        typeSpinnerIn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position == 0) {
+                    ArrayAdapter<String> adapter1 = new ArrayAdapter<>(CreatePetProfile.this, android.R.layout.simple_spinner_dropdown_item, type);
+                    typeChosen = "Dog";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+                nextForm();
     }
+
+
 
     public void nextForm(){
 
@@ -92,11 +123,10 @@ public class CreatePetProfile extends AppCompatActivity {
                 Intent i = new Intent(CreatePetProfile.this, CreatePetProfileSubmit.class);
 
                 i.putExtra("name", name);
-                Toast.makeText(CreatePetProfile.this, "name"+ name, Toast.LENGTH_SHORT).show();
                 i.putExtra("gender", gender);
                 i.putExtra("breed", breed);
+                i.putExtra("type",typeChosen);
                 startActivity(i);
-
 
             }
         });

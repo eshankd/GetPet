@@ -54,6 +54,7 @@ public class AdoptFoster extends AppCompatActivity {
                     startActivity(new Intent(AdoptFoster.this, Explore.class));
                     break;
                 case "Adopt":
+                    startActivity(new Intent(AdoptFoster.this, AdoptFoster.class));
                     break;
                 case "Notifications":
                     startActivity(new Intent(AdoptFoster.this, Notification.class));
@@ -67,10 +68,6 @@ public class AdoptFoster extends AppCompatActivity {
         adoptFoster();
         findAHome();
         setupUser();
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        Log.d("petID", "D003");
-        StorageReference reference = storage.getReference().child("Dog Thumbnails/" + "D003" + ".jpg");
 
     }
 
@@ -99,7 +96,7 @@ public class AdoptFoster extends AppCompatActivity {
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
         if (firebaseUser != null)   {
-            fStore.collection("Users").whereEqualTo(FieldPath.documentId(), firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            fStore.collection("Users").whereEqualTo(FieldPath.documentId(),firebaseUser.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     String userFName;
@@ -114,8 +111,6 @@ public class AdoptFoster extends AppCompatActivity {
                         userEmail = snapDoc.getString("Email");
                         userPetsOwned = (ArrayList<String>) snapDoc.get("PetsOwned");
                         userNumPetsOwned = userPetsOwned.size();
-
-
 
                         user.setData(userFName, userLName, userNumPetsOwned, userEmail);
                     }
