@@ -206,8 +206,6 @@ public class AddStory extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
 
         if(requestCode == 1 && resultCode == RESULT_OK && data!=null){
-
-
           //  ImageUri = result.getUri();
 
             postImage.setImageURI(ImageUri);
