@@ -86,7 +86,7 @@ public class AdoptFoster extends AppCompatActivity {
         findahome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdoptFoster.this,CreatePetProfile.class));
+                startActivity(new Intent(AdoptFoster.this,CreatePetProfile1.class));
             }
         });
     }

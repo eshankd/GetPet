@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="dogbreeds">
+        <item> Affenpinscher</item>
+        <item> Afghan hound</item>
+        <item> Australian shepherd</item>
+        <item> Australian terrier</item>
+        <item> Basset hound</item>
+        <item> Basenji</item>
+        <item> Beagle</item>
+        <item> Bearded collie</item>
+        <item> Bedlington terrier</item>
+        <item> Bichon Frise</item>
+        <item> Bloodhound</item>
+        <item> Border collie</item>
+        <item> Border terrier</item>
+        <item> Boston terrier	</item>
+        <item> Boxer</item>
+        <item> Bull terrier</item>
+        <item> Bulldog</item>
+        <item> Bullmastiff</item>
+        <item> Chihuahua</item>
+        <item> Chow Chow</item>
+        <item> Cocker Spaniel	</item>
+        <item> Collie</item>
+        <item> Dachshund</item>
+        <item> Dalmatian	</item>
+        <item> Doberman Pinscher</item>
+        <item> English Cocker Spaniel</item>
+        <item> English Setter</item>
+        <item> English Springer Spaniel</item>
+        <item> Foxhound	</item>
+        <item> French bulldog</item>
+        <item> German Shepherd</item>
+        <item> German Shorthaired pointer</item>
+        <item> Golden Retriever</item>
+        <item> Great Dane	</item>
+        <item>	Greyhound</item>
+        <item>	Irish setter</item>
+        <item>	Jack Russell terrier</item>
+        <item>	Japanese spaniel</item>
+        <item>	Labrador retriever</item>
+        <item>	Lhasa apso</item>
+        <item>  Maltese</item>
+        <item>	Mastiff</item>
+        <item>	Pekingese</item>
+        <item>	Pomeranian</item>
+        <item>	Pointer</item>
+        <item> Poodle</item>
+        <item> Pug	</item>
+        <item> Rottweiler</item>
+        <item> Saluki</item>
+        <item> Samoyed</item>
+        <item> Scottish terrier</item>
+        <item> Shih tzu</item>
+        <item> Siberian husky</item>
+        <item> Whippet</item>
+        <item> Yorkshire terrie</item>
+
+    </string-array>
+
+
+</resources>

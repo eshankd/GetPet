@@ -126,7 +126,6 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 petProfile.put("Description", description);
                 petProfile.put("userEmail", user.getEmail());
 
-
                 docref.add(petProfile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
