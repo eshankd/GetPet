@@ -5,17 +5,16 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
-import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,36 +30,51 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.firestore.v1.FirestoreGrpc;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
 
 public class AddStory extends AppCompatActivity {
 
     private EditText captionIn;
     private Button chooseImage;
-    private Button uploadImage;
     private ImageView postImage;
-    private Uri ImageUri;
+    private Bitmap bitmap;
+
+    boolean picUp;
 
     private FirebaseFirestore fStore;
-    private StorageReference storageReference;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
     BottomNavigationView navBar;
     private String TAG = "AddStory";
     private User user;
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        try {
+                            openFileChosen(data);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+    );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +85,16 @@ public class AddStory extends AppCompatActivity {
         navBar.setSelectedItemId((R.id.storyboard));
 
         chooseImage = findViewById(R.id.chooseButton);
-        uploadImage = findViewById(R.id.uploadButton);
-        postImage = findViewById(R.id.postImage);
+        postImage = findViewById(R.id.postImageIn);
+
+        picUp = false;
 
         user = User.getInstance();
-
-
         fStore = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
+
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -104,12 +121,7 @@ public class AddStory extends AppCompatActivity {
         });
 
         postStory();
-      //  upload();
         choose();
-
-
-
-
     }
 
     private void postStory() {
@@ -127,11 +139,11 @@ public class AddStory extends AppCompatActivity {
             post.put("Name", user.getFullName());
             post.put("PostID", "P008");
 
-
-
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
+                    if(picUp)
+                        upload(documentReference);
                     Log.d(TAG, "Story added");
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -152,74 +164,50 @@ public class AddStory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openFileChosen();
+                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                getIntent.setType("image/*");
+
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
+
+                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+                someActivityResultLauncher.launch(chooserIntent);
             }
         });
-
-
     }
-//    private void upload(){
-//
-//        final String randomKey = UUID.randomUUID().toString();
-//        StorageReference thisReference = storageReference.child("Storyboard Thumbnails/" + randomKey);
-//
-//        thisReference.putFile(ImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Toast.makeText(AddStory.this, "Upload Success", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(AddStory.this, "Upload Failed", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//    }
 
+    private void openFileChosen(Intent data) throws FileNotFoundException {
 
+        InputStream inputStream = getContentResolver().openInputStream(data.getData());
+        bitmap = BitmapFactory.decodeStream(inputStream);
+        postImage.setImageBitmap(bitmap);
 
-
-//    ActivityResultLauncher<String> myActivityResultLauncher = registerForActivityResult(
-//            new ActivityResultContracts.GetContent(),
-//            new ActivityResultCallback<Uri>() {
-//                @Override
-//                public void onActivityResult(Uri uri) {
-//                    ImageUri = uri;
-//                    postImage.setImageURI(ImageUri);
-//                }
-//            });
-
-
-    private void openFileChosen(){
-
-
-
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-        //startActivityForResult(i);
-        //myActivityResultLauncher.launch(i.toString());
-
-
+        picUp = true;
     }
 
 
+    private void upload(DocumentReference docRef){
 
-    protected void onActivityResult(int requestCode,int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
+        StorageReference storyThumbRef = storageRef.child("Storyboard Thumbnails/" + docRef.getId() + ".jpg");
 
-        if(requestCode == 1 && resultCode == RESULT_OK && data!=null){
-          //  ImageUri = result.getUri();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        byte[] data = baos.toByteArray();
 
-            postImage.setImageURI(ImageUri);
-        }
-
-
+        UploadTask uploadTask = storyThumbRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Picture not uploaded");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "Picture uploaded");
+            }
+        });
     }
-
-
 
 }

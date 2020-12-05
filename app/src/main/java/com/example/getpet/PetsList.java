@@ -29,7 +29,8 @@ import java.util.Map;
 public class PetsList extends AppCompatActivity {
 
     BottomNavigationView navBar;
-    private FirebaseFirestore fStore;private ListView petListView;
+    private FirebaseFirestore fStore;
+    private ListView petListView;
     private PetObjectAdapter petAdapter;
 
     private int transferredAge;
