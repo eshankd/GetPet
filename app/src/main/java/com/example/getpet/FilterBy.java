@@ -74,7 +74,7 @@ public class FilterBy extends AppCompatActivity {
             return true;
         });
 
-        final Spinner typeSpinner = findViewById(R.id.spinner1);
+        final Spinner typeSpinnerIn = findViewById(R.id.spinner1);
         final Spinner breedSpinner = findViewById(R.id.spinner2);
         final Spinner ageSpinner = findViewById(R.id.spinner3);
         final Spinner afSpinner = findViewById(R.id.spinner4);
@@ -100,25 +100,29 @@ public class FilterBy extends AppCompatActivity {
 
 
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, type);
-        typeSpinner.setAdapter(typeAdapter);
+        typeSpinnerIn.setAdapter(typeAdapter);
 
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        typeSpinnerIn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 breedSpinner.setEnabled(true);
                 ageSpinner.setEnabled(true);
                 genderSpinner.setEnabled(true);
                 afSpinner.setEnabled(true);
 
                 if (position == 0) {
-                    ArrayAdapter<String> breedAdapter = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, dogs);
-                    typeChosen = "Dog";
 
-                    breedSpinner.setAdapter(breedAdapter);
+                    typeChosen = type[position];
+
+                    ArrayAdapter<CharSequence> dogBreedAdapter = ArrayAdapter.createFromResource(FilterBy.this,R.array.dogbreeds, android.R.layout.simple_spinner_item);
+                    dogBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    breedSpinner.setAdapter(dogBreedAdapter);
                     breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            breedChosen = dogs[position];
+                            breedChosen = parent.getItemAtPosition(position).toString();
                         }
 
                         @Override
@@ -128,15 +132,17 @@ public class FilterBy extends AppCompatActivity {
                     });
                 }
                 else if (position == 1) {
-                    ArrayAdapter<String> breedAdapter = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, cats);
-                    typeChosen = "Cat";
 
-                    breedSpinner.setAdapter(breedAdapter);
+
+                    ArrayAdapter<CharSequence> catBreedAdapter = ArrayAdapter.createFromResource(FilterBy.this,R.array.catbreeds, android.R.layout.simple_spinner_item);
+                    catBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    breedSpinner.setAdapter(catBreedAdapter);
                     breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                            breedChosen = cats[position];
+                            breedChosen = parent.getItemAtPosition(position).toString();
                         }
 
                         @Override

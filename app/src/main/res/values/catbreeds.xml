@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string-array name="catbreeds">
+<resources>
 
 
-    <item> American Shorthair  </item>
-    <item> Birman  </item>
-    <item> British Shorthair </item>
-    <item> Burmese </item>
-    <item> Himalayan </item>
-    <item> Norwegian Forest </item>
-    <item> Persian </item>
-    <item> Persian Turkish </item>
-    <item> Ragdoll </item>
-    <item> Scottish Fold  </item>
-    <item> Siberian </item>
+    <string-array name="catbreeds">
 
-
-
-
-
-
-
+    <item>Any  </item>
+    <item>American Shorthair  </item>
+    <item>Birman  </item>
+    <item>British Shorthair </item>
+    <item>Burmese </item>
+    <item>Himalayan </item>
+    <item>Norwegian Forest </item>
+    <item>Persian </item>
+    <item>Persian Turkish </item>
+    <item>Ragdoll </item>
+    <item>Scottish Fold  </item>
+    <item>Siberian </item>
 
 </string-array></resources>

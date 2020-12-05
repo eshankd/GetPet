@@ -51,7 +51,7 @@ public class PetObjectAdapter extends ArrayAdapter<PetObject> {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", currentPet.getPetID());
-        StorageReference reference = storage.getReference().child("Dog Thumbnails/" + currentPet.getPetID() + ".jpg");
+        StorageReference reference = storage.getReference().child("Pet Images/" + currentPet.getPetID() + ".jpg");
 
         final File localFile;
         try {

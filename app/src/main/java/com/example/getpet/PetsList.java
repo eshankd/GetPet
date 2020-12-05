@@ -32,7 +32,6 @@ public class PetsList extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private ListView petListView;
     private PetObjectAdapter petAdapter;
-
     private int transferredAge;
     private String transferredBreed;
     private String transferredGender;
@@ -89,7 +88,7 @@ public class PetsList extends AppCompatActivity {
 
     private void LoadPets() {
 
-        Query docref = fStore.collection("Dogs");
+        Query docref = fStore.collection("Pets");
 
         for (String i : choice.keySet()) {
             if(i.equals("Age") && (((Integer)choice.get(i)) == 6))
