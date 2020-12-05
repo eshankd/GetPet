@@ -10,6 +10,7 @@ public class PetObject {
     String breed;
     String gender;
     String description;
+    String userEmail;
     int age;
 
 
@@ -19,15 +20,17 @@ public class PetObject {
     }
 
 
-    public PetObject(String petID,String name,String type, String breed, String gender, int age, String description)   {
+    public PetObject(String petID,String name,String userEmail, String type, String breed, String gender, int age, String description)   {
 
 
         this.petID = petID;
         this.name = name;
+        this.userEmail = userEmail;
         this.type = type;
         this.breed = breed;
         this.gender = gender;
         this.age = age;
+
         this.description = description;
     }
 
@@ -36,6 +39,8 @@ public class PetObject {
     public String getName() { return name; }
 
     public String getType() {return type;}
+
+    public  String getUserEmail() {return userEmail;}
 
     public String getBreed() {
         return breed;

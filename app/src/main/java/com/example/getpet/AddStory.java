@@ -49,9 +49,7 @@ public class AddStory extends AppCompatActivity {
     private Button chooseImage;
     private ImageView postImage;
     private Bitmap bitmap;
-
     boolean picUp;
-
     private FirebaseFirestore fStore;
     private FirebaseStorage storage;
     private StorageReference storageRef;
@@ -137,7 +135,8 @@ public class AddStory extends AppCompatActivity {
             post.put("Caption", caption);
             post.put("Likes", 0);
             post.put("Name", user.getFullName());
-            post.put("PostID", "P008");
+            post.put("userEmail", user.getEmail());
+
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override

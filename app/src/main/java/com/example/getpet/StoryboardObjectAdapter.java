@@ -47,7 +47,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         StoryboardObject currentStoryCard = storyboardObjectList.get(position);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        Log.d("postID", currentStoryCard.getPostID());
 
         StorageReference reference = storage.getReference().child("Storyboard Thumbnails/" + currentStoryCard.getPostID() + ".jpg");
 
@@ -69,9 +68,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
         TextView caption = listItem.findViewById(R.id.caption);
         caption.setText(currentStoryCard.getCaption());
-
-//        TextView timeAgo = listItem.findViewById(R.id.timeAgo);
-//        timeAgo.setText(currentStoryCard.getTime());
 
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));

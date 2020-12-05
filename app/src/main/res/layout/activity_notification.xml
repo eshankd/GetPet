@@ -9,25 +9,12 @@
     <View
         android:id="@+id/textView27"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:background="#3498DB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="46dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/postImage"
-        app:layout_constraintEnd_toStartOf="@+id/textView29"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView29"
@@ -38,11 +25,7 @@
         android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navbar"
@@ -59,16 +42,40 @@
         app:itemIconSize="40dp"
         app:menu="@menu/bottom_navbar_menu" />
 
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="441dp"
-        android:layout_height="770dp"
-        android:contentDescription="@string/postImage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ListView
+        android:id="@+id/notificationsList"
+        android:layout_width="411dp"
+        android:layout_height="640dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/notificationssrc" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/notificationHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/alike_angular"
+        android:text="@string/notifications"
+        android:textColor="#FFFFFF"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView27" />
+
+    <TextView
+        android:id="@+id/notificationCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/alike_angular"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="45sp"
+        app:layout_constraintStart_toEndOf="@+id/notificationHead"
+        app:layout_constraintTop_toTopOf="@+id/textView27" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

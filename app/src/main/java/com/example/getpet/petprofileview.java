@@ -17,14 +17,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class petprofileview extends AppCompatActivity {
 
@@ -36,14 +42,16 @@ public class petprofileview extends AppCompatActivity {
     private String transferredGender;
     private String transferredPetID;
     private String trasferredDescription;
-
+    private String  transferredUserEmail;
+    private FirebaseFirestore fStore;
     private TextView petName;
     private TextView petAge;
     private TextView petBreed;
     private TextView petGender;
     private TextView petDescription;
     private ImageView petImage;
-    private Button okay;
+    private User user;
+    private String TAG = "petprofileview";
 
 
     @Override
@@ -53,6 +61,8 @@ public class petprofileview extends AppCompatActivity {
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
+        user = User.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         petName = findViewById(R.id.petName);
         petAge = findViewById(R.id.petProfilePetAge);
@@ -61,6 +71,7 @@ public class petprofileview extends AppCompatActivity {
         petDescription = findViewById(R.id.petDescription);
 
         transferredName = getIntent().getStringExtra("petName");
+        transferredUserEmail = getIntent().getStringExtra("userEmail");
         transferredAge = getIntent().getIntExtra("petAge", 0);
         transferredBreed = getIntent().getStringExtra("petBreed");
         transferredGender = getIntent().getStringExtra("petGender");
@@ -77,7 +88,7 @@ public class petprofileview extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", transferredPetID);
-        StorageReference reference = storage.getReference().child("Dog Thumbnails/" + transferredPetID + ".jpg");
+        StorageReference reference = storage.getReference().child("Pet Images/" + transferredPetID + ".jpg");
 
         final File localFile;
         try {
@@ -136,6 +147,26 @@ public class petprofileview extends AppCompatActivity {
             mDialog.setContentView(R.layout.adoptpopup);
             mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             mDialog.show();
+
+            CollectionReference docref = fStore.collection("Notifications");
+            Map<String, Object> post = new HashMap<>();
+            post.put("fromEmail", user.getEmail());
+            post.put("fromName",user.getFullName());
+            post.put("toEmail", transferredUserEmail);
+            post.put("Message", "has adopted your pet " + transferredName + "!");
+
+            docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+
+                    Log.d(TAG, "Notification Sent!");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error adding post");
+                }
+            });
 
             Button okay = mDialog.findViewById(R.id.okayButton);
             okay.setOnClickListener(new View.OnClickListener() {
