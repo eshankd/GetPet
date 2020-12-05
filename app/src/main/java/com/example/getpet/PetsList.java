@@ -35,6 +35,7 @@ public class PetsList extends AppCompatActivity {
     private int transferredAge;
     private String transferredBreed;
     private String transferredGender;
+    private String transferredType;
     private String TAG = "PetsList";
 
     Map<String, Object> choice = new HashMap<>();
@@ -72,6 +73,7 @@ public class PetsList extends AppCompatActivity {
         transferredBreed = getIntent().getStringExtra("breed");
         transferredAge = getIntent().getIntExtra("age",0);
         transferredGender = getIntent().getStringExtra("gender");
+        transferredType = getIntent().getStringExtra("type");
 
 
         if(!transferredBreed.equals("Any"))
@@ -80,6 +82,7 @@ public class PetsList extends AppCompatActivity {
             choice.put("Age",transferredAge);
         if(!transferredGender.equals("Any"))
             choice.put("Gender",transferredGender);
+        choice.put("Type",transferredType);
 
 
         LoadPets();
@@ -107,7 +110,7 @@ public class PetsList extends AppCompatActivity {
 
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                        petList.add(new PetObject(snapDoc.getString("ID"), snapDoc.getString("Name"),snapDoc.getString("userEmail"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
+                        petList.add(new PetObject(snapDoc.getId(), snapDoc.getString("Name"),snapDoc.getString("userEmail"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
                 }
 
 

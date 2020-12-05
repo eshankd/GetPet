@@ -1,8 +1,16 @@
 package com.example.getpet;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,12 +18,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class CreatePetProfile1 extends AppCompatActivity {
 
@@ -30,6 +48,29 @@ public class CreatePetProfile1 extends AppCompatActivity {
     String typeChosen,breedChosen;
     Spinner typeSpinnerIn,breedSpinnerIn;
 
+    private Button chooseImage;
+    Bitmap bitmap;
+    private ImageView petImage;
+    private byte[] byteArray;
+
+    boolean picUp;
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        try {
+                            openFileChosen(data);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+    );
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +83,11 @@ public class CreatePetProfile1 extends AppCompatActivity {
         typeSpinnerIn  = findViewById(R.id.typeSpinnerIn);
         breedSpinnerIn = findViewById(R.id.breedSpinnerIn);
         typeSpinnerIn = findViewById(R.id.typeSpinnerIn);
+
+        picUp = false;
+
+        chooseImage = findViewById(R.id.choose);
+        petImage = findViewById(R.id.uploadPetImage2);
 
         auth = FirebaseAuth.getInstance();
 
@@ -131,6 +177,7 @@ public class CreatePetProfile1 extends AppCompatActivity {
         });
 
         nextForm();
+        choose();
     }
 
     public void nextForm(){
@@ -143,46 +190,65 @@ public class CreatePetProfile1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String name = petName.getText().toString();
-
-                if (radioGender.getCheckedRadioButtonId() == R.id.MaleRadio)
-                    gender = "Male";
-                else if (radioGender.getCheckedRadioButtonId() == R.id.FemaleRadio)
-                    gender = "Female";
-                else
-                {
-                    Log.d("debug", "else");
+                if(!picUp){
+                    Toast.makeText(CreatePetProfile1.this, "Please upload a picture", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    final String name = petName.getText().toString();
 
-                Intent i = new Intent(CreatePetProfile1.this, CreatePetProfileSubmit.class);
+                    if (radioGender.getCheckedRadioButtonId() == R.id.MaleRadio)
+                        gender = "Male";
+                    else if (radioGender.getCheckedRadioButtonId() == R.id.FemaleRadio)
+                        gender = "Female";
+                    else
+                    {
+                        Log.d("debug", "else");
+                    }
 
-                i.putExtra("name", name);
-                i.putExtra("gender", gender);
-                i.putExtra("breed", breedChosen);
-                i.putExtra("type",typeChosen);
-                startActivity(i);
+                    Intent i = new Intent(CreatePetProfile1.this, CreatePetProfileSubmit.class);
 
+                    i.putExtra("name", name);
+                    i.putExtra("gender", gender);
+                    i.putExtra("breed", breedChosen);
+                    i.putExtra("type",typeChosen);
+                    i.putExtra("picture",byteArray);
+                    startActivity(i);
+                }
             }
         });
-
     }
 
+    private void choose(){
 
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                getIntent.setType("image/*");
 
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
 
+                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
 
+                someActivityResultLauncher.launch(chooserIntent);
+            }
+        });
+    }
 
+    private void openFileChosen(Intent data) throws FileNotFoundException {
 
+        InputStream inputStream = getContentResolver().openInputStream(data.getData());
+        bitmap = BitmapFactory.decodeStream(inputStream);
+        petImage.setImageBitmap(bitmap);
 
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byteArray = stream.toByteArray();
 
-
-
-
-
-
-
-
-
+        picUp = true;
+    }
 
 }

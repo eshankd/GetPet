@@ -109,7 +109,7 @@ public class FilterBy extends AppCompatActivity {
 
                     typeChosen = type[position];
 
-                    ArrayAdapter<CharSequence> dogBreedAdapter = ArrayAdapter.createFromResource(FilterBy.this, R.array.dogbreeds, android.R.layout.simple_spinner_item);
+                    ArrayAdapter<CharSequence> dogBreedAdapter = ArrayAdapter.createFromResource(FilterBy.this,R.array.dogbreeds, android.R.layout.simple_spinner_item);
                     dogBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     breedSpinner.setAdapter(dogBreedAdapter);
@@ -128,8 +128,9 @@ public class FilterBy extends AppCompatActivity {
 
                 else if (position == 1) {
 
+                    typeChosen = type[position];
 
-                    ArrayAdapter<CharSequence> catBreedAdapter = ArrayAdapter.createFromResource(FilterBy.this, R.array.catbreeds, android.R.layout.simple_spinner_item);
+                    ArrayAdapter<CharSequence> catBreedAdapter = ArrayAdapter.createFromResource(FilterBy.this,R.array.catbreeds, android.R.layout.simple_spinner_item);
                     catBreedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     breedSpinner.setAdapter(catBreedAdapter);
@@ -145,19 +146,34 @@ public class FilterBy extends AppCompatActivity {
 
                         }
                     });
-                });
+                }
+                else if (position == 2) {
+                    typeChosen = type[position];
 
-                });
+                    ArrayAdapter<String> breedAdapter = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, birds);
+                    typeChosen = "Bird";
 
-               @Override
-                 public void onNothingSelected(AdapterView<?> parent) { }
+                    breedSpinner.setAdapter(breedAdapter);
+                    breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            breedChosen = birds[position];
+                        }
 
-                                                });
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
 
+                        }
+                    });
+                }
 
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-
+            }
+        });
 
         ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, age);
         ageSpinner.setAdapter(ageAdapter);

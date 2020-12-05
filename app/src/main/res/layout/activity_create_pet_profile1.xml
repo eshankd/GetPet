@@ -59,14 +59,13 @@
 
     <ImageView
         android:id="@+id/uploadPetImage2"
-        android:layout_width="131dp"
+        android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="140dp"
         android:layout_marginTop="28dp"
         android:contentDescription="@string/postImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView46"
-        app:srcCompat="@drawable/profilepic3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
     <TextView
         android:id="@+id/textView46"
