@@ -25,7 +25,7 @@
         android:id="@+id/petNameIn"
         android:layout_width="338dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/textareaborder"
         android:hint="@string/whatdoyoucall"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,10 +43,10 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose2" />
+        app:layout_constraintTop_toBottomOf="@+id/choose" />
 
     <Button
-        android:id="@+id/choose2"
+        android:id="@+id/choose"
         android:layout_width="110dp"
         android:layout_height="35dp"
         android:layout_marginStart="144dp"
@@ -110,19 +110,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toEndOf="@+id/textView48"
-        app:layout_constraintTop_toBottomOf="@+id/choose2">
+        app:layout_constraintTop_toBottomOf="@+id/choose">
 
         <RadioButton
             android:id="@+id/MaleRadio"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/FemaleRadio"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/female" />
     </RadioGroup>
