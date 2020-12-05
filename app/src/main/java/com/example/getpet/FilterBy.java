@@ -150,21 +150,6 @@ public class FilterBy extends AppCompatActivity {
                 else if (position == 2) {
                     typeChosen = type[position];
 
-                    ArrayAdapter<String> breedAdapter = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, birds);
-                    typeChosen = "Bird";
-
-                    breedSpinner.setAdapter(breedAdapter);
-                    breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            breedChosen = birds[position];
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
                 }
 
             }
