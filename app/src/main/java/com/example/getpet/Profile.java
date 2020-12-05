@@ -69,7 +69,7 @@ public class Profile extends AppCompatActivity {
                     startActivity(new Intent(Profile.this, Notification.class));
                     break;
                 case "Profile":
-                    //Do Nothing
+                    startActivity(new Intent(Profile.this, Profile.class));
                     break;
             }
             return true;
@@ -92,7 +92,6 @@ public class Profile extends AppCompatActivity {
             emailOUT.setText(user.getEmail());
             petsOwnedOUT.setText(Integer.toString(user.getPetsOwned()));
             loginButton.setVisibility(View.GONE);
-
         }
 
         signOut();

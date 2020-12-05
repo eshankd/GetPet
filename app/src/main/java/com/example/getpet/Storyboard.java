@@ -81,7 +81,7 @@ public class Storyboard extends AppCompatActivity {
 
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                            postsList.add(new StoryboardObject(snapDoc.getString("PostID"), snapDoc.getString("Name"), snapDoc.getString("Caption"), snapDoc.getLong("Likes").intValue()));
+                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"), snapDoc.getLong("Likes").intValue()));
                         }
 
                         storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);
