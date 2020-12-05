@@ -77,7 +77,7 @@ public class petprofileview extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", transferredPetID);
-        StorageReference reference = storage.getReference().child("Dog Thumbnails/" + transferredPetID + ".jpg");
+        StorageReference reference = storage.getReference().child("Pet Images/" + transferredPetID + ".jpg");
 
         final File localFile;
         try {

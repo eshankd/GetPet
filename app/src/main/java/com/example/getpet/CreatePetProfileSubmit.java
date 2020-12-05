@@ -1,10 +1,17 @@
 package com.example.getpet;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +28,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
@@ -37,6 +50,11 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private CalendarView mCalendarView;
     private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
+    Bitmap bitmap;
+
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+
 
     int dayIn, monthIn, yearIn;
     String transferredName;
@@ -46,6 +64,10 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
     Period diff;
 
+    private byte[] byteArray;
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +76,13 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
         setContentView(R.layout.activity_create_pet_profile_submit);
 
         fStore = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
         user = User.getInstance();
 
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+
+
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
@@ -105,6 +131,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+
                 descriptionIn = findViewById(R.id.description);
 
                 final String description = descriptionIn.getText().toString();
@@ -113,12 +140,13 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 transferredBreed = getIntent().getStringExtra("breed");
                 transferredGender = getIntent().getStringExtra("gender");
                 transferredType = getIntent().getStringExtra("type");
+               // bitmap = (Bitmap) getIntent().getParcelableExtra("picture");
+                byteArray = getIntent().getByteArrayExtra("picture");
 
 
                 CollectionReference docref = fStore.collection("Pets");
                 Map<String, Object> petProfile = new HashMap<>();
                 petProfile.put("Name", transferredName);
-                petProfile.put("ID", "D009");
                 petProfile.put("Gender", transferredGender);
                 petProfile.put("Type",transferredType);
                 petProfile.put("Age", diff.getYears());
@@ -130,6 +158,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "Profile Created Success");
+                        upload(documentReference);
                         Toast.makeText(CreatePetProfileSubmit.this, transferredName + " is up for adoption!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -139,12 +168,36 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     }
                 });
 
-
                 startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));
+            }
 
+        });
+    }
+
+    private void upload(DocumentReference docRef){
+
+        StorageReference storyThumbRef = storageRef.child("Pet Images/" + docRef.getId() + ".jpg");
+
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+//        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = storyThumbRef.putBytes(byteArray);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Picture not uploaded");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "Picture uploaded");
             }
         });
     }
+
+
+
 }
 
 
