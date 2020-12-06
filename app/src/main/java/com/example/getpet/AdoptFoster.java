@@ -110,9 +110,8 @@ public class AdoptFoster extends AppCompatActivity {
                         userLName = snapDoc.getString("LastName");
                         userEmail = snapDoc.getString("Email");
                         userPetsOwned = (ArrayList<String>) snapDoc.get("PetsOwned");
-                        userNumPetsOwned = userPetsOwned.size();
 
-                        user.setData(userFName, userLName, userNumPetsOwned, userEmail);
+                        user.setData(userFName, userLName, userPetsOwned, userEmail);
                     }
                 }
             });
