@@ -152,7 +152,7 @@ public class petprofileview extends AppCompatActivity {
             Map<String, Object> post = new HashMap<>();
             post.put("fromEmail", user.getEmail());
             post.put("fromName",user.getFullName());
-            post.put("toEmail", transferredUserEmail);
+            post.put("toUser", transferredUserEmail);
             post.put("Message", "has adopted your pet " + transferredName + "!");
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

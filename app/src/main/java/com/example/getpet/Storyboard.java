@@ -106,6 +106,7 @@ public class Storyboard extends AppCompatActivity {
 //    private void like(DocumentReference docRef) {
 //
 //        String fromUser = user.getEmail();
+//        String fromName - user.getFromName();
 //
 //        String toUser = ;
 //
