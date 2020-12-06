@@ -110,8 +110,8 @@ public class PetsList extends AppCompatActivity {
 
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                        petList.add(new PetObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
-                    }
+                        petList.add(new PetObject(snapDoc.getId(), snapDoc.getString("Name"),snapDoc.getString("userEmail"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
+                }
 
 
                 petAdapter = new PetObjectAdapter(PetsList.this, petList);
@@ -129,6 +129,7 @@ public class PetsList extends AppCompatActivity {
                         toPetProfile.putExtra("petBreed", obj.getBreed());
                         toPetProfile.putExtra("petDescription" , obj.getDescription());
                         toPetProfile.putExtra("petID", obj.getPetID());
+                        toPetProfile.putExtra("userEmail",obj.getUserEmail());
                         startActivity(toPetProfile);
                     }
                 });

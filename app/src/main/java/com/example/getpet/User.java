@@ -1,9 +1,12 @@
 package com.example.getpet;
 
+import java.util.ArrayList;
+
 public class User {
     private String fName;
     private String lName;
-    private int petsOwned;
+    private ArrayList<String> petsOwned;
+    private int numPetsOwned;
     private String email;
 
 
@@ -12,7 +15,7 @@ public class User {
     User () {
         fName = "Guest";
         lName = "User";
-        petsOwned = -1;
+        numPetsOwned = -1;
     }
 
     public static User getInstance(){
@@ -22,11 +25,13 @@ public class User {
         return single_instance;
     }
 
-    public void setData(String fName, String lName, int petsOwned, String email) {
+    public void setData(String fName, String lName, ArrayList<String> petsOwned, String email) {
         this.fName = fName;
         this.lName = lName;
         this.petsOwned = petsOwned;
         this.email = email;
+
+        numPetsOwned = petsOwned.size();
     }
 
     // Getter/setter
@@ -43,7 +48,7 @@ public class User {
     }
 
     public int getPetsOwned() {
-        return petsOwned;
+        return numPetsOwned;
     }
 
     public String getEmail() {

@@ -88,7 +88,6 @@ public class FilterBy extends AppCompatActivity {
         List<String> typeList = new ArrayList<String>(), breedList = new ArrayList<String>();
 
         final String type[] = {"Dog", "Cat", "Bird"};
-        final String birds[] = {"Any", "African Parrot", "Eagle", "Falcon"};
         final String age[] = {"Any", "Less Than 1 Year", "1 Year", "2 Years", "3 Years", "4 Years", "5 Years", "6 Years and Above"};
         final String gender[] = {"Any", "Male", "Female"};
         final String af[] = {"Any", "Adopt", "Foster"};
@@ -126,6 +125,7 @@ public class FilterBy extends AppCompatActivity {
                         }
                     });
                 }
+
                 else if (position == 1) {
 
                     typeChosen = type[position];
@@ -150,21 +150,6 @@ public class FilterBy extends AppCompatActivity {
                 else if (position == 2) {
                     typeChosen = type[position];
 
-                    ArrayAdapter<String> breedAdapter = new ArrayAdapter<>(FilterBy.this, android.R.layout.simple_spinner_dropdown_item, birds);
-                    typeChosen = "Bird";
-
-                    breedSpinner.setAdapter(breedAdapter);
-                    breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            breedChosen = birds[position];
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
                 }
 
             }
@@ -235,3 +220,4 @@ public class FilterBy extends AppCompatActivity {
         });
     }
 }
+
