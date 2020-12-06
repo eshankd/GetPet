@@ -1,5 +1,6 @@
 package com.example.getpet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,7 +40,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
     private Context mContext;
     private List<StoryboardObject> storyboardObjectList;
 
-    private ImageView likeBtn;
+    private Button likeBtn;
 
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
@@ -89,29 +90,42 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
-        likeBtn = (ImageView) listItem.findViewById(R.id.likeButton);
+        likeBtn = listItem.findViewById(R.id.likeButton);
+        final Button localButton = likeBtn;
+        if(currentStoryCard.isLiked){
+            likeBtn.setText("Unlike");
+        } else {
+            likeBtn.setText("Like");
+        }
+
 
         likeBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
 
                 DocumentReference docRef = fStore.collection("Posts").document(currentStoryCard.getPostID());
 
-                docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
+                if(!currentStoryCard.isLiked){
+                    docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
+                    localButton.setText("Unlike");
+                    currentStoryCard.like();
+                } else {
+                    docRef.update("Likes", FieldValue.arrayRemove(user.getEmail()));
+                    localButton.setText("Like");
+                    currentStoryCard.unlike();
+                }
+                likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
-                likeBtn.setImageResource(R.drawable.heart1);
-//            {
+
+//                {
 //                    Log.d("postID", currentStoryCard.getPostID());
 //                    currentStoryCard.addLikes();
 //                    int temp = (currentStoryCard.getLikes());
 //                    likes.setText(Integer.toString(temp));
 //                }
-
             }
         });
-
-
-
         return listItem;
     }
 }

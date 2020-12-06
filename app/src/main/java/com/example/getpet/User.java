@@ -30,7 +30,6 @@ public class User {
         this.lName = lName;
         this.petsOwned = petsOwned;
         this.email = email;
-
         numPetsOwned = petsOwned.size();
     }
 

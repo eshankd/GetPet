@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -36,7 +37,8 @@ public class Storyboard extends AppCompatActivity {
 
     private ListView postsListView;
     private StoryboardObjectAdapter storyboardAdapter;
-    private ImageView likeBtn;
+
+    User user = User.getInstance();
 
     private String TAG = "Storyboard";
 
@@ -49,8 +51,6 @@ public class Storyboard extends AppCompatActivity {
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.storyboard));
-
-        likeBtn = findViewById(R.id.likeButton);
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -94,7 +94,7 @@ public class Storyboard extends AppCompatActivity {
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
                             ArrayList<String> usersLiked;
                             usersLiked = (ArrayList<String>) snapDoc.get("Likes");
-                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"), usersLiked.size()));
+                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"), usersLiked, usersLiked.contains(user.getEmail())));
                         }
 
                         storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);

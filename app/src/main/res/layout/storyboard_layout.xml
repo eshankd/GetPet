@@ -39,11 +39,11 @@
         android:id="@+id/commentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="64dp"
         android:background="@drawable/comment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caption" />
+        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
     <TextView
         android:id="@+id/likes"
@@ -64,14 +64,29 @@
         app:layout_constraintStart_toEndOf="@+id/likes"
         app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:id="@+id/likeButton"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_marginEnd="88dp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/commentButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/postImage"/>-->
+
+    <Button
         android:id="@+id/likeButton"
-        android:layout_width="56dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="88dp"
+        android:background="@drawable/greenbuttondesign"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="Like"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/commentButton"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postImage"
-        app:srcCompat="@drawable/heart2" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
