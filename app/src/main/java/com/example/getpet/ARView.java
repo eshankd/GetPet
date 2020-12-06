@@ -36,7 +36,7 @@ public class ARView extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child("labrador.glb");
+        StorageReference modelRef = storage.getReference().child("cat5.glb");
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
@@ -59,7 +59,7 @@ public class ARView extends AppCompatActivity {
             anchorNode.setParent(arFragment.getArSceneView().getScene());
             // Create the transformable andy and add it to the anchor.
             TransformableNode beagle = new TransformableNode(arFragment.getTransformationSystem());
-            beagle.setLocalScale(new Vector3((float)0.5, (float)0.5, (float)0.5));
+            beagle.setLocalScale(new Vector3((float)0.2, (float)0.2, (float)0.2));
             beagle.setParent(anchorNode);
             beagle.setRenderable(renderable);
             beagle.select();
