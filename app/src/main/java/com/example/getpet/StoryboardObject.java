@@ -18,10 +18,12 @@ public class StoryboardObject {
 
     public String getPostID() { return postID;}
 
-    public String getName() { return name; };
+    public String getName() { return name; }
 
-    public String getCaption() { return caption; };
+    public String getCaption() { return caption; }
 
-    public int getLikes() { return likes; };
+    public int getLikes() { return likes; }
+
+    public void addLikes() { ++likes; }
 
 }

@@ -111,7 +111,7 @@ public class PetsList extends AppCompatActivity {
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
                         petList.add(new PetObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
-                }
+                    }
 
 
                 petAdapter = new PetObjectAdapter(PetsList.this, petList);

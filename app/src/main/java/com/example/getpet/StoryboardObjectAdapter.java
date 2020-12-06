@@ -3,11 +3,13 @@ package com.example.getpet;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,8 +34,14 @@ import java.util.List;
 
 public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
+    User user = User.getInstance();
+
     private Context mContext;
     private List<StoryboardObject> storyboardObjectList;
+
+    private ImageView likeBtn;
+
+    private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
     public StoryboardObjectAdapter(Context context, ArrayList<StoryboardObject> list) {
         super(context, 0, list);
@@ -41,13 +54,13 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
 
-        if(listItem == null)
+        if (listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.storyboard_layout, parent, false);
 
         StoryboardObject currentStoryCard = storyboardObjectList.get(position);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        Log.d("postID", currentStoryCard.getPostID());
+        //Log.d("postID", currentStoryCard.getPostID());
 
         StorageReference reference = storage.getReference().child("Storyboard Thumbnails/" + currentStoryCard.getPostID() + ".jpg");
 
@@ -57,7 +70,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
             View finalListItem = listItem;
             reference.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
                 Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                ((ImageView)finalListItem.findViewById(R.id.postImage)).setImageBitmap(bitmap);
+                ((ImageView) finalListItem.findViewById(R.id.postImage)).setImageBitmap(bitmap);
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,6 +88,29 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
+
+        likeBtn = (ImageView) listItem.findViewById(R.id.likeButton);
+
+        likeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DocumentReference docRef = fStore.collection("Posts").document(currentStoryCard.getPostID());
+
+                docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
+
+                likeBtn.setImageResource(R.drawable.heart1);
+//            {
+//                    Log.d("postID", currentStoryCard.getPostID());
+//                    currentStoryCard.addLikes();
+//                    int temp = (currentStoryCard.getLikes());
+//                    likes.setText(Integer.toString(temp));
+//                }
+
+            }
+        });
+
+
 
         return listItem;
     }

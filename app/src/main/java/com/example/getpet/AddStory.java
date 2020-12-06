@@ -137,7 +137,6 @@ public class AddStory extends AppCompatActivity {
             post.put("Caption", caption);
             post.put("Likes", 0);
             post.put("Name", user.getFullName());
-            post.put("PostID", "P008");
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
