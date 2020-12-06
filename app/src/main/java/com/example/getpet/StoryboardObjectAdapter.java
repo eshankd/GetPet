@@ -116,14 +116,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                     currentStoryCard.unlike();
                 }
                 likes.setText(Integer.toString(currentStoryCard.getLikes()));
-
-
-//                {
-//                    Log.d("postID", currentStoryCard.getPostID());
-//                    currentStoryCard.addLikes();
-//                    int temp = (currentStoryCard.getLikes());
-//                    likes.setText(Integer.toString(temp));
-//                }
             }
         });
         return listItem;
