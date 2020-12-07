@@ -78,7 +78,8 @@ public class Notification extends AppCompatActivity {
 
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                            notificationsList.add(new NotificationObject(snapDoc.getString("fromName"),snapDoc.getString("fromUser"), snapDoc.getString("toUser"), snapDoc.getString("Message")));
+                            notificationsList.add(new NotificationObject(snapDoc.getString("fromName"),snapDoc.getString("fromUser"),
+                                    snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString(("origin"))));
                         }
 
                         notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);

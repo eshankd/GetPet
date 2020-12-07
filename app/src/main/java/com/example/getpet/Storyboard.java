@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -36,7 +37,8 @@ public class Storyboard extends AppCompatActivity {
 
     private ListView postsListView;
     private StoryboardObjectAdapter storyboardAdapter;
-    private ImageView likeBtn;
+
+    User user = User.getInstance();
 
     private String TAG = "Storyboard";
 
@@ -49,8 +51,6 @@ public class Storyboard extends AppCompatActivity {
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.storyboard));
-
-        likeBtn = findViewById(R.id.likeButton);
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -94,7 +94,8 @@ public class Storyboard extends AppCompatActivity {
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
                             ArrayList<String> usersLiked;
                             usersLiked = (ArrayList<String>) snapDoc.get("Likes");
-                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"), usersLiked.size()));
+                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"),
+                                    snapDoc.getString("userEmail"), usersLiked, usersLiked.contains(user.getEmail())));
                         }
 
                         storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);
@@ -110,32 +111,4 @@ public class Storyboard extends AppCompatActivity {
         addStory.setOnClickListener(v -> startActivity(new Intent(Storyboard.this, AddStory.class)));
     }
 
-
 }
-
-//    public void myClickHandler(View v)
-//    {
-//
-//        //reset all the listView items background colours
-//        //before we set the clicked one..
-//
-//        ListView lvItems = getListView();
-//        for (int i=0; i < lvItems.getChildCount(); i++)
-//        {
-//            lvItems.getChildAt(i).setBackgroundColor(Color.BLUE);
-//        }
-//
-//
-//        //get the row the clicked button is in
-//        LinearLayout vwParentRow = (LinearLayout)v.getParent();
-//
-//        TextView child = (TextView)vwParentRow.getChildAt(0);
-//        Button btnChild = (Button)vwParentRow.getChildAt(1);
-//        btnChild.setText(child.getText());
-//        btnChild.setText("I've been clicked!");
-//
-//        int c = Color.CYAN;
-//
-//        vwParentRow.setBackgroundColor(c);
-//        vwParentRow.refreshDrawableState();
-//    }

@@ -35,16 +35,6 @@
         app:layout_constraintStart_toEndOf="@+id/postImage"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-    <Button
-        android:id="@+id/commentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="64dp"
-        android:background="@drawable/comment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caption" />
-
     <TextView
         android:id="@+id/likes"
         android:layout_width="wrap_content"
@@ -65,13 +55,28 @@
         app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
     <ImageView
-        android:id="@+id/likeButton"
-        android:layout_width="56dp"
-        android:layout_height="43dp"
+        android:id="@+id/commentPost"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="88dp"
-        app:layout_constraintEnd_toStartOf="@+id/commentButton"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postImage"
-        app:srcCompat="@drawable/heart2" />
+        app:srcCompat="@drawable/speechbubble"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <ImageView
+        android:id="@+id/likePost"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postImage"
+        app:srcCompat="@drawable/heart2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

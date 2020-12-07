@@ -1,5 +1,6 @@
 package com.example.getpet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,7 +31,9 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
@@ -43,11 +46,14 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
+    private Map<String, Object> likeNotif = new HashMap<>();
+
     public StoryboardObjectAdapter(Context context, ArrayList<StoryboardObject> list) {
         super(context, 0, list);
         mContext = context;
         storyboardObjectList = list;
     }
+
 
     @NonNull
     @Override
@@ -89,7 +95,14 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
-        likeBtn = (ImageView) listItem.findViewById(R.id.likeButton);
+        likeBtn = listItem.findViewById(R.id.likePost);
+        final ImageView localButton = likeBtn;
+        if(currentStoryCard.isLiked){
+            likeBtn.setImageResource(R.drawable.heart1);
+        } else {
+            likeBtn.setImageResource(R.drawable.heart2);
+        }
+
 
         likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,21 +110,26 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
                 DocumentReference docRef = fStore.collection("Posts").document(currentStoryCard.getPostID());
 
-                docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
+                if(!currentStoryCard.isLiked){
+                    docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
+                    localButton.setImageResource(R.drawable.heart1);
+                    currentStoryCard.like();
+                    likeNotif.put("Message", "has liked your post");
+                    likeNotif.put("fromName", user.getFullName());
+                    likeNotif.put("fromUser", user.getEmail());
+                    likeNotif.put("toUser", currentStoryCard.getAuthorEmail());
+                    likeNotif.put("sourceID", currentStoryCard.getPostID());
+                    likeNotif.put("origin", "liked");
+                    fStore.collection("Notifications").add(likeNotif);
 
-                likeBtn.setImageResource(R.drawable.heart1);
-//            {
-//                    Log.d("postID", currentStoryCard.getPostID());
-//                    currentStoryCard.addLikes();
-//                    int temp = (currentStoryCard.getLikes());
-//                    likes.setText(Integer.toString(temp));
-//                }
-
+                } else {
+                    docRef.update("Likes", FieldValue.arrayRemove(user.getEmail()));
+                    localButton.setImageResource(R.drawable.heart2);
+                    currentStoryCard.unlike();
+                }
+                likes.setText(Integer.toString(currentStoryCard.getLikes()));
             }
         });
-
-
-
         return listItem;
     }
 }

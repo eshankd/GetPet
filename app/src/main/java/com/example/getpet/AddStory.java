@@ -40,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -133,7 +134,7 @@ public class AddStory extends AppCompatActivity {
             CollectionReference docref = fStore.collection("Posts");
             Map<String, Object> post = new HashMap<>();
             post.put("Caption", caption);
-            post.put("Likes", 0);
+            post.put("Likes", new ArrayList<>());
             post.put("Name", user.getFullName());
             post.put("userEmail", user.getEmail());
 

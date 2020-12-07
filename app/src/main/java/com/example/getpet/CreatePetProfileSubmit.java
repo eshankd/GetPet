@@ -140,7 +140,6 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 transferredBreed = getIntent().getStringExtra("breed");
                 transferredGender = getIntent().getStringExtra("gender");
                 transferredType = getIntent().getStringExtra("type");
-               // bitmap = (Bitmap) getIntent().getParcelableExtra("picture");
                 byteArray = getIntent().getByteArrayExtra("picture");
 
 
