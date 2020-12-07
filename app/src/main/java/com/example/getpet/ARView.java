@@ -58,11 +58,11 @@ public class ARView extends AppCompatActivity {
             AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
             anchorNode.setParent(arFragment.getArSceneView().getScene());
             // Create the transformable andy and add it to the anchor.
-            TransformableNode beagle = new TransformableNode(arFragment.getTransformationSystem());
-            beagle.setLocalScale(new Vector3((float)0.2, (float)0.2, (float)0.2));
-            beagle.setParent(anchorNode);
-            beagle.setRenderable(renderable);
-            beagle.select();
+            TransformableNode pet = new TransformableNode(arFragment.getTransformationSystem());
+            pet.setLocalScale(new Vector3((float)0.2, (float)0.2, (float)0.2));
+            pet.setParent(anchorNode);
+            pet.setRenderable(renderable);
+            pet.select();
 
         }));
 
