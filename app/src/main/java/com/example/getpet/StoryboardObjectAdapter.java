@@ -120,6 +120,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                     likeNotif.put("toUser", currentStoryCard.getAuthorEmail());
                     likeNotif.put("sourceID", currentStoryCard.getPostID());
                     likeNotif.put("origin", "liked");
+                    likeNotif.put("isRead", false);
                     fStore.collection("Notifications").add(likeNotif);
 
                 } else {

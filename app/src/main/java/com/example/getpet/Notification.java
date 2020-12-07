@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -63,23 +65,30 @@ public class Notification extends AppCompatActivity {
     }
 
     private void loadNotitications() {
-        fStore.collection("Notifications")
-                .whereEqualTo("toUser", user.getEmail())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+        Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser",user.getEmail());
+
+        docRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        int count = queryDocumentSnapshots.size();
-                        notificationCount.setText(" (" + Integer.toString(count) + ")");
+                        docRef.whereEqualTo("isRead", false).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                int count = queryDocumentSnapshots.size();
+                                notificationCount.setText(" (" + Integer.toString(count) + ")");
+                            }
+                        });
+
 
                         ArrayList<NotificationObject> notificationsList = new ArrayList<>();
                         notificationsListView = findViewById(R.id.notificationsList);
 
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                            notificationsList.add(new NotificationObject(snapDoc.getString("fromName"),snapDoc.getString("fromUser"),
-                                    snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString(("origin"))));
+                            notificationsList.add(new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"),snapDoc.getString("fromUser"),
+                                    snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
+                                    snapDoc.getBoolean("isRead")));
                         }
 
                         notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);

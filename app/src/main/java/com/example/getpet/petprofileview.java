@@ -182,6 +182,7 @@ public class petprofileview extends AppCompatActivity {
             post.put("Message", "has adopted your pet " + transferredName + "!");
             post.put("sourceID", transferredPetID);
             post.put("origin", "adopt");
+            post.put("isRead", false);
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
