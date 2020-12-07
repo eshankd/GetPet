@@ -116,7 +116,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                     likeNotif.put("fromUser", user.getEmail());
                     likeNotif.put("toUser", currentStoryCard.getAuthorEmail());
                     likeNotif.put("sourceID", currentStoryCard.getPostID());
-                    likeNotif.put("origin", "liked");
+                    likeNotif.put("origin", "Storyboard Thumbnails");
                     likeNotif.put("isRead", false);
                     fStore.collection("Notifications").add(likeNotif);
 

@@ -50,11 +50,7 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
             NotificationObject currentNotificationCard = notificationObjectList.get(position);
 
-            if (currentNotificationCard.getOrigin().equals("adopt"))
-                storageRef = storage.getReference().child("Pet Images/" + currentNotificationCard.getSourceID() + ".jpg");
-            else if( currentNotificationCard.getOrigin().equals("liked"))
-                storageRef = storage.getReference().child("Storyboard Thumbnails/" + currentNotificationCard.getSourceID() + ".jpg");
-
+            storageRef = storage.getReference().child(currentNotificationCard.getOrigin()+"/"+ currentNotificationCard.getSourceID() + ".jpg");
 
             TextView fromUser = listItem.findViewById(R.id.fromUser);
             fromUser.setText(currentNotificationCard.getFromName());
