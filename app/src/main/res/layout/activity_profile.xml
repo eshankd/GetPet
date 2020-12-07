@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F1F1FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile">
@@ -44,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:layout_marginTop="72dp"
+        android:fontFamily="@font/alike_angular"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -56,6 +58,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/edit"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +70,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="45dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/email"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
@@ -77,6 +82,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="45dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/emailLabel"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
@@ -86,6 +93,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/manageStoryboard"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,6 +107,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/viewSearchHistory"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,6 +121,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/redbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/signout"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +150,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/petsowned"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
 
@@ -150,6 +162,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/petsOwned"
         app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
 
@@ -159,6 +173,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/login"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"

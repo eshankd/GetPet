@@ -89,9 +89,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         TextView caption = listItem.findViewById(R.id.caption);
         caption.setText(currentStoryCard.getCaption());
 
-//        TextView timeAgo = listItem.findViewById(R.id.timeAgo);
-//        timeAgo.setText(currentStoryCard.getTime());
-
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
@@ -114,7 +111,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                     docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
                     localButton.setImageResource(R.drawable.heart1);
                     currentStoryCard.like();
-                    likeNotif.put("Message", "has liked your post");
+                    likeNotif.put("Message", "has liked your post!");
                     likeNotif.put("fromName", user.getFullName());
                     likeNotif.put("fromUser", user.getEmail());
                     likeNotif.put("toUser", currentStoryCard.getAuthorEmail());
