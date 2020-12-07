@@ -184,6 +184,7 @@ public class petprofileview extends AppCompatActivity {
             post.put("origin", "Pet Images");
             post.put("isRead", false);
 
+
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
@@ -196,6 +197,32 @@ public class petprofileview extends AppCompatActivity {
                     Log.w(TAG, "Error adding post");
                 }
             });
+
+
+            Map<String, Object> postto = new HashMap<>();
+            postto.put("fromUser", transferredUserEmail);
+            postto.put("fromName","Congratulations");
+            postto.put("toUser", user.getEmail());
+            postto.put("Message", "on your new pet " + transferredName+  "!");
+            postto.put("sourceID", transferredPetID);
+            postto.put("origin", "adopt");
+            postto.put("isRead", false);
+
+
+            docref.add(postto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+
+                    Log.d(TAG, "Notification Sent!");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error adding post");
+                }
+            });
+
+
 
             Button okay = mDialog.findViewById(R.id.okayButton);
             okay.setOnClickListener(new View.OnClickListener() {

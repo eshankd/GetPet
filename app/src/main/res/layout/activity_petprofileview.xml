@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F1F1FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".petprofileview">
@@ -45,8 +46,10 @@
         android:id="@+id/petName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textSize="34sp"
+        android:layout_marginTop="37dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/petage"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/petImage"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
@@ -69,7 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/gender"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/petImage"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -80,7 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/breed"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/petImage"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -91,7 +100,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="52dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/petdescription"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petImage" />
@@ -102,6 +113,8 @@
         android:layout_height="21dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/petProfilePetGender" />
 
@@ -137,6 +150,8 @@
         android:layout_height="23dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
@@ -149,9 +164,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/greenbuttondesign"
-        android:visibility="gone"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/viewinAR"
         android:textColor="#FFFFFF"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toStartOf="@+id/adoptButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -167,6 +183,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/adopt"
         android:textColor="#FFFFFF"
         android:visibility="gone"
@@ -182,6 +199,8 @@
         android:layout_height="21dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/petProfilePetAge" />
 

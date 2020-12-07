@@ -55,11 +55,12 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
             storageRef = storage.getReference().child(currentNotificationCard.getOrigin()+"/"+ currentNotificationCard.getSourceID() + ".jpg");
 
             TextView fromUser = listItem.findViewById(R.id.fromUser);
-            fromUser.setText(currentNotificationCard.getFromUser());
+            fromUser.setText(currentNotificationCard.getFromName());
 
             TextView notification = listItem.findViewById(R.id.notification);
 
-            if( !currentNotificationCard.getIsRead())
+            if(!currentNotificationCard.getIsRead())
+//                notification.getChild(-1).setBackgroundColor(Color.BLACK);
                 notification.setBackgroundColor(Color.RED);
 
             Log.d("notif",currentNotificationCard.getNotifId());

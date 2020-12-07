@@ -7,10 +7,10 @@ public class NotificationObject {
         String notification;
         String sourceID;
         String origin;
-        Boolean isRead;
+        boolean isRead;
         String notifID;
 
-        public NotificationObject(String notifID,  String fromName, String fromUser, String toUser,String notification, String sourceID, String origin, Boolean isRead) {
+        public NotificationObject(String notifID,  String fromName, String fromUser, String toUser,String notification, String sourceID, String origin, boolean isRead) {
             this.notifID = notifID;
             this.fromUser = fromUser;
             this.fromName = fromName;

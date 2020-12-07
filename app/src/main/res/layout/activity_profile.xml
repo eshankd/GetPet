@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F1F1FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile">
@@ -29,8 +30,8 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/postImage"
@@ -43,9 +44,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/alike_angular"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -53,9 +55,10 @@
         android:id="@+id/button5"
         android:layout_width="54dp"
         android:layout_height="19dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/edit"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +69,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/email"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
@@ -76,48 +81,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/emailLabel"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="300dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/greenbuttondesign"
-        android:text="@string/manageStoryboard"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="300dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/greenbuttondesign"
-        android:text="@string/viewSearchHistory"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <Button
         android:id="@+id/signOut"
         android:layout_width="300dp"
         android:layout_height="53dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/redbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/signout"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navbar"
@@ -139,8 +121,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/petsowned"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
 
@@ -149,7 +133,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/alike_angular"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/petsOwned"
         app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
 
@@ -157,8 +143,9 @@
         android:id="@+id/loginButton"
         android:layout_width="300dp"
         android:layout_height="53dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/greenbuttondesign"
+        android:fontFamily="@font/alike_angular"
         android:text="@string/login"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
