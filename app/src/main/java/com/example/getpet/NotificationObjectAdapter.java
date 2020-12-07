@@ -59,7 +59,7 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
 
             TextView fromUser = listItem.findViewById(R.id.fromUser);
-            fromUser.setText(currentNotificationCard.getFromUser());
+            fromUser.setText(currentNotificationCard.getFromName());
 
             TextView notification = listItem.findViewById(R.id.notification);
 
