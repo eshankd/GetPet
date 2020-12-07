@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -61,10 +62,10 @@ public class Notification extends AppCompatActivity {
             return true;
         });
 
-        loadNotitications();
+        loadNotifications();
     }
 
-    private void loadNotitications() {
+    private void loadNotifications() {
 
         Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser",user.getEmail());
 
@@ -76,6 +77,7 @@ public class Notification extends AppCompatActivity {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 int count = queryDocumentSnapshots.size();
+                                Log.d("notif", Integer.toString(count));
                                 notificationCount.setText(" (" + Integer.toString(count) + ")");
                             }
                         });
