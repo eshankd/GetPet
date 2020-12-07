@@ -31,7 +31,9 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
@@ -40,15 +42,18 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
     private Context mContext;
     private List<StoryboardObject> storyboardObjectList;
 
-    private Button likeBtn;
+    private ImageView likeBtn;
 
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
+    private Map<String, Object> likeNotif = new HashMap<>();
 
     public StoryboardObjectAdapter(Context context, ArrayList<StoryboardObject> list) {
         super(context, 0, list);
         mContext = context;
         storyboardObjectList = list;
     }
+
 
     @NonNull
     @Override
@@ -90,17 +95,16 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
-        likeBtn = listItem.findViewById(R.id.likeButton);
-        final Button localButton = likeBtn;
+        likeBtn = listItem.findViewById(R.id.likePost);
+        final ImageView localButton = likeBtn;
         if(currentStoryCard.isLiked){
-            likeBtn.setText("Unlike");
+            likeBtn.setImageResource(R.drawable.heart1);
         } else {
-            likeBtn.setText("Like");
+            likeBtn.setImageResource(R.drawable.heart2);
         }
 
 
         likeBtn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
 
@@ -108,11 +112,19 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
                 if(!currentStoryCard.isLiked){
                     docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
-                    localButton.setText("Unlike");
+                    localButton.setImageResource(R.drawable.heart1);
                     currentStoryCard.like();
+                    likeNotif.put("Message", "has liked your post");
+                    likeNotif.put("fromName", user.getFullName());
+                    likeNotif.put("fromUser", user.getEmail());
+                    likeNotif.put("toUser", currentStoryCard.getAuthorEmail());
+                    likeNotif.put("sourceID", currentStoryCard.getPostID());
+                    likeNotif.put("origin", "liked");
+                    fStore.collection("Notifications").add(likeNotif);
+
                 } else {
                     docRef.update("Likes", FieldValue.arrayRemove(user.getEmail()));
-                    localButton.setText("Like");
+                    localButton.setImageResource(R.drawable.heart2);
                     currentStoryCard.unlike();
                 }
                 likes.setText(Integer.toString(currentStoryCard.getLikes()));

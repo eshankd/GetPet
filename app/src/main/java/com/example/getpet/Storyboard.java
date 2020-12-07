@@ -94,7 +94,8 @@ public class Storyboard extends AppCompatActivity {
                         for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
                             ArrayList<String> usersLiked;
                             usersLiked = (ArrayList<String>) snapDoc.get("Likes");
-                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"), usersLiked, usersLiked.contains(user.getEmail())));
+                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"),
+                                    snapDoc.getString("userEmail"), usersLiked, usersLiked.contains(user.getEmail())));
                         }
 
                         storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);
@@ -110,32 +111,4 @@ public class Storyboard extends AppCompatActivity {
         addStory.setOnClickListener(v -> startActivity(new Intent(Storyboard.this, AddStory.class)));
     }
 
-
 }
-
-//    public void myClickHandler(View v)
-//    {
-//
-//        //reset all the listView items background colours
-//        //before we set the clicked one..
-//
-//        ListView lvItems = getListView();
-//        for (int i=0; i < lvItems.getChildCount(); i++)
-//        {
-//            lvItems.getChildAt(i).setBackgroundColor(Color.BLUE);
-//        }
-//
-//
-//        //get the row the clicked button is in
-//        LinearLayout vwParentRow = (LinearLayout)v.getParent();
-//
-//        TextView child = (TextView)vwParentRow.getChildAt(0);
-//        Button btnChild = (Button)vwParentRow.getChildAt(1);
-//        btnChild.setText(child.getText());
-//        btnChild.setText("I've been clicked!");
-//
-//        int c = Color.CYAN;
-//
-//        vwParentRow.setBackgroundColor(c);
-//        vwParentRow.refreshDrawableState();
-//    }

@@ -9,15 +9,17 @@ public class StoryboardObject {
     String postID;
     String name;
     String caption;
+    String authorEmail;
     ArrayList<String> usersLiked;
     int time;
     int likes;
     boolean isLiked;
 
-    public StoryboardObject(String postID,String name, String caption, ArrayList<String> usersLiked, boolean isLiked) {
+    public StoryboardObject(String postID,String name, String caption, String authorEmail,  ArrayList<String> usersLiked, boolean isLiked) {
         this.postID = postID;
         this.name = name;
         this.caption = caption;
+        this.authorEmail = authorEmail;
         this.usersLiked = usersLiked;
         this.likes = usersLiked.size();
         this.isLiked = isLiked;
@@ -28,6 +30,8 @@ public class StoryboardObject {
     public String getName() { return name; }
 
     public String getCaption() { return caption; }
+
+    public String getAuthorEmail() { return authorEmail; }
 
     public int getLikes() { return likes; }
 
