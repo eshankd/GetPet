@@ -48,8 +48,8 @@
 
     <ListView
         android:id="@+id/storyboardList"
-        android:layout_width="408dp"
-        android:layout_height="717dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
