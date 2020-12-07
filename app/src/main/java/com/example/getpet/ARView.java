@@ -32,11 +32,13 @@ public class ARView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_r_view);
 
+        String petID = getIntent().getStringExtra("petID");
+
         goBackToProfile();
         FirebaseApp.initializeApp(this);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child("cat5.glb");
+        StorageReference modelRef = storage.getReference().child("Pet Models/" + petID+ ".glb");
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
@@ -44,7 +46,7 @@ public class ARView extends AppCompatActivity {
         findViewById(R.id.GetPet).setOnClickListener(v -> {
 
             try {
-                File file = File.createTempFile("temp", "glb");
+                File file = File.createTempFile("petID", "glb");
                 modelRef.getFile(file).addOnSuccessListener(taskSnapshot -> buildModel(file));
 
             } catch (IOException e) {
@@ -57,7 +59,7 @@ public class ARView extends AppCompatActivity {
 
             AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
             anchorNode.setParent(arFragment.getArSceneView().getScene());
-            // Create the transformable andy and add it to the anchor.
+
             TransformableNode beagle = new TransformableNode(arFragment.getTransformationSystem());
             beagle.setLocalScale(new Vector3((float)0.2, (float)0.2, (float)0.2));
             beagle.setParent(anchorNode);
@@ -65,6 +67,8 @@ public class ARView extends AppCompatActivity {
             beagle.select();
 
         }));
+
+
 
     }
 

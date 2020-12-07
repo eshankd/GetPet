@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +22,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -52,6 +50,8 @@ public class petprofileview extends AppCompatActivity {
     private ImageView petImage;
     private User user;
     private String TAG = "petprofileview";
+    Button adopt;
+    Button viewinARBtn;
 
 
     @Override
@@ -69,6 +69,8 @@ public class petprofileview extends AppCompatActivity {
         petBreed = findViewById(R.id.petProfilePetBreed);
         petGender = findViewById(R.id.petProfilePetGender);
         petDescription = findViewById(R.id.petDescription);
+        adopt = findViewById(R.id.adoptButton);
+        viewinARBtn = findViewById(R.id.viewinAR);
 
         transferredName = getIntent().getStringExtra("petName");
         transferredUserEmail = getIntent().getStringExtra("userEmail");
@@ -128,17 +130,41 @@ public class petprofileview extends AppCompatActivity {
             return true;
         });
 
-        virtuallyAdopt();
+        if(!user.getEmail().equals(transferredUserEmail))
+        {
+            adopt.setVisibility(View.VISIBLE);
+        }
+
+        if(transferredPetID.equals("3LHKy3jlYFuXfVPCrLSs") ||
+                transferredPetID.equals("5w68ws7hpEAUTLvXrLH3") ||
+                transferredPetID.equals("jxI6GLCzebh1IZwOFKLq") ||
+                transferredPetID.equals("zeXDKDimEBQM5m2Irq1s"))
+        {
+            viewinARBtn.setVisibility(View.VISIBLE);
+        }
+
+        viewinAR();
         adoptButton();
+
     }
 
-    private void virtuallyAdopt(){
-        Button virtuallyadopt = findViewById(R.id.viewinAR);
-        virtuallyadopt.setOnClickListener(v -> startActivity(new Intent(petprofileview.this,ARView.class)));
+    private void viewinAR(){
+
+        viewinARBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(petprofileview.this, ARView.class);
+                intent.putExtra("petID", transferredPetID);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     private void adoptButton(){
-        Button adopt = findViewById(R.id.adoptButton);
+
         Dialog mDialog;
         mDialog = new Dialog(this);
 
