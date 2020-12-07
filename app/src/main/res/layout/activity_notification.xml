@@ -57,17 +57,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView27" />
 
-    <TextView
-        android:id="@+id/notificationCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="18dp"
-        android:fontFamily="@font/alike_angular"
-        android:text="@string/zero"
-        android:textColor="#FFFFFF"
-        android:textSize="45sp"
-        app:layout_constraintStart_toEndOf="@+id/notificationHead"
-        app:layout_constraintTop_toTopOf="@+id/textView27" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,6 @@ public class Notification extends AppCompatActivity {
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.notifications));
-        notificationCount = findViewById(R.id.notificationCount);
         user = User.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -67,24 +66,11 @@ public class Notification extends AppCompatActivity {
 
     private void loadNotifications() {
 
-        Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser",user.getEmail()).orderBy("timeStamp", Query.Direction.DESCENDING);
+        Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser", user.getEmail());
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                        docRef.whereEqualTo("isRead", false).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                                int count = queryDocumentSnapshots.size();
-                                Log.d("notif", Integer.toString(count));
-                                notificationCount.setText(" (" + Integer.toString(count) + ")");
-
-                            }
-                        });
-
-
 
                         ArrayList<NotificationObject> notificationsList = new ArrayList<>();
                         notificationsListView = findViewById(R.id.notificationsList);
@@ -96,13 +82,8 @@ public class Notification extends AppCompatActivity {
                                     snapDoc.getBoolean("isRead")));
                         }
 
-
-
                         notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);
                         notificationsListView.setAdapter(notificationAdapter);
-
-
-
                     }
                 });
     }
