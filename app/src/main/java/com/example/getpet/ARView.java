@@ -32,11 +32,13 @@ public class ARView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_r_view);
 
+        String petID = getIntent().getStringExtra("petID");
+
         goBackToProfile();
         FirebaseApp.initializeApp(this);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child("cat5.glb");
+        StorageReference modelRef = storage.getReference().child("Pet Models/" + petID+ ".glb");
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
@@ -65,7 +67,6 @@ public class ARView extends AppCompatActivity {
             pet.select();
 
         }));
-
     }
 
         private ModelRenderable renderable;
