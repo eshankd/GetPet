@@ -48,8 +48,6 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
             if(listItem == null)
                 listItem = LayoutInflater.from(mContext).inflate(R.layout.notifications_layout, parent, false);
 
-
-            //FirebaseStorage storage = FirebaseStorage.getInstance();
             NotificationObject currentNotificationCard = notificationObjectList.get(position);
 
             if (currentNotificationCard.getOrigin().equals("adopt"))

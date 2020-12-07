@@ -50,12 +50,9 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     private CalendarView mCalendarView;
     private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
-    Bitmap bitmap;
-
+    private DocumentReference tempRef;
     private FirebaseStorage storage;
     private StorageReference storageRef;
-
-
     int dayIn, monthIn, yearIn;
     String transferredName;
     String transferredBreed;
@@ -156,6 +153,8 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 docref.add(petProfile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+
+                        tempRef = documentReference;
                         Log.d(TAG, "Profile Created Success");
                         upload(documentReference);
                         Toast.makeText(CreatePetProfileSubmit.this, transferredName + " is up for adoption!", Toast.LENGTH_SHORT).show();
@@ -164,6 +163,31 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Profile not created");
+                    }
+                });
+
+
+                CollectionReference notificationCollection = fStore.collection("Notifications");
+                Map<String, Object> notify = new HashMap<>();
+                notify.put("fromUser", "fromUser");
+                notify.put("fromName",transferredName);
+                notify.put("toUser", user.getFirstName());
+                notify.put("Message", "is up for adoption!");
+                notify.put("sourceID", tempRef);
+                notify.put("origin", "Pet Images");
+                notify.put("isRead", false);
+
+
+                notificationCollection.add(notify).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+
+                        Log.d(TAG, "Notification Sent!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding post");
                     }
                 });
 
@@ -194,9 +218,6 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
 
 
