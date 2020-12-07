@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F1F1FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F1FA"
     tools:context=".Storyboard">
 
 
@@ -50,11 +50,9 @@
         android:id="@+id/storyboardList"
         android:layout_width="match_parent"
         android:layout_height="670dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
     </ListView>
 
@@ -77,6 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layout_marginTop="10dp"
         android:background="#3498DB"
         app:flow_horizontalBias="0.5"
         app:itemIconSize="40dp"
@@ -84,7 +83,10 @@
         app:itemTextColor="@drawable/bottom_navigation_selector"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storyboardList"
+        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navbar_menu" />
 
 

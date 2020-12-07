@@ -82,8 +82,6 @@ public class Notification extends AppCompatActivity {
                                 notificationCount.setText(" (" + Integer.toString(count) + ")");
 
                             }
-
-
                         });
 
 
