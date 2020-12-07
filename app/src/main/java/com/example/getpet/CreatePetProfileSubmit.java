@@ -27,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -47,6 +48,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
     private User user;
+    private FirebaseAuth auth;
     private CalendarView mCalendarView;
     private String TAG = "CreatePetProfileSubmit";
     private EditText descriptionIn;
@@ -70,12 +72,13 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_pet_profile_submit);
-        setContentView(R.layout.activity_create_pet_profile_submit);
 
         fStore = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         user = User.getInstance();
+
+        auth = FirebaseAuth.getInstance();
 
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
@@ -191,10 +194,19 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     }
                 });
 
+
+                String userID  = (auth.getCurrentUser()).getUid();
+                DocumentReference docRef = fStore.collection("Pets").document(userID);
+                docRef.update("Pets Owned", FieldValue.arrayUnion(user.getEmail()));
+
+
+
                 startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));
             }
 
         });
+
+
     }
 
     private void upload(DocumentReference docRef){

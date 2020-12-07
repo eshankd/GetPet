@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F1F1FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F1FA"
     tools:context=".Notification">
 
     <View
@@ -17,17 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="85dp"
-        android:layout_height="36dp"
-        android:fontFamily="@font/alike_angular"
-        android:text="@string/app_name"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navbar"
         android:layout_width="match_parent"
@@ -35,23 +24,25 @@
         android:layout_gravity="start"
         android:background="#3498DB"
         app:flow_horizontalBias="0.5"
-        app:itemIconTint= "@drawable/bottom_navigation_selector"
-        app:itemTextColor= "@drawable/bottom_navigation_selector"
+        app:itemIconSize="40dp"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemIconSize="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/notificationsList"
+        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navbar_menu" />
 
     <ListView
         android:id="@+id/notificationsList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
+        android:layout_height="670dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/notificationHead"
@@ -73,7 +64,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="18dp"
         android:fontFamily="@font/alike_angular"
-        android:text="0"
+        android:text="@string/zero"
         android:textColor="#FFFFFF"
         android:textSize="45sp"
         app:layout_constraintStart_toEndOf="@+id/notificationHead"
