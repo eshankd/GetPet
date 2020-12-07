@@ -3,6 +3,7 @@ package com.example.getpet;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -27,6 +30,7 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
     private Context mContext;
     private List<NotificationObject> notificationObjectList;
+    private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference storageRef;
 
@@ -55,10 +59,21 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
 
             TextView fromUser = listItem.findViewById(R.id.fromUser);
-                fromUser.setText(currentNotificationCard.getFromUser());
+            fromUser.setText(currentNotificationCard.getFromUser());
 
             TextView notification = listItem.findViewById(R.id.notification);
+
+            if( !currentNotificationCard.getIsRead())
+                notification.setBackgroundColor(Color.RED);
+
+            Log.d("notif",currentNotificationCard.getNotifId());
+
+            DocumentReference docRef = fStore.collection("Notifications").document(currentNotificationCard.getNotifId());
+            docRef.update("isRead", true);
+
             notification.setText(currentNotificationCard.getNotification());
+
+
 
             final File localFile;
             try {

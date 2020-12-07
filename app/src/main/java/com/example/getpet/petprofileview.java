@@ -176,12 +176,13 @@ public class petprofileview extends AppCompatActivity {
 
             CollectionReference docref = fStore.collection("Notifications");
             Map<String, Object> post = new HashMap<>();
-            post.put("fromEmail", user.getEmail());
+            post.put("fromUser", user.getEmail());
             post.put("fromName",user.getFullName());
             post.put("toUser", transferredUserEmail);
             post.put("Message", "has adopted your pet " + transferredName + "!");
             post.put("sourceID", transferredPetID);
             post.put("origin", "adopt");
+            post.put("isRead", false);
 
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

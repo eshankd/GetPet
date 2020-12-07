@@ -46,7 +46,7 @@ public class ARView extends AppCompatActivity {
         findViewById(R.id.GetPet).setOnClickListener(v -> {
 
             try {
-                File file = File.createTempFile("petID", "glb");
+                File file = File.createTempFile("temp", "glb");
                 modelRef.getFile(file).addOnSuccessListener(taskSnapshot -> buildModel(file));
 
             } catch (IOException e) {
@@ -59,17 +59,14 @@ public class ARView extends AppCompatActivity {
 
             AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
             anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-            TransformableNode beagle = new TransformableNode(arFragment.getTransformationSystem());
-            beagle.setLocalScale(new Vector3((float)0.2, (float)0.2, (float)0.2));
-            beagle.setParent(anchorNode);
-            beagle.setRenderable(renderable);
-            beagle.select();
+            // Create the transformable andy and add it to the anchor.
+            TransformableNode pet = new TransformableNode(arFragment.getTransformationSystem());
+            pet.setLocalScale(new Vector3((float)0.2, (float)0.2, (float)0.2));
+            pet.setParent(anchorNode);
+            pet.setRenderable(renderable);
+            pet.select();
 
         }));
-
-
-
     }
 
         private ModelRenderable renderable;

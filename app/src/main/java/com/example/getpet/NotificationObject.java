@@ -7,15 +7,21 @@ public class NotificationObject {
         String notification;
         String sourceID;
         String origin;
+        Boolean isRead;
+        String notifID;
 
-        public NotificationObject(String fromUser, String fromName, String toUser,String notification, String sourceID, String origin) {
+        public NotificationObject(String notifID,  String fromName, String fromUser, String toUser,String notification, String sourceID, String origin, Boolean isRead) {
+            this.notifID = notifID;
             this.fromUser = fromUser;
             this.fromName = fromName;
             this.toUser = toUser;
             this.notification = notification;
             this.sourceID = sourceID;
             this.origin = origin;
+            this.isRead = isRead;
         }
+
+        public String getNotifId() { return notifID; }
 
         public String getFromUser() { return fromUser;}
 
@@ -28,6 +34,8 @@ public class NotificationObject {
         public String getSourceID() { return sourceID; }
 
         public String getOrigin() { return origin; }
+
+        public boolean getIsRead() { return isRead; }
 
     }
 
