@@ -21,12 +21,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -183,6 +185,7 @@ public class petprofileview extends AppCompatActivity {
             post.put("sourceID", transferredPetID);
             post.put("origin", "Pet Images");
             post.put("isRead", false);
+            post.put("timeStamp", FieldValue.serverTimestamp());
 
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -205,8 +208,9 @@ public class petprofileview extends AppCompatActivity {
             postto.put("toUser", user.getEmail());
             postto.put("Message", "on your new pet " + transferredName+  "!");
             postto.put("sourceID", transferredPetID);
-            postto.put("origin", "adopt");
+            postto.put("origin", "Pet Images");
             postto.put("isRead", false);
+            postto.put("timeStamp", FieldValue.serverTimestamp());
 
 
             docref.add(postto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

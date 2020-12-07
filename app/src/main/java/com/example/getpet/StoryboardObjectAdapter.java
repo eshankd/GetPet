@@ -118,6 +118,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                     likeNotif.put("sourceID", currentStoryCard.getPostID());
                     likeNotif.put("origin", "Storyboard Thumbnails");
                     likeNotif.put("isRead", false);
+                    likeNotif.put("timeStamp", FieldValue.serverTimestamp());
                     fStore.collection("Notifications").add(likeNotif);
 
                 } else {

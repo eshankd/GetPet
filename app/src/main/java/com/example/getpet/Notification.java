@@ -67,7 +67,7 @@ public class Notification extends AppCompatActivity {
 
     private void loadNotifications() {
 
-        Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser",user.getEmail());
+        Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser",user.getEmail()).orderBy("timeStamp", Query.Direction.DESCENDING);
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
