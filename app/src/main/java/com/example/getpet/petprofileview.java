@@ -200,12 +200,13 @@ public class petprofileview extends AppCompatActivity {
 
 
             Map<String, Object> postto = new HashMap<>();
-            postto.put("fromEmail", transferredUserEmail);
+            postto.put("fromUser", transferredUserEmail);
             postto.put("fromName","Congratulations");
             postto.put("toUser", user.getEmail());
             postto.put("Message", "on your new pet " + transferredName+  "!");
             postto.put("sourceID", transferredPetID);
             postto.put("origin", "adopt");
+            postto.put("isRead", false);
 
 
             docref.add(postto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

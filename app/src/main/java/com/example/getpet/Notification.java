@@ -75,10 +75,15 @@ public class Notification extends AppCompatActivity {
                         docRef.whereEqualTo("isRead", false).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
                                 int count = queryDocumentSnapshots.size();
                                 notificationCount.setText(" (" + Integer.toString(count) + ")");
+
                             }
+
+
                         });
+
 
 
                         ArrayList<NotificationObject> notificationsList = new ArrayList<>();
@@ -90,6 +95,8 @@ public class Notification extends AppCompatActivity {
                                     snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
                                     snapDoc.getBoolean("isRead")));
                         }
+
+
 
                         notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);
                         notificationsListView.setAdapter(notificationAdapter);
