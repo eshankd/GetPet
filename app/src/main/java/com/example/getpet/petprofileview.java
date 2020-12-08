@@ -30,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -218,6 +219,7 @@ public class petprofileview extends AppCompatActivity {
             post.put("sourceID", transferredPetID);
             post.put("origin", "Pet Images");
             post.put("isRead", false);
+            post.put("timeStamp", FieldValue.serverTimestamp());
 
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -242,6 +244,7 @@ public class petprofileview extends AppCompatActivity {
             postto.put("sourceID", transferredPetID);
             postto.put("origin", "Pet Images");
             postto.put("isRead", false);
+            postto.put("timeStamp", FieldValue.serverTimestamp());
 
 
             docref.add(postto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

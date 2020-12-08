@@ -36,6 +36,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
@@ -179,6 +180,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 notify.put("sourceID", tempRef);
                 notify.put("origin", "Pet Images");
                 notify.put("isRead", false);
+                notify.put("timeStamp", FieldValue.serverTimestamp());
 
 
                 notificationCollection.add(notify).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -137,6 +138,7 @@ public class AddStory extends AppCompatActivity {
             post.put("Likes", new ArrayList<>());
             post.put("Name", user.getFullName());
             post.put("userEmail", user.getEmail());
+            post.put("timeStamp", FieldValue.serverTimestamp());
 
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
