@@ -82,7 +82,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="136dp"
         android:background="@drawable/greenbuttondesign"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/open_sans"
         android:text="@string/post"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
