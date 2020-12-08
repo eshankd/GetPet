@@ -25,8 +25,6 @@ import com.google.type.LatLng;
 public class Explore extends AppCompatActivity {
 
     BottomNavigationView navBar;
-    private WebView webView;
-    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

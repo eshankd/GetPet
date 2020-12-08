@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreatePetProfile1"></activity>
+        <activity android:name=".Comments"></activity>
+        <activity android:name=".CreatePetProfile1" />
         <activity android:name=".CreatePetProfileSubmit" />
         <activity android:name=".AddStory" />
         <activity android:name=".Notification" />

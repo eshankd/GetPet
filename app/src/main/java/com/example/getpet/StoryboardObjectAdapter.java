@@ -2,6 +2,7 @@ package com.example.getpet;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -43,6 +44,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
     private List<StoryboardObject> storyboardObjectList;
 
     private ImageView likeBtn;
+    private ImageView commentBtn;
 
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
@@ -93,6 +95,8 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
         likeBtn = listItem.findViewById(R.id.likePost);
+        commentBtn =listItem.findViewById(R.id.commentPost);
+
         final ImageView localButton = likeBtn;
         if(currentStoryCard.isLiked){
             likeBtn.setImageResource(R.drawable.heart1);
@@ -154,6 +158,21 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                 likes.setText(Integer.toString(currentStoryCard.getLikes()));
             }
         });
+
+                    commentBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+//
+//                            
+//                            startActivity(new Intent(Storyboard.this, AddStory.class)));
+                        }
+                    });
+
+
+
+
+
         return listItem;
     }
 }
