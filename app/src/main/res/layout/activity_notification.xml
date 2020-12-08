@@ -48,12 +48,12 @@
         android:id="@+id/notificationHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:layout_marginTop="18dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/muli"
         android:text="@string/notifications"
         android:textColor="#FFFFFF"
         android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView27" />
 

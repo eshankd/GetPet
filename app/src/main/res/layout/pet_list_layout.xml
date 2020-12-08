@@ -11,7 +11,6 @@
         android:layout_width="120dp"
         android:layout_height="122dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/petName" />
@@ -35,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView32"
         app:layout_constraintTop_toBottomOf="@+id/petAge" />
@@ -46,18 +45,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView33"
         app:layout_constraintTop_toBottomOf="@+id/petBreed" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="50dp"
+        android:layout_width="55dp"
         android:layout_height="19dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:text="@string/name"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/petImage"
@@ -65,11 +64,11 @@
 
     <TextView
         android:id="@+id/textView31"
-        android:layout_width="50dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:text="@string/age"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/petImage"
@@ -77,11 +76,11 @@
 
     <TextView
         android:id="@+id/textView32"
-        android:layout_width="50dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:text="@string/breed"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/petImage"
@@ -89,11 +88,11 @@
 
     <TextView
         android:id="@+id/textView33"
-        android:layout_width="50dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:text="@string/gender"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/petImage"
@@ -105,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/alike_angular"
+        android:fontFamily="@font/montserrat"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/name"
         app:layout_constraintTop_toTopOf="parent" />

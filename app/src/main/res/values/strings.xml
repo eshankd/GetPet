@@ -7,7 +7,7 @@
     <string name="firstname"> First Name </string>
     <string name="lastname"> Last Name </string>
     <string name="createPassword"> Create Password </string>
-    <string name="adoptFoster"> Adopt/Foster</string>
+    <string name="adoptFoster"> Adopt / Foster</string>
     <string name="findaHome"> Find a Home </string>
     <string name="helpandSupport"> Help and Support </string>
     <string name="interactwithyourvirtuallyadoptedpet"> Interact with your virtually adopted pets </string>
@@ -60,8 +60,7 @@
     <string name="post">Post</string>
     <string name="upload">Upload</string>
     <string name="choose">Choose</string>
-    <string name="whatbreed">What\'s the Breed?</string>
-    <string name="whatsthispost">What\'s this post about?</string>
+    <string name="whatsthispost">What is this post about?</string>
     <string name="vetclinic">Vetenary Clinics near you</string>
     <string name="other">Other</string>
     <string name="groomingnear">Grooming Near you</string>

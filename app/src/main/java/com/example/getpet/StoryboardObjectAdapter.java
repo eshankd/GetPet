@@ -114,6 +114,24 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
                 DocumentReference docRef = fStore.collection("Posts").document(currentStoryCard.getPostID());
 
+                if(currentStoryCard.getAuthorEmail().equals(user.getEmail()))
+                {
+
+                    if(!currentStoryCard.isLiked){
+                        docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
+                        localButton.setImageResource(R.drawable.heart1);
+                        currentStoryCard.like();
+                        }
+
+                        else{
+                            docRef.update("Likes", FieldValue.arrayRemove(user.getEmail()));
+                            localButton.setImageResource(R.drawable.heart2);
+                            currentStoryCard.unlike();
+                        }
+                          likes.setText(Integer.toString(currentStoryCard.getLikes()));
+                        return;
+                }
+
                 if(!currentStoryCard.isLiked){
                     docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
                     localButton.setImageResource(R.drawable.heart1);
