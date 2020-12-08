@@ -82,10 +82,19 @@ public class AdoptFoster extends AppCompatActivity {
     }
 
     private void findAHome(){
+
         Button findahome = findViewById(R.id.findahome);
         findahome.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
+                if(user.getPetsOwned() == -1)
+                {
+                    Toast.makeText(AdoptFoster.this, "Please Login to find a home for your Pet", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 startActivity(new Intent(AdoptFoster.this,CreatePetProfile1.class));
             }
         });
@@ -106,12 +115,12 @@ public class AdoptFoster extends AppCompatActivity {
                     ArrayList<String> userPetsOwned;
                     for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
 
+
                         userFName = snapDoc.getString("FirstName");
                         userLName = snapDoc.getString("LastName");
                         userEmail = snapDoc.getString("Email");
                         userPetsOwned = (ArrayList<String>) snapDoc.get("PetsOwned");
-
-                        user.setData(userFName, userLName, userPetsOwned, userEmail);
+                        user.setData(snapDoc.getId(),userFName, userLName, userPetsOwned, userEmail);
                     }
                 }
             });

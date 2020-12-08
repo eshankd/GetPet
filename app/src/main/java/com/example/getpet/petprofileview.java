@@ -1,5 +1,6 @@
 package com.example.getpet;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,12 +16,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -130,10 +133,19 @@ public class petprofileview extends AppCompatActivity {
             return true;
         });
 
-        if(!user.getEmail().equals(transferredUserEmail))
+        if(user.getPetsOwned() == -1)
+        {
+            adopt.setVisibility(View.VISIBLE);
+            adopt.setBackground(getDrawable(R.drawable.disabledbutton));
+
+
+        }
+
+        else if(!user.getEmail().equals(transferredUserEmail))
         {
             adopt.setVisibility(View.VISIBLE);
         }
+
 
         if(transferredPetID.equals("3LHKy3jlYFuXfVPCrLSs") ||
                 transferredPetID.equals("5w68ws7hpEAUTLvXrLH3") ||
@@ -169,10 +181,33 @@ public class petprofileview extends AppCompatActivity {
         mDialog = new Dialog(this);
 
         adopt.setOnClickListener(v -> {
+            if(user.getPetsOwned() == -1)
+            {
+                Toast.makeText(this, "Please Login to Adopt a Pet", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(user.isOwned(transferredPetID))
+            {
+                Toast.makeText(this, "You already own this Pet", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             mDialog.setContentView(R.layout.adoptpopup);
             mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             mDialog.show();
+
+            DocumentReference docRef = fStore.collection("Users").document(user.getUserID());
+            docRef.update("PetsOwned", FieldValue.arrayUnion(transferredPetID)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+
+                    user.adoptPet(transferredPetID);
+
+                }
+            });
+
+
 
             CollectionReference docref = fStore.collection("Notifications");
             Map<String, Object> post = new HashMap<>();

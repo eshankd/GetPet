@@ -105,6 +105,13 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
             @Override
             public void onClick(View v) {
 
+
+                if(user.getPetsOwned() == -1)
+                {
+                    Toast.makeText(mContext, "Please Login to Like a post", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 DocumentReference docRef = fStore.collection("Posts").document(currentStoryCard.getPostID());
 
                 if(!currentStoryCard.isLiked){
