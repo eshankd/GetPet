@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/chooseUserPic"
         android:layout_width="54dp"
         android:layout_height="19dp"
         android:layout_marginStart="50dp"
@@ -79,7 +79,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/chooseUserPic" />
 
     <TextView
         android:id="@+id/userProfileEmail"
@@ -91,7 +91,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/emailLabel"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/chooseUserPic" />
 
     <Button
         android:id="@+id/signOut"
