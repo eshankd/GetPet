@@ -164,7 +164,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                         public void onClick(View v) {
 
 //
-//                            
+//
 //                            startActivity(new Intent(Storyboard.this, AddStory.class)));
                         }
                     });
