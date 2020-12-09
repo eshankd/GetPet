@@ -62,7 +62,7 @@ public class Comments extends AppCompatActivity {
         Log.d("COMM", "IT REACHED");
 
         navBar = findViewById(R.id.bottom_navbar);
-        navBar.setSelectedItemId((R.id.explore));
+        navBar.setSelectedItemId((R.id.storyboard));
 
         postPic = findViewById(R.id.imageView11);
         commentIn = findViewById(R.id.commentIn);
