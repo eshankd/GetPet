@@ -3,13 +3,9 @@ package com.example.getpet;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,12 +16,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AdoptFoster extends AppCompatActivity {
@@ -68,7 +59,6 @@ public class AdoptFoster extends AppCompatActivity {
         adoptFoster();
         findAHome();
         setupUser();
-
     }
 
     private void adoptFoster(){
@@ -82,7 +72,6 @@ public class AdoptFoster extends AppCompatActivity {
     }
 
     private void findAHome(){
-
         Button findahome = findViewById(R.id.findahome);
         findahome.setOnClickListener(new View.OnClickListener() {
 
@@ -111,7 +100,6 @@ public class AdoptFoster extends AppCompatActivity {
                     String userFName;
                     String userLName;
                     String userEmail;
-                    int userNumPetsOwned;
                     ArrayList<String> userPetsOwned;
                     for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
 

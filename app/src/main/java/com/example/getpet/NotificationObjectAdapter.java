@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,15 +62,10 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
                 listItem.setBackgroundColor(Color.parseColor("#cbcbed"));
 
 
-
-            Log.d("notif",currentNotificationCard.getNotifId());
-
             DocumentReference docRef = fStore.collection("Notifications2").document(currentNotificationCard.getNotifId());
             docRef.update("isRead", true);
 
             notification.setText(currentNotificationCard.getNotification());
-
-
 
             final File localFile;
             try {
@@ -88,4 +81,4 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
         return listItem;
     }
-    }
+}

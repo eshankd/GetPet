@@ -4,7 +4,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -12,7 +11,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,13 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -39,10 +32,9 @@ public class CreatePetProfile1 extends AppCompatActivity {
 
 
     BottomNavigationView navBar;
-    private FirebaseAuth auth;
-    private String TAG = "CreatePetProfile1";
+    FirebaseAuth auth;
     String gender;
-    EditText petName,petBreed;
+    EditText petName;
     RadioGroup radioGender;
     Button nextButton;
     String typeChosen,breedChosen;
@@ -200,10 +192,6 @@ public class CreatePetProfile1 extends AppCompatActivity {
                         gender = "Male";
                     else if (radioGender.getCheckedRadioButtonId() == R.id.FemaleRadio)
                         gender = "Female";
-                    else
-                    {
-                        Log.d("debug", "else");
-                    }
 
                     Intent i = new Intent(CreatePetProfile1.this, CreatePetProfileSubmit.class);
 

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,10 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailIN;
     private EditText passwordIN;
     private FirebaseAuth auth;
-    public String status; //if guest user
-
-    private String TAG = "EmailPassword";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         loginAsGuest();
         signUp();
         login();
-
     }
 
 
@@ -57,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
             String email = emailIN.getText().toString();
             String password = passwordIN.getText().toString();
 
-            Log.d("email", email);
-            Log.d("pass", password);
-
             if(!validateForm(email, password)){
                 Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
                 return;
@@ -69,10 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "signInWithEmail:success");
                         startActivity(new Intent(MainActivity.this, AdoptFoster.class));
                     } else {
-                        Log.w(TAG, "signInWithEmail:failure", task.getException());
                         Toast.makeText(MainActivity.this, "Account doesn't exit, please signup", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -85,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         return password != null && !password.trim().isEmpty();
     }
-
-
 
     private void loginAsGuest(){
         TextView loginAsGuest = findViewById(R.id.loginasguest);
@@ -103,7 +90,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

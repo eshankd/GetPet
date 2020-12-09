@@ -9,11 +9,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,8 +29,6 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import io.grpc.Context;
 
 public class Comments extends AppCompatActivity {
 
@@ -58,8 +54,6 @@ public class Comments extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
-
-        Log.d("COMM", "IT REACHED");
 
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.storyboard));
@@ -107,8 +101,6 @@ public class Comments extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         postComment();
     }
 
@@ -151,8 +143,6 @@ public class Comments extends AppCompatActivity {
                 docRef.add(commentData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
-                        Log.d(TAG, "Comment posted");
                         Toast.makeText(Comments.this, " Comment sent to " + toUserName, Toast.LENGTH_SHORT).show();
                         finish();
                     }
@@ -164,10 +154,5 @@ public class Comments extends AppCompatActivity {
                 });
             }
         });
-
-
-
-
     }
-
 }

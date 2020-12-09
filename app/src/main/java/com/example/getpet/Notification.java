@@ -1,18 +1,14 @@
 package com.example.getpet;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -27,7 +23,6 @@ public class Notification extends AppCompatActivity {
     User user;
     private ListView notificationsListView;
     private NotificationObjectAdapter notificationAdapter;
-    TextView notificationCount;
 
 
     @Override
@@ -78,8 +73,8 @@ public class Notification extends AppCompatActivity {
 
                         for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
                             if (snapDoc.getString("toUser").equals(user.getEmail())) {
-                                //Log.d("email",snapDoc.getString("toUser")+" "+user.getEmail());
-                                notificationsList.add(new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"), snapDoc.getString("fromUser"),
+                                notificationsList.add(
+                                        new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"), snapDoc.getString("fromUser"),
                                         snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
                                         snapDoc.getBoolean("isRead"), snapDoc.getLong("timeAgo")));
                             }

@@ -1,17 +1,13 @@
 package com.example.getpet;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,17 +15,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,7 +49,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         mContext = context;
         storyboardObjectList = list;
     }
-
 
     @NonNull
     @Override
@@ -113,7 +103,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
             @Override
             public void onClick(View v) {
 
-
                 if(user.getPetsOwned() == -1)
                 {
                     Toast.makeText(mContext, "Please Login to Like a post", Toast.LENGTH_SHORT).show();
@@ -124,7 +113,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
                 if(currentStoryCard.getAuthorEmail().equals(user.getEmail()))
                 {
-
                     if(!currentStoryCard.isLiked){
                         docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
                         localButton.setImageResource(R.drawable.heart1);

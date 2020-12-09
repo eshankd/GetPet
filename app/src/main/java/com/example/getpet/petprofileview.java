@@ -1,6 +1,5 @@
 package com.example.getpet;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -94,7 +93,6 @@ public class petprofileview extends AppCompatActivity {
 
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        Log.d("petID", transferredPetID);
         StorageReference reference = storage.getReference().child("Pet Images/" + transferredPetID + ".jpg");
 
         final File localFile;
@@ -227,7 +225,6 @@ public class petprofileview extends AppCompatActivity {
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
-
                     Log.d(TAG, "Notification Sent!");
                 }
             }).addOnFailureListener(new OnFailureListener() {
