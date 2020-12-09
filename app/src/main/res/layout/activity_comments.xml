@@ -67,7 +67,7 @@
         android:background="@drawable/textareaborder"
         android:fontFamily="@font/montserrat"
         android:hint="What would you want to say about this picture?"
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

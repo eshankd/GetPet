@@ -67,9 +67,10 @@
         android:id="@+id/uploadPetImage2"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="140dp"
         android:layout_marginTop="28dp"
         android:contentDescription="@string/postImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
@@ -77,12 +78,13 @@
         android:id="@+id/textView46"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/uploadpetpicture"
         android:textColor="#000000"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
