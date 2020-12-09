@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -170,8 +171,8 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     }
                 });
 
-
-                CollectionReference notificationCollection = fStore.collection("Notifications");
+                Long time = Calendar.getInstance().getTimeInMillis();
+                CollectionReference notificationCollection = fStore.collection("Notifications2");
                 Map<String, Object> notify = new HashMap<>();
                 notify.put("fromUser", "fromUser");
                 notify.put("fromName",transferredName);
@@ -181,6 +182,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 notify.put("origin", "Pet Images");
                 notify.put("isRead", false);
                 notify.put("timeStamp", FieldValue.serverTimestamp());
+                notify.put("timeAgo", time);
 
 
                 notificationCollection.add(notify).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

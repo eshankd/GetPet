@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -131,7 +132,9 @@ public class Comments extends AppCompatActivity {
 
                 String comment = commentIn.getText().toString();
 
-                CollectionReference docRef = fStore.collection("Notifications");
+                CollectionReference docRef = fStore.collection("Notifications2");
+
+                Long time = Calendar.getInstance().getTimeInMillis();
 
                 Map<String, Object> commentData = new HashMap<>();
                 commentData.put("Message", comment);
@@ -142,6 +145,7 @@ public class Comments extends AppCompatActivity {
                 commentData.put("isRead", false);
                 commentData.put("origin", "Storyboard Thumbnails");
                 commentData.put("sourceID", image);
+                commentData.put("timeAgo", time );
 
 
                 docRef.add(commentData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

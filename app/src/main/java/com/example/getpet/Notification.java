@@ -66,25 +66,29 @@ public class Notification extends AppCompatActivity {
 
     private void loadNotifications() {
 
-        Query docRef= fStore.collection(("Notifications")).whereEqualTo("toUser", user.getEmail());
-
-        docRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fStore.collection("Notifications2").orderBy("timeStamp", Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        int count = queryDocumentSnapshots.size();
 
                         ArrayList<NotificationObject> notificationsList = new ArrayList<>();
                         notificationsListView = findViewById(R.id.notificationsList);
 
-                        for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
-
-                            notificationsList.add(new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"),snapDoc.getString("fromUser"),
-                                    snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
-                                    snapDoc.getBoolean("isRead")));
+                        for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
+                            if (snapDoc.getString("toUser").equals(user.getEmail())) {
+                                //Log.d("email",snapDoc.getString("toUser")+" "+user.getEmail());
+                                notificationsList.add(new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"), snapDoc.getString("fromUser"),
+                                        snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
+                                        snapDoc.getBoolean("isRead"), snapDoc.getLong("timeAgo")));
+                            }
                         }
 
                         notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);
                         notificationsListView.setAdapter(notificationAdapter);
-                    }
-                });
+                    }});
+
+
     }
 }
