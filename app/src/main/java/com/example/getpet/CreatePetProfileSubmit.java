@@ -158,10 +158,21 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
 
+
                         tempRef = documentReference;
                         Log.d(TAG, "Profile Created Success");
                         upload(documentReference);
                         Toast.makeText(CreatePetProfileSubmit.this, transferredName + " is up for adoption!", Toast.LENGTH_SHORT).show();
+
+                        DocumentReference usersDocRef = fStore.collection("Users").document(user.getUserID());
+                        usersDocRef.update("PetsOwned", FieldValue.arrayUnion(tempRef.getId())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                user.adoptPet(tempRef.getId());
+
+                            }
+                        });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -175,7 +186,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 Map<String, Object> notify = new HashMap<>();
                 notify.put("fromUser", "fromUser");
                 notify.put("fromName",transferredName);
-                notify.put("toUser", user.getFirstName());
+                notify.put("toUser", user.getEmail());
                 notify.put("Message", "is up for adoption!");
                 notify.put("sourceID", tempRef);
                 notify.put("origin", "Pet Images");

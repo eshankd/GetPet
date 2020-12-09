@@ -33,16 +33,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/petprofile"
         android:textColor="#FFFFFF"
         android:textSize="45sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView15" />
+        app:layout_constraintBottom_toBottomOf="@id/textView15"
+        app:layout_constraintEnd_toEndOf="@id/textView15"
+        app:layout_constraintStart_toStartOf="@id/textView15"
+        app:layout_constraintTop_toTopOf="@id/textView15" />
 
     <TextView
         android:id="@+id/petName"
@@ -59,8 +57,8 @@
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="26dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
@@ -72,8 +70,8 @@
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="27dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat"
@@ -85,7 +83,7 @@
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="65dp"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
@@ -101,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/petdescription"
         android:textColor="#000000"
@@ -111,14 +109,17 @@
 
     <TextView
         android:id="@+id/petProfilePetBreed"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/montserrat"
         android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/petProfilePetGender" />
+        app:layout_constraintTop_toTopOf="@+id/textView20" />
 
     <TextView
         android:id="@+id/petDescription"
@@ -128,7 +129,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/textareaborder"
         android:fontFamily="@font/montserrat"
-        android:padding="10dp"
+        android:padding="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -149,15 +150,14 @@
 
     <TextView
         android:id="@+id/petProfilePetAge"
-        android:layout_width="42dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/petName" />
+        app:layout_constraintTop_toTopOf="@+id/textView17" />
 
     <Button
         android:id="@+id/viewinAR"
@@ -199,12 +199,12 @@
     <TextView
         android:id="@+id/petProfilePetGender"
         android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/petProfilePetAge" />
+        app:layout_constraintTop_toTopOf="@+id/textView21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

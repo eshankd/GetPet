@@ -256,7 +256,7 @@ public class petprofileview extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error adding post");
+                    Log.w(TAG, "Error");
                 }
             });
 
