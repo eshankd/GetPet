@@ -114,4 +114,17 @@
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:srcCompat="@drawable/findahome" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/montserrat"
+        android:text="A GetPet Company                                                Contact us at contact@getpet.com"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
