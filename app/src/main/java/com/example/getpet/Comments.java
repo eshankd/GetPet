@@ -30,6 +30,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+//The Comments class is responsible for handling the functionality behind the acitivity that allows the user to add a comment on a specific post from the storyboard
+
 public class Comments extends AppCompatActivity {
 
     private ImageView postPic;
@@ -46,8 +48,6 @@ public class Comments extends AppCompatActivity {
     private String image;
 
     BottomNavigationView navBar;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class Comments extends AppCompatActivity {
         storageRef = storage.getReference();
         user = User.getInstance();
 
+        //navigation bar that is present throughout the app
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.toString()) {
                 case "Storyboard":
@@ -104,6 +105,7 @@ public class Comments extends AppCompatActivity {
         postComment();
     }
 
+    //Function that contains an onClickListener for the submit comment button that takes the entered data and updates the db and notifies the respective user
     private void postComment() {
 
         String toUserEmail = "";

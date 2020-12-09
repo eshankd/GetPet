@@ -19,6 +19,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+//The AdoptFoster class is responsible for handling the functionality of the activity that acts as the home screen
+//On this page the user can navigate to anywhere in the app
+
 public class AdoptFoster extends AppCompatActivity {
 
     BottomNavigationView navBar;
@@ -36,6 +39,7 @@ public class AdoptFoster extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
+        //navigation bar that is present throughout the app
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch(item.toString()) {
                 case "Storyboard":
@@ -61,6 +65,7 @@ public class AdoptFoster extends AppCompatActivity {
         setupUser();
     }
 
+    //Function that contains an onClickListener for the adoptFoster button that begins the adopting/fostering process
     private void adoptFoster(){
         Button adoptFoster = findViewById(R.id.adoptfoster);
         adoptFoster.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +76,7 @@ public class AdoptFoster extends AppCompatActivity {
         });
     }
 
+    //Function that contains an onClickListener for the findAHome button that begins the process for the user to put up their pet for adoption
     private void findAHome(){
         Button findahome = findViewById(R.id.findahome);
         findahome.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +95,7 @@ public class AdoptFoster extends AppCompatActivity {
         });
     }
 
+    //Function that setups the User singleton that stores the users information and holds it for global use throughout the application
     private void setupUser()    {
         FirebaseUser firebaseUser = auth.getCurrentUser();
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
@@ -115,6 +122,7 @@ public class AdoptFoster extends AppCompatActivity {
         }
     }
 
+//    Function that signs out the user and returns them to the sign in page
     @Override
     public void onBackPressed() {
         super.onBackPressed();

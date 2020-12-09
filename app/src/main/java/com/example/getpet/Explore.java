@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+//The Comments class is responsible for handling the functionality behind the acitivity that allows the user to add a comment on a specific post from the storyboard
+
 public class Explore extends AppCompatActivity {
 
     BottomNavigationView navBar;
@@ -21,6 +23,7 @@ public class Explore extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.explore));
 
+        //navigation bar that is present throughout the app
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.toString()) {
                 case "Storyboard":
@@ -49,28 +52,12 @@ public class Explore extends AppCompatActivity {
         petlovers();
         allGrooming();
         allHotels();
-
-
-//        searchView = (SearchView) findViewById(R.id.searchView);
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                webView.loadUrl("https://www.google.come/search?q= "+ searchView.getQuery());
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
-
     }
 
 
 
 
-
+    //Function that contains an onClick Event that navigates to the selected items relevant data
     private void afroPets() {
 
         ImageView afroPetsImage = findViewById(R.id.afroPets);
@@ -86,6 +73,7 @@ public class Explore extends AppCompatActivity {
         });
     }
 
+    //Function that contains an onClick Event that navigates to the selected items relevant data
     private void shampooch() {
 
         ImageView shampooch = findViewById(R.id.shampooch);
@@ -101,6 +89,7 @@ public class Explore extends AppCompatActivity {
         });
     }
 
+    //Function that contains an onClick Event that navigates to the selected items relevant data
     private void cityvetclinic() {
 
         ImageView cityvetclinic = findViewById(R.id.cityvetclinic);
@@ -116,6 +105,7 @@ public class Explore extends AppCompatActivity {
         });
     }
 
+    //Function that contains an onClick Event that navigates to the selected items relevant data
     private void petlovers() {
 
         ImageView petlovers = findViewById(R.id.petlovers);
@@ -131,6 +121,7 @@ public class Explore extends AppCompatActivity {
         });
     }
 
+    //Function that contains an onClick Event that navigates to the selected items relevant data
     private void allGrooming(){
 
         ImageView allGrooming = findViewById(R.id.allGrooming);
@@ -146,6 +137,7 @@ public class Explore extends AppCompatActivity {
         });
     }
 
+    //Function that contains an onClick Event that navigates to the selected items relevant data
     private void allHotels(){
 
         ImageView allHotels = findViewById(R.id.allHotels);
@@ -159,12 +151,5 @@ public class Explore extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
-
-
-
     }
-
-
 }

@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//The FilterBy class is responsible for handling the functionality behind the activity that collects the criteria to query the pets db with from the user
+
 public class FilterBy extends AppCompatActivity {
 
     BottomNavigationView navBar;
@@ -43,6 +45,7 @@ public class FilterBy extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         user = User.getInstance();
 
+        //navigation bar that is present throughout the app
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.toString()) {
                 case "Storyboard":
@@ -86,6 +89,7 @@ public class FilterBy extends AppCompatActivity {
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, type);
         typeSpinnerIn.setAdapter(typeAdapter);
 
+        //function that populates the breed spinner depending on what type of pet is chosen by the user
         typeSpinnerIn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -195,6 +199,7 @@ public class FilterBy extends AppCompatActivity {
         searchByFilter();
     }
 
+    //Function that submits the criteria that the user has selected
     private void searchByFilter(){
         Button search = findViewById(R.id.search);
         search.setOnClickListener(v -> {

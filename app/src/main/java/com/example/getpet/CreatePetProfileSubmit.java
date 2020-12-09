@@ -1,9 +1,5 @@
 package com.example.getpet;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,19 +26,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+
+//The CreatePetProfileSubmit class is responsible for handling the functionality behind the activity that is the second part in the upload pet profile sequence
 
 public class CreatePetProfileSubmit extends AppCompatActivity {
-
 
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
@@ -64,8 +56,6 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
     private byte[] byteArray;
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +69,9 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+        mCalendarView = findViewById(R.id.calendarView);
 
-
-
+        //navigation bar that is present throughout the app
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
@@ -107,7 +96,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
             return true;
         });
 
-
+        
         mCalendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             dayIn = dayOfMonth;
             monthIn = month;
@@ -121,7 +110,8 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
         submitForm();
     }
-
+    
+//    Function that contains and onClickListener for the submit button that takes all the input data and sends it to the db
     private void submitForm() {
 
         Button submit = findViewById(R.id.submitPetProfile);
@@ -210,6 +200,7 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
 
     }
 
+    //Function that uploads the selected image to the db that is associated with the pet that is created
     private void upload(DocumentReference docRef){
 
         StorageReference storyThumbRef = storageRef.child("Pet Images/" + docRef.getId() + ".jpg");

@@ -28,6 +28,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+//The Comments class is responsible for handling the functionality behind the acitivity that allows the user to add a comment on a specific post from the storyboard
+
 public class CreatePetProfile1 extends AppCompatActivity {
 
 
@@ -47,6 +49,7 @@ public class CreatePetProfile1 extends AppCompatActivity {
 
     boolean picUp;
 
+    //Function that launches the gallery app to choose which image to use for the pets picture
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -83,6 +86,7 @@ public class CreatePetProfile1 extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        //navigation bar that is present throughout the app
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId(R.id.adopt);
 
@@ -112,6 +116,7 @@ public class CreatePetProfile1 extends AppCompatActivity {
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, type);
         typeSpinnerIn.setAdapter(typeAdapter);
 
+        //function that populates the breed spinner depending on what type of pet is chosen by the user
         typeSpinnerIn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -167,11 +172,11 @@ public class CreatePetProfile1 extends AppCompatActivity {
 
             }
         });
-
         nextForm();
         choose();
     }
 
+//    Function that contains an onClickListener
     public void nextForm(){
 
         petName = findViewById(R.id.petNameIn);
@@ -206,6 +211,7 @@ public class CreatePetProfile1 extends AppCompatActivity {
         });
     }
 
+    //Function that contains onClickListener for choose Image button that allows the user to select an image from their phone storage to upload
     private void choose(){
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
@@ -226,6 +232,7 @@ public class CreatePetProfile1 extends AppCompatActivity {
         });
     }
 
+    //Function that loads the image the user selects from local storage
     private void openFileChosen(Intent data) throws FileNotFoundException {
 
         InputStream inputStream = getContentResolver().openInputStream(data.getData());

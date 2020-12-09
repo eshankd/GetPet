@@ -38,6 +38,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//The Add story class is responsible for handling the functionality of the activity that allows a user to add a story to the main feed
+
 public class AddStory extends AppCompatActivity {
 
     private EditText captionIn;
@@ -52,6 +55,7 @@ public class AddStory extends AppCompatActivity {
     private String TAG = "AddStory";
     private User user;
 
+    //gets data from the previous activity to be used in the current activity
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -87,6 +91,7 @@ public class AddStory extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
+        //navigation bar that is present throughout the app
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -114,6 +119,7 @@ public class AddStory extends AppCompatActivity {
         choose();
     }
 
+    //Function that contains an onClick listener for the post story button
     private void postStory() {
 
         Button postStoryButton = findViewById(R.id.post);
@@ -124,6 +130,7 @@ public class AddStory extends AppCompatActivity {
 
             Long time = Calendar.getInstance().getTimeInMillis();
 
+
             CollectionReference docref = fStore.collection("Posts");
             Map<String, Object> post = new HashMap<>();
             post.put("Caption", caption);
@@ -133,7 +140,7 @@ public class AddStory extends AppCompatActivity {
             post.put("timeStamp", FieldValue.serverTimestamp());
             post.put("timeAgo", time);
 
-
+            //Adding the post to the firestore db
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
@@ -147,11 +154,11 @@ public class AddStory extends AppCompatActivity {
                 }
             });
 
-            startActivity(new Intent(AddStory.this, Storyboard.class));
+            finish();
         });
     }
 
-
+    //Function that contains the onClickListener to begin the upload process for post image
     private void choose(){
 
         chooseImage.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +179,7 @@ public class AddStory extends AppCompatActivity {
         });
     }
 
+    //Function that loads the selected image into the app context
     private void openFileChosen(Intent data) throws FileNotFoundException {
         InputStream inputStream = getContentResolver().openInputStream(data.getData());
         bitmap = BitmapFactory.decodeStream(inputStream);

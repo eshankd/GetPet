@@ -21,6 +21,8 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 
+//The ARView class is responsible for handling the functionality behind the arView page that allows the user to see the selected pet augmented into their household
+
 public class ARView extends AppCompatActivity {
 
     @Override
@@ -51,6 +53,7 @@ public class ARView extends AppCompatActivity {
 
         });
 
+//        Function that handles a users input on the plane for the model to be augmented on to
         arFragment.setOnTapArPlaneListener(((hitResult, plane, motionEvent) -> {
 
             AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
@@ -84,7 +87,7 @@ public class ARView extends AppCompatActivity {
 
         }
 
-
+    //Function that contains an onClickListener to return to the previous activity
     private void goBackToProfile(){
         TextView gobacktoprofile = findViewById(R.id.gobacktoprofile);
         gobacktoprofile.setOnClickListener(v -> finish());

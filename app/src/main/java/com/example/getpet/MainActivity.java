@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+//The MainActivity class is responsible for handling the functionality behind the activity that the user sees when they are presented with the option to sign in, sign up, or log in as a guest
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText emailIN;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-
+    //Function that contains the onClickListener to submit the login details entered by the user and validates the login
     private void login() {
 
         Button loginBTN = findViewById(R.id.login);
@@ -69,17 +71,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Function that validates input from user
     private boolean validateForm(String email, String password) {
         if(email == null || email.trim().isEmpty())
             return false;
         return password != null && !password.trim().isEmpty();
     }
 
+    //Function that allows the user to login as a guest with limited functionality
     private void loginAsGuest(){
         TextView loginAsGuest = findViewById(R.id.loginasguest);
         loginAsGuest.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AdoptFoster.class)));
     }
 
+    //Function that takes the user to the signup page
     private void signUp(){
         Button signUp = findViewById(R.id.signup);
         signUp.setOnClickListener(new View.OnClickListener() {
