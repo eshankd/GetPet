@@ -135,7 +135,7 @@ public class Comments extends AppCompatActivity {
 
                 Map<String, Object> commentData = new HashMap<>();
                 commentData.put("Message", comment);
-                commentData.put("fromName", user.getFullName()+" commented");
+                commentData.put("fromName", user.getFirstName()+" commented");
                 commentData.put("fromUser", user.getEmail());
                 commentData.put("toUser", finalToUserEmail);
                 commentData.put("timeStamp", FieldValue.serverTimestamp());
