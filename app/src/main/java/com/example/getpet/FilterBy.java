@@ -23,6 +23,8 @@ import java.util.Map;
 
 public class FilterBy extends AppCompatActivity {
 
+
+    // declaring variables to be used in the functions below
     BottomNavigationView navBar;
     String typeChosen, breedChosen, genderChosen, AdoptFosterChosen;
     int ageChosen;
@@ -45,7 +47,6 @@ public class FilterBy extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         user = User.getInstance();
 
-        //navigation bar that is present throughout the app
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.toString()) {
                 case "Storyboard":
@@ -89,7 +90,6 @@ public class FilterBy extends AppCompatActivity {
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, type);
         typeSpinnerIn.setAdapter(typeAdapter);
 
-        //function that populates the breed spinner depending on what type of pet is chosen by the user
         typeSpinnerIn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -199,7 +199,6 @@ public class FilterBy extends AppCompatActivity {
         searchByFilter();
     }
 
-    //Function that submits the criteria that the user has selected
     private void searchByFilter(){
         Button search = findViewById(R.id.search);
         search.setOnClickListener(v -> {

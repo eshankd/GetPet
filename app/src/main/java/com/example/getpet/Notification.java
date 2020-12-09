@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class Notification extends AppCompatActivity {
 
+
+    // declaring all the variables to be used by the functions below
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
     User user;
@@ -59,6 +61,8 @@ public class Notification extends AppCompatActivity {
         loadNotifications();
     }
 
+
+    //function that loads all the notifications in th notifications activity inflating the listView
     private void loadNotifications() {
 
         fStore.collection("Notifications2").orderBy("timeStamp", Query.Direction.DESCENDING)

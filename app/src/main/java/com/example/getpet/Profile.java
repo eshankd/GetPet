@@ -45,6 +45,8 @@ import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
 
+
+    // delcaring all the variables being used in the below functions
     BottomNavigationView navBar;
     private FirebaseAuth auth;
     private FirebaseFirestore fStore;
@@ -67,16 +69,13 @@ public class Profile extends AppCompatActivity {
     private Button editUserPicBtn;
 
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        try {
-                            openFileChosen(data);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK){
+                    Intent data = result.getData();
+                    try {
+                        openFileChosen(data);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
                 }
             }
@@ -120,11 +119,16 @@ public class Profile extends AppCompatActivity {
             return true;
         });
 
+
+        // assigning the variables created to design layout ID's
         nameOUT = findViewById(R.id.userProfileFName);
         emailOUT = findViewById(R.id.userProfileEmail);
         profilePictureOut = findViewById(R.id.imageView9);
         petsOwnedOUT = findViewById(R.id.petsOwnedOut);
 
+
+
+        // checks if used is guest or not to set restrictions to certain features of the application
         if (user.getPetsOwned() == -1){
             nameOUT.setText(user.getFullName());
             emailLabel = findViewById(R.id.emailLabel);
@@ -139,7 +143,7 @@ public class Profile extends AppCompatActivity {
             loginButton.setVisibility(View.GONE);
 
 
-
+// getting the file to upload on the user profile
             final File localFile;
             try {
                 localFile = File.createTempFile(user.getUserID(), "jpg");
@@ -157,6 +161,7 @@ public class Profile extends AppCompatActivity {
         editUserPicButton();
     }
 
+    // allows the user to add a profile picture on their profile page
     private void editUserPicButton() {
         editUserPicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +180,7 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-
+// Function that allows the user to open a file from their device and upload it as their profile picture
     private void openFileChosen(Intent data) throws FileNotFoundException {
 
         InputStream inputStream = getContentResolver().openInputStream(data.getData());
@@ -186,36 +191,22 @@ public class Profile extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byteArray = stream.toByteArray();
 
-//        picUp = true;
-
         UploadTask uploadTask = userPicRef.putBytes(byteArray);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Picture not uploaded");
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d(TAG, "Picture uploaded");
-            }
-        });
+        uploadTask.addOnFailureListener(e -> Log.d(TAG, "Picture not uploaded"))
+                .addOnSuccessListener(taskSnapshot -> Log.d(TAG, "Picture uploaded"));
     }
 
-
+    // Signout function that lets the user signout of their account
     private void signOut() {
         Button signOutBTN = findViewById(R.id.signOut);
-        signOutBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth.signOut();
-                user.reset();
-                startActivity(new Intent(Profile.this, MainActivity.class));
-                Toast.makeText(Profile.this, "Successfully signed out", Toast.LENGTH_SHORT).show();
-            }
+        signOutBTN.setOnClickListener(v -> {
+            auth.signOut();
+            user.reset();
+            startActivity(new Intent(Profile.this, MainActivity.class));
+            Toast.makeText(Profile.this, "Successfully signed out", Toast.LENGTH_SHORT).show();
         });
     }
-
+// function that lets the user login to the application
     private void loginButton() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

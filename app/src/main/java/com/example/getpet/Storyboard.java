@@ -33,6 +33,8 @@ import java.util.Map;
 
 public class Storyboard extends AppCompatActivity {
 
+
+    // declaring all the variables being used in the code
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
 
@@ -53,60 +55,54 @@ public class Storyboard extends AppCompatActivity {
         navBar = findViewById(R.id.bottom_navbar);
         navBar.setSelectedItemId((R.id.storyboard));
 
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.toString()) {
-                    case "Storyboard":
-                        break;
-                    case "Explore":
-                        startActivity(new Intent(Storyboard.this, Explore.class));
-                        break;
-                    case "Adopt":
-                        startActivity(new Intent(Storyboard.this, AdoptFoster.class));
-                        break;
-                    case "Notifications":
-                        startActivity(new Intent(Storyboard.this, Notification.class));
-                        break;
-                    case "Profile":
-                        startActivity(new Intent(Storyboard.this, Profile.class));
-                        break;
-                }
-                return true;
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.toString()) {
+                case "Storyboard":
+                    break;
+                case "Explore":
+                    startActivity(new Intent(Storyboard.this, Explore.class));
+                    break;
+                case "Adopt":
+                    startActivity(new Intent(Storyboard.this, AdoptFoster.class));
+                    break;
+                case "Notifications":
+                    startActivity(new Intent(Storyboard.this, Notification.class));
+                    break;
+                case "Profile":
+                    startActivity(new Intent(Storyboard.this, Profile.class));
+                    break;
             }
+            return true;
         });
 
 
         addStory();
         LoadPosts();
     }
-
+// Function that loads all the posts in the inflater for the user to view
     private void LoadPosts() {
         fStore.collection("Posts").orderBy("timeStamp", Query.Direction.DESCENDING)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        int count = queryDocumentSnapshots.size();
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    int count = queryDocumentSnapshots.size();
 
-                        ArrayList <StoryboardObject> postsList = new ArrayList<>();
-                        postsListView = findViewById(R.id.storyboardList);
+                    ArrayList <StoryboardObject> postsList = new ArrayList<>();
+                    postsListView = findViewById(R.id.storyboardList);
 
-                        for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
-                            ArrayList<String> usersLiked;
-                            usersLiked = (ArrayList<String>) snapDoc.get("Likes");
-                            postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"),
-                                    snapDoc.getString("userEmail"), usersLiked, usersLiked.contains(user.getEmail()), snapDoc.getLong("timeAgo")));
-                        }
-
-                        storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);
-                        postsListView.setAdapter(storyboardAdapter);
-
+                    for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
+                        ArrayList<String> usersLiked;
+                        usersLiked = (ArrayList<String>) snapDoc.get("Likes");
+                        postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"),
+                                snapDoc.getString("userEmail"), usersLiked, usersLiked.contains(user.getEmail()), snapDoc.getLong("timeAgo")));
                     }
+
+                    storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);
+                    postsListView.setAdapter(storyboardAdapter);
+
                 });
 
     }
-
+// function that takes the user to the "Add story" page to post a story along with an image
     private void addStory() {
 
         if(user.getPetsOwned() == -1)
@@ -117,14 +113,11 @@ public class Storyboard extends AppCompatActivity {
 
 
         FloatingActionButton addStory = findViewById(R.id.addStory);
-        addStory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(user.getPetsOwned()==-1)
-                    Toast.makeText(Storyboard.this,"Please Login to add a story",Toast.LENGTH_SHORT).show();
-                else
-                    startActivity(new Intent(Storyboard.this, AddStory.class));
-            }
+        addStory.setOnClickListener(v -> {
+            if(user.getPetsOwned()==-1)
+                Toast.makeText(Storyboard.this,"Please Login to add a story",Toast.LENGTH_SHORT).show();
+            else
+                startActivity(new Intent(Storyboard.this, AddStory.class));
         });
     }
 

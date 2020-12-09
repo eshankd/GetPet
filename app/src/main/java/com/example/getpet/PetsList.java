@@ -20,6 +20,8 @@ import java.util.Map;
 
 public class PetsList extends AppCompatActivity {
 
+
+    //declaring variables to be used in the below functions
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
     private ListView petListView;
@@ -62,6 +64,9 @@ public class PetsList extends AppCompatActivity {
             }
             return true;
         });
+
+
+        //declared variables being assigned intents gotten from other activities
         transferredBreed = getIntent().getStringExtra("breed");
         transferredAge = getIntent().getIntExtra("age",0);
         transferredGender = getIntent().getStringExtra("gender");
@@ -80,7 +85,7 @@ public class PetsList extends AppCompatActivity {
         LoadPets();
     }
 
-
+// loads the pets for the user to see after filtering
     private void LoadPets() {
 
         Query docref = fStore.collection("Pets");
@@ -101,28 +106,32 @@ public class PetsList extends AppCompatActivity {
 
                     for(DocumentSnapshot snapDoc : queryDocumentSnapshots){
 
-                        petList.add(new PetObject(snapDoc.getId(), snapDoc.getString("Name"),snapDoc.getString("userEmail"), snapDoc.getString("Type"), snapDoc.getString("Breed"), snapDoc.getString("Gender"), snapDoc.getLong("Age").intValue(), snapDoc.getString("Description")));
+                        petList.add(new PetObject(snapDoc.getId(),
+                                snapDoc.getString("Name"),
+                                snapDoc.getString("userEmail"),
+                                snapDoc.getString("Type"),
+                                snapDoc.getString("Breed"),
+                                snapDoc.getString("Gender"),
+                                snapDoc.getLong("Age").intValue(),
+                                snapDoc.getString("Description")));
                 }
 
 
                 petAdapter = new PetObjectAdapter(PetsList.this, petList);
                 petListView.setAdapter(petAdapter);
 
-                petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PetObject obj = petList.get(position);
+                petListView.setOnItemClickListener((parent, view, position, id) -> {
+                    PetObject obj = petList.get(position);
 
-                        Intent toPetProfile = new Intent(PetsList.this, petprofileview.class);
-                        toPetProfile.putExtra("petName", obj.getName());
-                        toPetProfile.putExtra("petAge", obj.getAge());
-                        toPetProfile.putExtra("petGender", obj.getGender());
-                        toPetProfile.putExtra("petBreed", obj.getBreed());
-                        toPetProfile.putExtra("petDescription" , obj.getDescription());
-                        toPetProfile.putExtra("petID", obj.getPetID());
-                        toPetProfile.putExtra("userEmail",obj.getUserEmail());
-                        startActivity(toPetProfile);
-                    }
+                    Intent toPetProfile = new Intent(PetsList.this, petprofileview.class);
+                    toPetProfile.putExtra("petName", obj.getName());
+                    toPetProfile.putExtra("petAge", obj.getAge());
+                    toPetProfile.putExtra("petGender", obj.getGender());
+                    toPetProfile.putExtra("petBreed", obj.getBreed());
+                    toPetProfile.putExtra("petDescription" , obj.getDescription());
+                    toPetProfile.putExtra("petID", obj.getPetID());
+                    toPetProfile.putExtra("userEmail",obj.getUserEmail());
+                    startActivity(toPetProfile);
                 });
 
             });

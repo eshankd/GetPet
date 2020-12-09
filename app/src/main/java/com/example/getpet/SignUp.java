@@ -40,6 +40,8 @@ import static java.lang.String.valueOf;
 
 public class SignUp extends AppCompatActivity {
 
+
+    //declaring all the variables being used in the code
     private FirebaseAuth auth;
     private FirebaseFirestore fStore;
     private String TAG = "Signup";
@@ -62,7 +64,7 @@ public class SignUp extends AppCompatActivity {
         signup();
     }
 
-
+// Function that lets the user signup with thier details and create an account
     private void signup() {
         Button signupBTN = findViewById(R.id.signup);
 
@@ -74,7 +76,6 @@ public class SignUp extends AppCompatActivity {
             confirmPassword = findViewById(R.id.confirmPassword);
             notMatch = findViewById(R.id.notMatch);
 
-
             if (!passwordIn.getText().toString().equals(confirmPassword.getText().toString())) {
                 notMatch.setText("Passwords do not match!");
             }
@@ -84,7 +85,6 @@ public class SignUp extends AppCompatActivity {
                 notMatch.setText("Please fill in all the details");
             }
 
-
             else {
 
                 final String email = emailIn.getText().toString();
@@ -92,37 +92,29 @@ public class SignUp extends AppCompatActivity {
                 final String fName = fNameIn.getText().toString();
                 final String lName = lNameIn.getText().toString();
 
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
-                            userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                            DocumentReference docref = fStore.collection("Users").document(userid);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("FirstName", fName);
-                            user.put("LastName", lName);
-                            user.put("Email", email);
-                            user.put("PetsOwned", new ArrayList<>());
-                            docref.set(user).addOnSuccessListener(aVoid -> Log.d(TAG, "onSuccess: user Profile is created for " + userid)).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Profile not created");
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUp.this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignUp.this, "Account successfully created", Toast.LENGTH_SHORT).show();
+                        userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                        DocumentReference docref = fStore.collection("Users").document(userid);
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("FirstName", fName);
+                        user.put("LastName", lName);
+                        user.put("Email", email);
+                        user.put("PetsOwned", new ArrayList<>());
+                        docref.set(user).addOnSuccessListener(aVoid -> Log.d(TAG, "onSuccess: user Profile is created for " + userid)).addOnFailureListener(e -> Log.w(TAG, "Profile not created"));
+                        startActivity(new Intent(SignUp.this, AdoptFoster.class));
+                    } else {
+                        Query emailQuery = fStore.collection("Users").whereEqualTo("Email", email);
+                        emailQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(SignUp.this, "Email-ID already in use", Toast.LENGTH_SHORT).show();
                                 }
-                            });
-                            startActivity(new Intent(SignUp.this, AdoptFoster.class));
-                        } else {
-                            Query emailQuery = fStore.collection("Users").whereEqualTo("Email", email);
-                            emailQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(SignUp.this, "Email-ID already in use", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                            }
+                        });
 
-                        }
                     }
                 });
 
