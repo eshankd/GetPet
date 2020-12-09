@@ -108,6 +108,14 @@ public class Storyboard extends AppCompatActivity {
     }
 
     private void addStory() {
+
+        if(user.getPetsOwned() == -1)
+        {
+            Toast.makeText(this, "Please Login to add a Story", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         FloatingActionButton addStory = findViewById(R.id.addStory);
         addStory.setOnClickListener(new View.OnClickListener() {
             @Override
