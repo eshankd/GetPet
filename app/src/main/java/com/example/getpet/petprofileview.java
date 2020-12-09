@@ -31,6 +31,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -209,8 +210,8 @@ public class petprofileview extends AppCompatActivity {
             });
 
 
-
-            CollectionReference docref = fStore.collection("Notifications");
+            Long time = Calendar.getInstance().getTimeInMillis();
+            CollectionReference docref = fStore.collection("Notifications2");
             Map<String, Object> post = new HashMap<>();
             post.put("fromUser", user.getEmail());
             post.put("fromName",user.getFullName());
@@ -220,6 +221,7 @@ public class petprofileview extends AppCompatActivity {
             post.put("origin", "Pet Images");
             post.put("isRead", false);
             post.put("timeStamp", FieldValue.serverTimestamp());
+            post.put("timeAgo", time);
 
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -245,6 +247,7 @@ public class petprofileview extends AppCompatActivity {
             postto.put("origin", "Pet Images");
             postto.put("isRead", false);
             postto.put("timeStamp", FieldValue.serverTimestamp());
+            postto.put("timeAgo", time);
 
 
             docref.add(postto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

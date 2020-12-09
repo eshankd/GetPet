@@ -44,7 +44,10 @@ public class StoryboardObject {
         Long currentTime = Calendar.getInstance().getTimeInMillis();
         Log.d("time", currentTime.toString()+" "+time.toString());
         long difference = (currentTime-time)/(1000*60*60);
-        return Long.toString(difference);
+        if (difference==0)
+            return("Just now");
+        else
+            return (Long.toString(difference)+"h ago");
     }
 
     public int getLikes() { return likes; }

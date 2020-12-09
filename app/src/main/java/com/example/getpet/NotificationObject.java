@@ -1,16 +1,21 @@
 package com.example.getpet;
 
+import android.util.Log;
+
+import java.util.Calendar;
+
 public class NotificationObject {
 
         String fromUser,toUser,fromName;
-        String time;
         String notification;
         String sourceID;
         String origin;
         boolean isRead;
         String notifID;
+        Long time;
 
-        public NotificationObject(String notifID,  String fromName, String fromUser, String toUser,String notification, String sourceID, String origin, boolean isRead) {
+        public NotificationObject(String notifID,  String fromName, String fromUser, String toUser,String notification, String sourceID, String origin, boolean isRead,
+                                  Long time) {
             this.notifID = notifID;
             this.fromUser = fromUser;
             this.fromName = fromName;
@@ -19,7 +24,18 @@ public class NotificationObject {
             this.sourceID = sourceID;
             this.origin = origin;
             this.isRead = isRead;
+            this.time = time;
         }
+
+    public String getTime() {
+        Long currentTime = Calendar.getInstance().getTimeInMillis();
+        Log.d("time", currentTime.toString()+" "+time.toString());
+        long difference = (currentTime-time)/(1000*60*60);
+        if (difference==0)
+            return("Just now");
+        else
+            return (Long.toString(difference)+"h ago");
+    }
 
         public String getNotifId() { return notifID; }
 

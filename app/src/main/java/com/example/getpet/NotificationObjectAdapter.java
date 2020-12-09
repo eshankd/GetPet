@@ -57,6 +57,9 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
             TextView notification = listItem.findViewById(R.id.notification);
 
+            TextView timeAgo = listItem.findViewById(R.id.notifTimeAgo);
+            timeAgo.setText(currentNotificationCard.getTime());
+
             if(!currentNotificationCard.getIsRead())
                 listItem.setBackgroundColor(Color.parseColor("#cbcbed"));
 
@@ -64,7 +67,7 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
             Log.d("notif",currentNotificationCard.getNotifId());
 
-            DocumentReference docRef = fStore.collection("Notifications").document(currentNotificationCard.getNotifId());
+            DocumentReference docRef = fStore.collection("Notifications2").document(currentNotificationCard.getNotifId());
             docRef.update("isRead", true);
 
             notification.setText(currentNotificationCard.getNotification());

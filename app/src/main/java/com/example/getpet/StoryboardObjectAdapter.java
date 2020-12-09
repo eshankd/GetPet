@@ -33,6 +33,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,7 +96,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
 
         TextView timeAgo = listItem.findViewById(R.id.timeAgo);
-        timeAgo.setText(currentStoryCard.getTime()+"h ago");
+        timeAgo.setText(currentStoryCard.getTime());
 
         likeBtn = listItem.findViewById(R.id.likePost);
         commentBtn =listItem.findViewById(R.id.commentPost);
@@ -140,6 +141,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                 }
 
                 if(!currentStoryCard.isLiked){
+                    Long time = Calendar.getInstance().getTimeInMillis();
                     docRef.update("Likes", FieldValue.arrayUnion(user.getEmail()));
                     localButton.setImageResource(R.drawable.heart1);
                     currentStoryCard.like();
@@ -151,7 +153,8 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
                     likeNotif.put("origin", "Storyboard Thumbnails");
                     likeNotif.put("isRead", false);
                     likeNotif.put("timeStamp", FieldValue.serverTimestamp());
-                    fStore.collection("Notifications").add(likeNotif);
+                    likeNotif.put("timeAgo", time);
+                    fStore.collection("Notifications2").add(likeNotif);
 
                 } else {
                     docRef.update("Likes", FieldValue.arrayRemove(user.getEmail()));
