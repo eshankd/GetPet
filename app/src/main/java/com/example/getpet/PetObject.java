@@ -1,6 +1,4 @@
 package com.example.getpet;
-import android.graphics.Bitmap;
-import android.widget.ImageView;
 
 public class PetObject {
 

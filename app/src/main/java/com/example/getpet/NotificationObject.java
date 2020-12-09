@@ -1,7 +1,5 @@
 package com.example.getpet;
 
-import android.util.Log;
-
 import java.util.Calendar;
 
 public class NotificationObject {
@@ -28,7 +26,6 @@ public class NotificationObject {
         //function to get the time of when the notification is being received.
     public String getTime() {
         Long currentTime = Calendar.getInstance().getTimeInMillis();
-        Log.d("time", currentTime.toString()+" "+time.toString());
         long difference = (currentTime-time)/(1000*60*60);
         if (difference==0)
             return("Just now");

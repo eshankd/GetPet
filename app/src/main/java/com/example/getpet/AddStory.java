@@ -9,23 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,7 +35,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,8 +87,6 @@ public class AddStory extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-
-
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -121,7 +110,6 @@ public class AddStory extends AppCompatActivity {
                 return true;
             }
         });
-
         postStory();
         choose();
     }
@@ -151,7 +139,6 @@ public class AddStory extends AppCompatActivity {
                 public void onSuccess(DocumentReference documentReference) {
                     if(picUp)
                         upload(documentReference);
-                    Log.d(TAG, "Story added");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -186,7 +173,6 @@ public class AddStory extends AppCompatActivity {
     }
 
     private void openFileChosen(Intent data) throws FileNotFoundException {
-
         InputStream inputStream = getContentResolver().openInputStream(data.getData());
         bitmap = BitmapFactory.decodeStream(inputStream);
         postImage.setImageBitmap(bitmap);
@@ -196,7 +182,6 @@ public class AddStory extends AppCompatActivity {
 
 
     private void upload(DocumentReference docRef){
-
         StorageReference storyThumbRef = storageRef.child("Storyboard Thumbnails/" + docRef.getId() + ".jpg");
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -207,14 +192,11 @@ public class AddStory extends AppCompatActivity {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Picture not uploaded");
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d(TAG, "Picture uploaded");
             }
         });
     }
-
 }

@@ -3,14 +3,11 @@ package com.example.getpet;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.math.Vector3;
@@ -18,7 +15,6 @@ import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -90,7 +86,6 @@ public class ARView extends AppCompatActivity {
 
 
     private void goBackToProfile(){
-
         TextView gobacktoprofile = findViewById(R.id.gobacktoprofile);
         gobacktoprofile.setOnClickListener(v -> finish());
     }

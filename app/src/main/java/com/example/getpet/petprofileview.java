@@ -1,6 +1,5 @@
 package com.example.getpet;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -95,7 +94,6 @@ public class petprofileview extends AppCompatActivity {
 
         //opening storage to get the images to be posted for the pet profile
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        Log.d("petID", transferredPetID);
         StorageReference reference = storage.getReference().child("Pet Images/" + transferredPetID + ".jpg");
 
         final File localFile;

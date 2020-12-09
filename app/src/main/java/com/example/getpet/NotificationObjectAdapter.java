@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +65,7 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
             if(!currentNotificationCard.getIsRead())
                 listItem.setBackgroundColor(Color.parseColor("#cbcbed"));
 
+
             DocumentReference docRef = fStore.collection("Notifications2").document(currentNotificationCard.getNotifId());
             docRef.update("isRead", true);
 
@@ -86,4 +85,4 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
         return listItem;
     }
-    }
+}

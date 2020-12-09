@@ -1,11 +1,5 @@
 package com.example.getpet;
 
-import android.util.Log;
-
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ServerTimestamp;
-
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -48,7 +42,6 @@ public class StoryboardObject {
     //Function that gets the time of the post so it can register the time it had been posted.
     public String getTime() {
         Long currentTime = Calendar.getInstance().getTimeInMillis();
-        Log.d("time", currentTime.toString()+" "+time.toString());
         long difference = (currentTime-time)/(1000*60*60);
         if (difference==0)
             return("Just now");

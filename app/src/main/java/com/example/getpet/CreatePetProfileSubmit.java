@@ -8,10 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -158,9 +155,10 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 docref.add(petProfile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
+                        Log.d("debug123", "deubg123");
 
                         tempRef = documentReference;
+
                         Log.d(TAG, "Profile Created Success");
                         upload(documentReference);
                         Toast.makeText(CreatePetProfileSubmit.this, transferredName + " is up for adoption!", Toast.LENGTH_SHORT).show();
@@ -189,32 +187,20 @@ public class CreatePetProfileSubmit extends AppCompatActivity {
                 notify.put("fromName",transferredName);
                 notify.put("toUser", user.getEmail());
                 notify.put("Message", "is up for adoption!");
-                notify.put("sourceID", tempRef);
+                if(tempRef == null)
+                    Log.d("Errorhere", "Errorhere");
+                else
+                    notify.put("sourceID", tempRef.getId());
                 notify.put("origin", "Pet Images");
                 notify.put("isRead", false);
                 notify.put("timeStamp", FieldValue.serverTimestamp());
                 notify.put("timeAgo", time);
 
-
-                notificationCollection.add(notify).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-
-                        Log.d(TAG, "Notification Sent!");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding post");
-                    }
-                });
-
+                notificationCollection.add(notify);
 
                 String userID  = (auth.getCurrentUser()).getUid();
                 DocumentReference docRef = fStore.collection("Pets").document(userID);
                 docRef.update("Pets Owned", FieldValue.arrayUnion(user.getEmail()));
-
-
 
                 startActivity(new Intent(CreatePetProfileSubmit.this, AdoptFoster.class));
             }

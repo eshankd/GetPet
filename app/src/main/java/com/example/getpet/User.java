@@ -2,6 +2,9 @@ package com.example.getpet;
 
 import java.util.ArrayList;
 
+// User class that is created once the user lands on the homepage for the first time
+// Either contains user data or numPetsOwned = -1 for guest Users
+
 public class User {
 
     private String userID;
@@ -15,12 +18,14 @@ public class User {
 
     private static User single_instance = null;
 
+//    Default constructor
     User () {
         fName = "Guest";
         lName = "User";
         numPetsOwned = -1;
     }
 
+//    Function called when user signs out
     public void reset(){
         fName = "Guest";
         lName = "User";
@@ -28,7 +33,7 @@ public class User {
     }
 
 
-
+//    Function to check if there is an existing instance of User
     public static User getInstance(){
         if (single_instance == null)
             single_instance = new User();
@@ -36,7 +41,8 @@ public class User {
         return single_instance;
     }
 
-    public void setData(String userID ,String fName, String lName, ArrayList<String> petsOwned, String email) {
+//    Function used to populate singleton on first initialization
+    public void setData(String userID ,String fName, String lNamee, ArrayList<String> petsOwned, String email) {
 
         this.userID =userID;
         this.fName = fName;
@@ -46,7 +52,7 @@ public class User {
         numPetsOwned = petsOwned.size();
     }
 
-    // Getter/setter
+    // Getters/setters
 
     public String getUserID(){return userID;}
 
@@ -70,6 +76,7 @@ public class User {
         return email;
     }
 
+//    Function called when a user adopts a pet to update the objects variables
     public void adoptPet(String pID) {
 
         petsOwned.add(pID);

@@ -1,7 +1,5 @@
 package com.example.getpet;
 
-import java.util.ArrayList;
-
 public class CommentObject {
 
     String message;
@@ -12,7 +10,6 @@ public class CommentObject {
         this.fromUser = fromUser;
         this.toUser = toUser;
         this.message = message;
-
     }
 
     public String getFromUser() {
