@@ -96,7 +96,7 @@ public class Storyboard extends AppCompatActivity {
                             ArrayList<String> usersLiked;
                             usersLiked = (ArrayList<String>) snapDoc.get("Likes");
                             postsList.add(new StoryboardObject(snapDoc.getId(), snapDoc.getString("Name"), snapDoc.getString("Caption"),
-                                    snapDoc.getString("userEmail"), usersLiked, usersLiked.contains(user.getEmail())));
+                                    snapDoc.getString("userEmail"), usersLiked, usersLiked.contains(user.getEmail()), snapDoc.getLong("timeAgo")));
                         }
 
                         storyboardAdapter = new StoryboardObjectAdapter(Storyboard.this, postsList);
@@ -117,7 +117,15 @@ public class Storyboard extends AppCompatActivity {
 
 
         FloatingActionButton addStory = findViewById(R.id.addStory);
-        addStory.setOnClickListener(v -> startActivity(new Intent(Storyboard.this, AddStory.class)));
+        addStory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user.getPetsOwned()==-1)
+                    Toast.makeText(Storyboard.this,"Please Login to add a story",Toast.LENGTH_SHORT).show();
+                else
+                    startActivity(new Intent(Storyboard.this, AddStory.class));
+            }
+        });
     }
 
 }

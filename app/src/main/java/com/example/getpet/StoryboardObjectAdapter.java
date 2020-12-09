@@ -29,6 +29,7 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
     private ImageView likeBtn;
     private ImageView commentBtn;
+    private Bitmap bitmap;
 
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
@@ -68,7 +70,6 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         StoryboardObject currentStoryCard = storyboardObjectList.get(position);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        //Log.d("postID", currentStoryCard.getPostID());
 
         StorageReference reference = storage.getReference().child("Storyboard Thumbnails/" + currentStoryCard.getPostID() + ".jpg");
 
@@ -77,13 +78,12 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
             localFile = File.createTempFile(currentStoryCard.getPostID(), "jpg");
             View finalListItem = listItem;
             reference.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
-                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                 ((ImageView) finalListItem.findViewById(R.id.postImage)).setImageBitmap(bitmap);
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         TextView userName = listItem.findViewById(R.id.userName);
         userName.setText(currentStoryCard.getName());
@@ -93,6 +93,9 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
         TextView likes = listItem.findViewById(R.id.likes);
         likes.setText(Integer.toString(currentStoryCard.getLikes()));
+
+        TextView timeAgo = listItem.findViewById(R.id.timeAgo);
+        timeAgo.setText(currentStoryCard.getTime()+"h ago");
 
         likeBtn = listItem.findViewById(R.id.likePost);
         commentBtn =listItem.findViewById(R.id.commentPost);
@@ -159,18 +162,22 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
             }
         });
 
-                    commentBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+        commentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user.getPetsOwned() == -1)
+                {
+                    Toast.makeText(mContext, "Please Login to comment on a post", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-//
-//
-//                            startActivity(new Intent(Storyboard.this, AddStory.class)));
-                        }
-                    });
-
-
-
+                Intent i = new Intent(v.getContext(), Comments.class);
+                i.putExtra("image",currentStoryCard.getPostID());
+                i.putExtra("toUserName", currentStoryCard.getName());
+                i.putExtra("toUserEmail",currentStoryCard.getAuthorEmail());
+                v.getContext().startActivity(i);
+            }
+        });
 
 
         return listItem;

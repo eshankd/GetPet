@@ -21,6 +21,14 @@ public class User {
         numPetsOwned = -1;
     }
 
+    public void reset(){
+        fName = "Guest";
+        lName = "User";
+        numPetsOwned = -1;
+    }
+
+
+
     public static User getInstance(){
         if (single_instance == null)
             single_instance = new User();
