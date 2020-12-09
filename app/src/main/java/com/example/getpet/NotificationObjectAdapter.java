@@ -57,9 +57,12 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
             TextView notification = listItem.findViewById(R.id.notification);
 
-            if(!currentNotificationCard.getIsRead())
+            if(!currentNotificationCard.getIsRead()) {
 //                notification.getChild(-1).setBackgroundColor(Color.BLACK);
-                notification.setBackgroundColor(Color.RED);
+                notification.setTextColor(Color.RED);
+                fromUser.setTextColor(Color.RED);
+            }
+
 
             Log.d("notif",currentNotificationCard.getNotifId());
 

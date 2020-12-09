@@ -131,6 +131,7 @@ public class AdoptFoster extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         auth.signOut();
+        //user.reset();
         startActivity(new Intent(AdoptFoster.this,MainActivity.class));
         Toast.makeText(AdoptFoster.this, "Successfully signed out", Toast.LENGTH_SHORT).show();
     }

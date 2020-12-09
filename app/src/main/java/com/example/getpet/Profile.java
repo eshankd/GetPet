@@ -209,6 +209,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 auth.signOut();
+                user.reset();
                 startActivity(new Intent(Profile.this, MainActivity.class));
                 Toast.makeText(Profile.this, "Successfully signed out", Toast.LENGTH_SHORT).show();
             }

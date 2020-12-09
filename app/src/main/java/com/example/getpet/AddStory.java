@@ -42,6 +42,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -132,6 +134,8 @@ public class AddStory extends AppCompatActivity {
             captionIn = findViewById(R.id.inputPost);
             String caption = captionIn.getText().toString();
 
+            Long time = Calendar.getInstance().getTimeInMillis();
+
             CollectionReference docref = fStore.collection("Posts");
             Map<String, Object> post = new HashMap<>();
             post.put("Caption", caption);
@@ -139,6 +143,7 @@ public class AddStory extends AppCompatActivity {
             post.put("Name", user.getFullName());
             post.put("userEmail", user.getEmail());
             post.put("timeStamp", FieldValue.serverTimestamp());
+            post.put("timeAgo", time);
 
 
             docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

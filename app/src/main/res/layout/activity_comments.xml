@@ -47,7 +47,8 @@
         android:id="@+id/commentBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="212dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/greenbuttondesign"
         android:fontFamily="@font/open_sans"
         android:text="Post Comment"
@@ -55,9 +56,10 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentIn" />
 
-    <TextView
+    <EditText
         android:id="@+id/commentIn"
         android:layout_width="288dp"
         android:layout_height="180dp"
@@ -90,8 +92,8 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
