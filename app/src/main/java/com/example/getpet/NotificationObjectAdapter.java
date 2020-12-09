@@ -71,17 +71,20 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
 
             notification.setText(currentNotificationCard.getNotification());
 
-            final File localFile;
-            try {
-                localFile = File.createTempFile(currentNotificationCard.getSourceID(), "jpg");
-                View finalListItem = listItem;
-                storageRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
-                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    ((ImageView) finalListItem.findViewById(R.id.notifPic)).setImageBitmap(bitmap);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(currentNotificationCard.getSourceID() != null) {
+                final File localFile;
+                try {
+                    localFile = File.createTempFile(currentNotificationCard.getSourceID(), "jpg");
+                    View finalListItem = listItem;
+                    storageRef.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        ((ImageView) finalListItem.findViewById(R.id.notifPic)).setImageBitmap(bitmap);
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
 
         return listItem;
     }
