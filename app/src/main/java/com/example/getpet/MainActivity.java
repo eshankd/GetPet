@@ -26,14 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     private String TAG = "EmailPassword";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
-
         loginAsGuest();
         signUp();
         login();
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-
+//function that lets thr user login to use the functionalities of the application
     private void login() {
 
         Button loginBTN = findViewById(R.id.login);
@@ -65,21 +63,18 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "signInWithEmail:success");
-                        startActivity(new Intent(MainActivity.this, AdoptFoster.class));
-                    } else {
-                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-                        Toast.makeText(MainActivity.this, "Account doesn't exit, please signup", Toast.LENGTH_SHORT).show();
-                    }
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener( MainActivity.this, task -> {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "signInWithEmail:success");
+                    startActivity(new Intent(MainActivity.this, AdoptFoster.class));
+                } else {
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                    Toast.makeText(MainActivity.this, "Account doesn't exit, please signup", Toast.LENGTH_SHORT).show();
                 }
             });
         });
     }
-
+// function that validates the form to see if the user has entered all the details
     private boolean validateForm(String email, String password) {
         if(email == null || email.trim().isEmpty())
             return false;
@@ -87,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+// function to let the user login as a guest
     private void loginAsGuest(){
         TextView loginAsGuest = findViewById(R.id.loginasguest);
         loginAsGuest.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AdoptFoster.class)));
     }
-
+// function which direct the user to the signup pages to create their account
     private void signUp(){
         Button signUp = findViewById(R.id.signup);
         signUp.setOnClickListener(new View.OnClickListener() {

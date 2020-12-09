@@ -37,8 +37,9 @@ import java.util.Map;
 
 public class petprofileview extends AppCompatActivity {
 
-    BottomNavigationView navBar;
 
+    // declaring all the variables that will be used by the following functions below
+    BottomNavigationView navBar;
     private String transferredName;
     private int transferredAge;
     private String transferredBreed;
@@ -92,7 +93,7 @@ public class petprofileview extends AppCompatActivity {
         petDescription.setText(trasferredDescription);
 
 
-
+        //opening storage to get the images to be posted for the pet profile
         FirebaseStorage storage = FirebaseStorage.getInstance();
         Log.d("petID", transferredPetID);
         StorageReference reference = storage.getReference().child("Pet Images/" + transferredPetID + ".jpg");
@@ -106,16 +107,12 @@ public class petprofileview extends AppCompatActivity {
 
                 petImage = findViewById(R.id.petImage);
                 petImage.setImageBitmap(bitmap);
-
-
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         navBar.setOnNavigationItemSelectedListener(item -> {
-            switch(item.toString()) {
+            switch (item.toString()) {
                 case "Storyboard":
                     startActivity(new Intent(petprofileview.this, Storyboard.class));
                     break;
@@ -135,48 +132,36 @@ public class petprofileview extends AppCompatActivity {
             return true;
         });
 
-        if(user.getPetsOwned() == -1)
-        {
+        if (user.getPetsOwned() == -1) {
             adopt.setVisibility(View.VISIBLE);
             adopt.setBackground(getDrawable(R.drawable.disabledbutton));
-
-
-        }
-
-        else if(!user.getEmail().equals(transferredUserEmail))
-        {
+        } else if (!user.getEmail().equals(transferredUserEmail)) {
             adopt.setVisibility(View.VISIBLE);
         }
 
-
-        if(transferredPetID.equals("3LHKy3jlYFuXfVPCrLSs") ||
+        if (transferredPetID.equals("3LHKy3jlYFuXfVPCrLSs") ||
                 transferredPetID.equals("5w68ws7hpEAUTLvXrLH3") ||
                 transferredPetID.equals("jxI6GLCzebh1IZwOFKLq") ||
-                transferredPetID.equals("zeXDKDimEBQM5m2Irq1s"))
-        {
+                transferredPetID.equals("zeXDKDimEBQM5m2Irq1s")) {
             viewinARBtn.setVisibility(View.VISIBLE);
         }
 
         viewinAR();
         adoptButton();
-
     }
-
+// button function to get into AR view activity to view the pet in AR
     private void viewinAR(){
 
-        viewinARBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        viewinARBtn.setOnClickListener(v -> {
 
-                Intent intent = new Intent(petprofileview.this, ARView.class);
-                intent.putExtra("petID", transferredPetID);
-                startActivity(intent);
-
-            }
+            Intent intent = new Intent(petprofileview.this, ARView.class);
+            intent.putExtra("petID", transferredPetID);
+            startActivity(intent);
         });
 
     }
 
+    // button that lets the user adopt the pet, which intern sends data to the owner of the pet
     private void adoptButton(){
 
         Dialog mDialog;
@@ -200,15 +185,7 @@ public class petprofileview extends AppCompatActivity {
             mDialog.show();
 
             DocumentReference docRef = fStore.collection("Users").document(user.getUserID());
-            docRef.update("PetsOwned", FieldValue.arrayUnion(transferredPetID)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-
-                    user.adoptPet(transferredPetID);
-
-                }
-            });
-
+            docRef.update("PetsOwned", FieldValue.arrayUnion(transferredPetID)).addOnSuccessListener(aVoid -> user.adoptPet(transferredPetID));
 
             Long time = Calendar.getInstance().getTimeInMillis();
             CollectionReference docref = fStore.collection("Notifications2");
@@ -224,19 +201,7 @@ public class petprofileview extends AppCompatActivity {
             post.put("timeAgo", time);
 
 
-            docref.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-
-                    Log.d(TAG, "Notification Sent!");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error adding post");
-                }
-            });
-
+            docref.add(post).addOnSuccessListener(documentReference -> Log.d(TAG, "Notification Sent!")).addOnFailureListener(e -> Log.w(TAG, "Error adding post"));
 
             Map<String, Object> postto = new HashMap<>();
             postto.put("fromUser", transferredUserEmail);
@@ -249,29 +214,10 @@ public class petprofileview extends AppCompatActivity {
             postto.put("timeStamp", FieldValue.serverTimestamp());
             postto.put("timeAgo", time);
 
-
-            docref.add(postto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-
-                    Log.d(TAG, "Notification Sent!");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error");
-                }
-            });
-
-
+            docref.add(postto).addOnSuccessListener(documentReference -> Log.d(TAG, "Notification Sent!")).addOnFailureListener(e -> Log.w(TAG, "Error"));
 
             Button okay = mDialog.findViewById(R.id.okayButton);
-            okay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mDialog.dismiss();
-                }
-            });
+            okay.setOnClickListener(v1 -> mDialog.dismiss());
 
         });
     }

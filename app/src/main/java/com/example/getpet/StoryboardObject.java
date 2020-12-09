@@ -32,14 +32,20 @@ public class StoryboardObject {
         this.time = time;
     }
 
+    // gets the post ID to reference it for images or anything else it may be used for.
     public String getPostID() { return postID;}
 
+    //gets the name of the user adding the story
     public String getName() { return name; }
 
+    //gets the Caption of the post
     public String getCaption() { return caption; }
 
+    //gets the logged in users Email
     public String getAuthorEmail() { return authorEmail; }
 
+
+    //Function that gets the time of the post so it can register the time it had been posted.
     public String getTime() {
         Long currentTime = Calendar.getInstance().getTimeInMillis();
         Log.d("time", currentTime.toString()+" "+time.toString());
@@ -52,12 +58,16 @@ public class StoryboardObject {
 
     public int getLikes() { return likes; }
 
+
+    // // Function to like the post - increments the number of likes and sets is liked to false
     public void like() {
         if(!isLiked)    {
             likes++;
             isLiked = true;
         }
     }
+
+    // Function to unlike the post - decrements the number of likes and sets is liked to false
 
     public void unlike(){
         if(isLiked) {

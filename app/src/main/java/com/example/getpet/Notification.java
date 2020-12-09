@@ -22,12 +22,13 @@ import java.util.ArrayList;
 
 public class Notification extends AppCompatActivity {
 
+
+    // declaring all the variables to be used by the functions below
     BottomNavigationView navBar;
     private FirebaseFirestore fStore;
     User user;
     private ListView notificationsListView;
     private NotificationObjectAdapter notificationAdapter;
-    TextView notificationCount;
 
 
     @Override
@@ -64,31 +65,28 @@ public class Notification extends AppCompatActivity {
         loadNotifications();
     }
 
+
+    //function that loads all the notifications in th notifications activity inflating the listView
     private void loadNotifications() {
 
         fStore.collection("Notifications2").orderBy("timeStamp", Query.Direction.DESCENDING)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        int count = queryDocumentSnapshots.size();
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    int count = queryDocumentSnapshots.size();
 
-                        ArrayList<NotificationObject> notificationsList = new ArrayList<>();
-                        notificationsListView = findViewById(R.id.notificationsList);
+                    ArrayList<NotificationObject> notificationsList = new ArrayList<>();
+                    notificationsListView = findViewById(R.id.notificationsList);
 
-                        for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
-                            if (snapDoc.getString("toUser").equals(user.getEmail())) {
-                                //Log.d("email",snapDoc.getString("toUser")+" "+user.getEmail());
-                                notificationsList.add(new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"), snapDoc.getString("fromUser"),
-                                        snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
-                                        snapDoc.getBoolean("isRead"), snapDoc.getLong("timeAgo")));
-                            }
+                    for (DocumentSnapshot snapDoc : queryDocumentSnapshots) {
+                        if (snapDoc.getString("toUser").equals(user.getEmail())) {
+                            //Log.d("email",snapDoc.getString("toUser")+" "+user.getEmail());
+                            notificationsList.add(new NotificationObject(snapDoc.getId(), snapDoc.getString("fromName"), snapDoc.getString("fromUser"),
+                                    snapDoc.getString("toUser"), snapDoc.getString("Message"), snapDoc.getString("sourceID"), snapDoc.getString("origin"),
+                                    snapDoc.getBoolean("isRead"), snapDoc.getLong("timeAgo")));
                         }
-
-                        notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);
-                        notificationsListView.setAdapter(notificationAdapter);
-                    }});
-
-
+                    }
+                    notificationAdapter = new NotificationObjectAdapter(Notification.this, notificationsList);
+                    notificationsListView.setAdapter(notificationAdapter);
+                });
     }
 }

@@ -40,11 +40,12 @@ import java.util.Map;
 
 public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
-    User user = User.getInstance();
+    User user = User.getInstance(); // gets instance of the user logged in
 
+
+    // Declaring variables to be used in the class
     private Context mContext;
     private List<StoryboardObject> storyboardObjectList;
-
     private ImageView likeBtn;
     private ImageView commentBtn;
     private Bitmap bitmap;
@@ -53,24 +54,30 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
 
     private Map<String, Object> likeNotif = new HashMap<>();
 
+
+    //creating an Object Adapter to using array list of objects
     public StoryboardObjectAdapter(Context context, ArrayList<StoryboardObject> list) {
         super(context, 0, list);
         mContext = context;
         storyboardObjectList = list;
     }
 
-
+//Function to get the view - to inflate the list with all the information retrieved from the list
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
 
+
+        // checks if the list is null before inflating
         if (listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.storyboard_layout, parent, false);
 
         StoryboardObject currentStoryCard = storyboardObjectList.get(position);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
+
+        //Getting the image referenced by the list view to post next to the story
 
         StorageReference reference = storage.getReference().child("Storyboard Thumbnails/" + currentStoryCard.getPostID() + ".jpg");
 
@@ -85,6 +92,8 @@ public class StoryboardObjectAdapter extends ArrayAdapter<StoryboardObject> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //setting text and strings to the UI
 
         TextView userName = listItem.findViewById(R.id.userName);
         userName.setText(currentStoryCard.getName());

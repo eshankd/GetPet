@@ -28,6 +28,8 @@ import java.util.List;
 
 public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject>    {
 
+
+    //declaring all the variables that will be used in the functions below
     private Context mContext;
     private List<NotificationObject> notificationObjectList;
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
@@ -40,6 +42,8 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
         notificationObjectList = list;
     }
 
+
+    // getting the view of all the notifications -  inflating the list
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -63,16 +67,10 @@ public class NotificationObjectAdapter extends ArrayAdapter<NotificationObject> 
             if(!currentNotificationCard.getIsRead())
                 listItem.setBackgroundColor(Color.parseColor("#cbcbed"));
 
-
-
-            Log.d("notif",currentNotificationCard.getNotifId());
-
             DocumentReference docRef = fStore.collection("Notifications2").document(currentNotificationCard.getNotifId());
             docRef.update("isRead", true);
 
             notification.setText(currentNotificationCard.getNotification());
-
-
 
             final File localFile;
             try {

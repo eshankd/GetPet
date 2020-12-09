@@ -31,6 +31,8 @@ import java.util.Set;
 
 public class FilterBy extends AppCompatActivity {
 
+
+    // declaring variables to be used in the functions below
     BottomNavigationView navBar;
     String typeChosen, breedChosen, genderChosen, AdoptFosterChosen;
     int ageChosen;
@@ -204,7 +206,7 @@ public class FilterBy extends AppCompatActivity {
 
         searchByFilter();
     }
-
+// function that takes all the input from the user on the filtering page and sends the data to the next page to show the pets filtered by the user
     private void searchByFilter(){
         Button search = findViewById(R.id.search);
         search.setOnClickListener(v -> {
